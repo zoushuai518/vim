@@ -99,8 +99,8 @@ set ignorecase smartcase
 set cursorline
 
 "打开新窗口时时为上下35行宽,左右118个字符宽的窗口
-set lines=35 
-set columns=118
+"set lines=35 
+"set columns=118
 
 
 "php缩进
@@ -180,7 +180,8 @@ let g:miniBufExplMapWindowNavArrows=1
 let g:miniBufExplModSelTarget = 1
 let g:miniBufExplMapCTabSwitchWindows=1
 let g:miniBufExplorerMoreThanOne=1
-"Toggle Menu and Toolbar
+
+"Toggle Menu and Toolbar; 隐藏工具栏
 set guioptions-=m
 set guioptions-=T
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
@@ -190,4 +191,20 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+
+" comments.vim 注释插件
+" 修改 Ctrl+c[添加注释]->Alt+c ; Ctrl+v[取消注释]->Alt+v ; 
+
+"" key-mappings for comment line in normal 
+
+"" key-mappings for comment line in normal mode
+noremap  <silent> <A-c> :call CommentLine()<CR>
+"" key-mappings for range comment lines in visual <Shift-V> mode
+vnoremap <silent> <A-c> :call RangeCommentLine()<CR>
+
+"" key-mappings for un-comment line in normal mode
+noremap  <silent> <A-v> :call UnCommentLine()<CR>
+"" key-mappings for range un-comment lines in visual <Shift-V> mode
+vnoremap <silent> <A-v> :call RangeUnCommentLine()<CR>
+
 
