@@ -209,3 +209,35 @@ noremap  <silent> <A-v> :call UnCommentLine()<CR>
 vnoremap <silent> <A-v> :call RangeUnCommentLine()<CR>
 
 
+"For example, my .vimrc contains:
+"DoxygenToolkit.vim
+"doxygen toolkit 
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Mathias Lorente"
+let g:DoxygenToolkit_licenseTag="My own license"
+let g:DoxygenToolkit_authorName="drunkedcat, whitelilis@gmail.com"
+let s:licenseTag = "Copyright(C)"
+let s:licenseTag = s:licenseTag . "For free"
+let s:licenseTag = s:licenseTag . "All right reserved"
+let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+" use doxygen 这个工具
+"光标在函数上，用 :Dox 自动生成函数的说明
+"光标在文件头，用 :DoxAthor 自动生成文件说明
+
+" =====
+"let g:DoxygenToolkit_authorName="xxx"
+"F1为添加文件头快捷键
+"au FileType cpp map <F1> :DoxAuthor<CR>
+"au FileType python map <F1> :DoxAuthor<CR>
+"F2为添加函数注释
+"au FileType cpp map <F2> :Dox<CR>
+"au FileType python map <F2> :Dox<CR>
+
+
+
