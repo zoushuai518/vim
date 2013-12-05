@@ -241,4 +241,20 @@ let g:doxygen_enhanced_color=1
 "au FileType python map <F2> :Dox<CR>
 
 
+"Calendar.vim
+"
+"使用方法，vim普通模式下，输入 :Calendar 即可在左侧打开一个小窗口，:q 退出
+"回车键
+let g:calendar_diary = "D:/Calendar"
+let g:calendar_monday = 1           " 以星期一为开始
+let g:calendar_focus_today = 1      " 光标在当天的日期上
+"let g:calendar_mark = "left-fit" "可以让*和数字可靠近
+"let g:calendar_mark = "right" "上面设置后在昨天写日志，修改成right正常
+"let g:calendar_mruler = "一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月"     " 中文，可自行修改
+"let g:calendar_wruler = "日 一 二 三 四 五 六"
+"let g:calendar_navi_label = "往前,今日,往后"
+"map <F8> :Calendar<cr>              " 快捷键，默认 <leader>cal,水平方向：<leader>caL
+
+
+
 
