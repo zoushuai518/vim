@@ -245,7 +245,8 @@ let g:doxygen_enhanced_color=1
 "
 "使用方法，vim普通模式下，输入 :Calendar 即可在左侧打开一个小窗口，:q 退出
 "回车键
-let g:calendar_diary = "D:/Calendar"
+"let g:calendar_diary = "D:/Calendar"
+let g:calendar_diary = "C:/Users/ZS-THINKPAD/Desktop/Calendar"
 let g:calendar_monday = 1           " 以星期一为开始
 let g:calendar_focus_today = 1      " 光标在当天的日期上
 "let g:calendar_mark = "left-fit" "可以让*和数字可靠近
