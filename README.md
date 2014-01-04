@@ -1,6 +1,6 @@
 vim
 ===
-vim IDE
+vim IDE ; 此vim IDE插件安装,测试使用均是在windows平台完成
 ===
 vim 常用插件
 
