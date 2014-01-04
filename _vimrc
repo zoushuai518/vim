@@ -183,15 +183,17 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplMapCTabSwitchWindows=1
 let g:miniBufExplorerMoreThanOne=1
 
+
 "snipMate 自动补全
 "snipMate windows下功能失效原因：
 "snipMate插件解析源snippets路径是在windows下取出来的路径是用\，而在类Unix系统中，目录是用/，导致snipMate插件在解析获取snippets时路径错误，不能识别
 "
 "解决办法：
 "在你的_vimrc中添加如下行：
-"注：上述路径是笔者自己的安装目录，根据自己情况进行修改。
-"zs注: snipMate插件一般放在 ./vim/vimfiles目录下;snippets补全可以自定义
 let g:snippets_dir = "C:/Users/ZS-THINKPAD/Desktop/vim/vimfiles/snippets"
+"注：上述路径是自己的安装目录，根据自己情况进行修改。
+"zs注: snipMate插件一般放在 ./vim/vimfiles目录下;snippets补全可以自定义
+
 
 "Toggle Menu and Toolbar; 隐藏工具栏
 set guioptions-=m
