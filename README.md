@@ -2,6 +2,8 @@ vim
 ===
 vim IDE ; 此vim IDE插件安装,测试使用均是在windows平台完成
 ===
+vim windows/linux平台下的,插件安装,配置几乎可以通用[windows下配置文件名_vimrc;linux下配置文件名vimrc]
+===
 vim 常用插件
 
 NERDTree.vim
