@@ -1,3 +1,21 @@
 vim IDE
 ===
 Linux 平台常用插件安装：
+===
+[
+插件安装：
+1>、下载对应的 .tar.gz压缩包
+2>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}}
+]
+
+"已经安装的插件
+1、NERDTree			目录树插件安装
+"nmap <F10> :NERDTreeToggle<CR>		"F10快捷键
+"let NERDTreeDirArrows=0			"Linux下,防止目录乱码
+2、neocomplcache	自动补全插件
+"let g:neocomplcache_enable_at_startup = 1
+3、Calendar			日历插件
+===
+"未安装的插件
+
+
