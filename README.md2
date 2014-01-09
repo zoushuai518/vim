@@ -7,7 +7,9 @@ Linux 平台常用插件安装：
 [
 插件安装：
 1>、下载对应的 .tar.gz|.zip压缩包
-2>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}}
+2-1>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}} [NERDTree | neocomplcache | Calendar |solarized]
+|
+2-2>、解压到vim对应目录下,覆盖,  ag:{vim72: /usr/share/vim/vimfiles} [snipMate]
 ]
 
 "已经安装的插件
@@ -37,6 +39,9 @@ else
     set background=dark
 endif
 colorscheme solarized
+
+5、snipMate
+let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 
 ===
 
