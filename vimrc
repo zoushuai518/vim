@@ -1,6 +1,16 @@
 " linux 平台下,vim配置文件,仅供参考
 " 摘自:CentOS 6.4 + vim72
 
+[
+"1）设置（软）制表符宽度为4
+set tabstop=4
+set softtabstop=4
+"2）设置缩进的空格数为4
+set shiftwidth=4
+"3）设置自动缩进：即每行的缩进值与上一行相等；使用 noautoindent 取消设置：
+set autoindent
+]
+
   1 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
   2    set fileencodings=ucs-bom,utf-8,latin1
   3 endif
