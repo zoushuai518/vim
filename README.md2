@@ -7,9 +7,9 @@ Linux 平台常用插件安装：
 [
 插件安装：
 1>、下载对应的 .tar.gz|.zip压缩包
-2-1>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}} [NERDTree | neocomplcache | Calendar |solarized]
+2-1>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}} [NERDTree | neocomplcache | Calendar | solarized]
 |
-2-2>、解压到vim对应目录下,覆盖,  ag:{vim72: /usr/share/vim/vimfiles} [snipMate]
+2-2>、解压到vim对应目录下,覆盖,  ag:{vim72: /usr/share/vim/vimfiles} [snipMate | TagList{Ctags}]
 ]
 
 "已经安装的插件
@@ -42,6 +42,35 @@ colorscheme solarized
 
 5、snipMate
 let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
+
+6、Ctags + TagList
+[
+Ctags编译安装：
+    下载源码安装（网上提供的方法）
+    1）从http://ctags.sourceforge.net/下载源代码包后，解压缩生成源代码目录，
+    2）然后进入源代码根目录执行./configure，
+    3）然后执行make，
+    4）编译成功后执行make install。
+]
+"Ctags
+let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
+"Taglist                                                                                                  
+"map <silent> <leader>tl :TlistToogle<cr>                                                                                        
+let Tlist_Auto_Highlight_Tag = 1                                                       
+let Tlist_Auto_Open = 1                                                                
+let Tlist_Auto_Update = 1                                                                         
+let Tlist_Close_On_Select = 0                                                                       
+let Tlist_Compact_Format = 0                                                                   
+let Tlist_Display_Prototype = 0                                                                    
+let Tlist_Display_Tag_Scope = 1                                                                 
+let Tlist_Enable_Fold_Column = 0                                                                 
+let Tlist_Exit_OnlyWindow = 0                                                                
+let Tlist_File_Fold_Auto_Close = 0                                                                   
+let Tlist_GainFocus_On_ToggleOpen = 1                                                              
+let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
+let Tlist_Inc_Winwidth = 0                                                        
+let Tlist_Use_Right_Window = 1                                                                      
+map <silent> <leader>tl :TlistToogle<cr> 
 
 ===
 
