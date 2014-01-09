@@ -21,6 +21,10 @@ let NERDTreeDirArrows=0			"Linux下,防止目录乱码
 let g:neocomplcache_enable_at_startup = 1
 
 3、Calendar			日历插件
+[
+使用：
+Calendar | CalendarH
+]
 let g:calendar_diary = "~/diary" " 设置日记的存储路径
 let g:calendar_monday = 1 "以星期一为开始
 let g:calendar_focus_today = 1 " 光标在当天的日期上
@@ -41,13 +45,17 @@ endif
 colorscheme solarized
 
 5、snipMate
+[
+使用：
+......
+]
 let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 
 6、Ctags + TagList
 [
 使用：
 Ctrl+] 追踪
-Ctrl+t 返回追踪其实位置
+Ctrl+t 返回追踪起始位置
 ]
 [
 Ctags编译安装：
