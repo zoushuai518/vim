@@ -96,6 +96,7 @@
  83 
  84 "colors solarized
  85 "syntax enable
+ 85 "syntax on
  86 "set background=light
  87 "set background=dark
  88 if has('gui_running')
