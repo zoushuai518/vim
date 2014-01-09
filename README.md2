@@ -14,8 +14,10 @@ Linux 平台常用插件安装：
 1、NERDTree			目录树插件安装
 nmap <F10> :NERDTreeToggle<CR>		"F10快捷键
 let NERDTreeDirArrows=0			"Linux下,防止目录乱码
+
 2、neocomplcache	自动补全插件
 let g:neocomplcache_enable_at_startup = 1
+
 3、Calendar			日历插件
 let g:calendar_diary = "~/diary" " 设置日记的存储路径
 let g:calendar_monday = 1 "以星期一为开始
@@ -23,6 +25,18 @@ let g:calendar_focus_today = 1 " 光标在当天的日期上
 let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 "在vimrc中设置let g:calendar_diary = "~/diary" ;这是设置日记的存放目录，必须自己先建立这个目录。
 "打开vim，用:Calendar 或 :CalendarH
+
+4、colors solarized [vim护眼主题]
+"colors solarized
+"syntax enable
+"set background=light
+"set background=dark
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+colorscheme solarized
 
 ===
 
