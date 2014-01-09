@@ -45,6 +45,11 @@ let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 
 6、Ctags + TagList
 [
+使用：
+Ctrl+] 追踪
+Ctrl+t 返回追踪其实位置
+]
+[
 Ctags编译安装：
     下载源码安装（网上提供的方法）
     1）从http://ctags.sourceforge.net/下载源代码包后，解压缩生成源代码目录，
