@@ -112,6 +112,29 @@
  98
  99
  100
+ 101"Ctags    
+102
+103
+104 "let Tlist_Ctags_Cmd="/usr/bin/ctags"
+105 let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
+106                                                                                                    
+107 "Taglist                                                                                                  
+108 "map <silent> <leader>tl :TlistToogle<cr>                                                                                        
+109 let Tlist_Auto_Highlight_Tag = 1                                                       
+110 let Tlist_Auto_Open = 1                                                                
+111 let Tlist_Auto_Update = 1                                                                         
+112 let Tlist_Close_On_Select = 0                                                                       
+113 let Tlist_Compact_Format = 0                                                                   
+114 let Tlist_Display_Prototype = 0                                                                    
+115 let Tlist_Display_Tag_Scope = 1                                                                 
+116 let Tlist_Enable_Fold_Column = 0                                                                 
+117 let Tlist_Exit_OnlyWindow = 0                                                                
+118 let Tlist_File_Fold_Auto_Close = 0                                                                   
+119 let Tlist_GainFocus_On_ToggleOpen = 1                                                              
+120 let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
+121 let Tlist_Inc_Winwidth = 0                                                        
+122 let Tlist_Use_Right_Window = 1                                                                      
+123 map <silent> <leader>tl :TlistToogle<cr>            
  
  
  
