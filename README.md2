@@ -91,3 +91,26 @@ map <silent> <leader>tl :TlistToogle<cr>
 "未安装的插件
 
 
+===
+VIM 插件list
+a.vim    //头文件和编程文件之间切换  
+bufexplorer.vim      //文件浏览器，基本不用  
+color_sample_pack.vim   //各种颜色主题  
+csExplorer.vim                // 主题管理插件
+DoxygenToolkit.vim         //个性文本生成工具，知道大概干什么，以后再说  
+genutils.vim   
+lookupfile.vim                 //查找文件插件  
+mark.vim                        //标记高亮显示  
+minibufexpl.vim              //很好用的打开文件显示浏览器  
+NERD_commenter.vim   //注释插件  
+NERD_tree.vim  
+project.vim                    //工程目录插件  
+ShowFunc.vim               //显示函数插件，还没怎么用  
+taglist.vim                     //前提是安装了ctags，此插件才好用,Exburant ctags  
+winfileexplorer.vim        //winmanager里的，winmanager可以控制taglist和bufexplorer的显示。  
+winmanager.vim  
+wintagexplorer.vim  
+
+
+
+
