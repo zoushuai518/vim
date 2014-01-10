@@ -134,7 +134,11 @@
 120 let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
 121 let Tlist_Inc_Winwidth = 0                                                        
 122 let Tlist_Use_Right_Window = 1                                                                      
-123 map <silent> <leader>tl :TlistToogle<cr>            
+123 map <silent> <leader>tl :TlistToogle<cr>
+124
+125 "Ctags 生成的tags文件路径
+126 set tags=/var/www/html/tags
+
  
  
  
