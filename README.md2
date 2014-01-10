@@ -37,6 +37,7 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 "syntax enable
 "set background=light
 "set background=dark
+set t_Co=256 "如果是在模拟终端需要把颜色设置成256色
 if has('gui_running')
     set background=light
 else
