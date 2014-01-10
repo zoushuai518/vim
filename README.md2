@@ -32,7 +32,7 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 "在vimrc中设置let g:calendar_diary = "~/diary" ;这是设置日记的存放目录，必须自己先建立这个目录。
 "打开vim，用:Calendar 或 :CalendarH
 
-4、colors solarized [vim护眼主题]
+4、colors solarized [vim护眼主题{http://ethanschoonover.com/solarized}]
 "colors solarized
 "syntax enable
 "set background=light
