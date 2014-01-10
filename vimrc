@@ -78,8 +78,8 @@
  65 
  66 
  67 "zs-config
- 68 "
- 69 "
+ 68 set fileencoding=utf8  "默认文件编码
+ 69 set fileencodings==utf8,gbk,cp936  "可以识别的文件编码
  70 set number
  71 set wildmenu
  72 
