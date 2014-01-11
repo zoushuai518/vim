@@ -55,8 +55,14 @@ let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 6、Ctags + TagList
 [
 使用：
+{
+cd 进入项目根目录;
+运行：Ctags -R *  {生成 tags文件}
+}
+{
 Ctrl+] 追踪
 Ctrl+t 返回追踪起始位置
+}
 ]
 [
 Ctags编译安装：
