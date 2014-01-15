@@ -57,7 +57,7 @@ let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 使用：
 {
 cd 进入项目根目录;
-运行：Ctags -R *  {生成 tags文件}
+运行：Ctags -R * {ctags -R *} {生成 tags文件}
 }
 {
 Ctrl+] 追踪
@@ -71,6 +71,12 @@ Ctags编译安装：
     2）然后进入源代码根目录执行./configure，
     3）然后执行make，
     4）编译成功后执行make install。
+    {
+    make install后执行：
+    cd 进入ctags解压后的目录
+    cp ctags /usr/local/bin/ctags  &&  chmod 755 /usr/local/bin/ctags
+    cp ./ctags.1 /usr/local/share/man/man1/ctags.1  &&  chmod 644 /usr/local/share/man/man1/ctags.1
+    }
 ]
 "Ctags
 let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
