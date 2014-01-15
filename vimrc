@@ -115,7 +115,7 @@
  101"Ctags    
 102
 103
-104 "let Tlist_Ctags_Cmd="/usr/bin/ctags"
+104 "let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
 105 let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
 106                                                                                                    
 107 "Taglist                                                                                                  
