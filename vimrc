@@ -85,7 +85,7 @@
  72 
  73 "NERDTree
  74 nmap <F10> :NERDTreeToggle<CR>
- 75 let NERDTreeDirArrows=0
+ 75 let NERDTreeDirArrows=0         "解决Linux下 NERDTree目录乱码
  76 
  77 "neocomplcache
  78 let g:neocomplcache_enable_at_startup = 1
