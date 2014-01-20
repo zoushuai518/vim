@@ -77,6 +77,15 @@ Ctags编译安装：
     cp ctags /usr/local/bin/ctags  &&  chmod 755 /usr/local/bin/ctags
     cp ./ctags.1 /usr/local/share/man/man1/ctags.1  &&  chmod 644 /usr/local/share/man/man1/ctags.1
     }
+CentOS:
+{
+yum install ctags
+}
+Ubuntu:
+{
+apt-get install ctags
+}
+
 ]
 "Ctags
 let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
