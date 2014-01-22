@@ -78,6 +78,10 @@
  65 
  66 
  67 "zs-config
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set autoindent
  68 set fileencoding=utf8  "默认文件编码
  69 set fileencodings==utf8,gbk,cp936  "可以识别的文件编码;需要Linux系统支持中文方可
  70 set number
