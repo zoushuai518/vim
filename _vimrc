@@ -82,6 +82,11 @@ set cmdheight=1
 
 "设置状态栏标尺
 set ruler
+" cursor
+set cursorline
+hi CursorLine ctermbg=lightgray cterm=NONE
+set cursorcolumn
+hi CursorColumn ctermbg=lightgray
 
 "设定退格键和delete键
 set backspace=indent,eol,start
