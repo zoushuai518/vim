@@ -9,6 +9,14 @@
 "set shiftwidth=4
 "3）设置自动缩进：即每行的缩进值与上一行相等；使用 noautoindent 取消设置：
 "set autoindent
+"#======
+"设置状态栏标尺;linux下颜色有待调整
+set ruler
+" cursor
+set cursorline
+hi CursorLine ctermbg=lightgray cterm=NONE
+set cursorcolumn
+hi CursorColumn ctermbg=lightgray
 ]
 
   1 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
