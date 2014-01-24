@@ -1,7 +1,7 @@
 " linux 平台下,vim配置文件,仅供参考
 " 摘自:CentOS 6.4 + vim72
 
-[
+"[
 "1）设置（软）制表符宽度为4
 "set tabstop=4
 "set softtabstop=4
@@ -11,13 +11,13 @@
 "set autoindent
 "#======
 "设置状态栏标尺;linux下颜色有待调整
-set ruler
+"set ruler
 " cursor
-set cursorline
-hi CursorLine ctermbg=lightgray cterm=NONE
-set cursorcolumn
-hi CursorColumn ctermbg=lightgray
-]
+"set cursorline
+"hi CursorLine ctermbg=lightgray cterm=NONE
+"set cursorcolumn
+"hi CursorColumn ctermbg=lightgray
+"]
 
   1 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
   2    set fileencodings=ucs-bom,utf-8,latin1

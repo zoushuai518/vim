@@ -82,11 +82,15 @@ set cmdheight=1
 
 "设置状态栏标尺
 set ruler
-" cursor
+"高亮显示当前行
 set cursorline
-hi CursorLine ctermbg=lightgray cterm=NONE
+"高亮显示当前列
 set cursorcolumn
-hi CursorColumn ctermbg=lightgray
+" cursor
+"set cursorline
+"hi CursorLine ctermbg=lightgray cterm=NONE
+"set cursorcolumn
+"hi CursorColumn ctermbg=lightgray
 
 "设定退格键和delete键
 set backspace=indent,eol,start
@@ -101,8 +105,6 @@ set hlsearch
 "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set ignorecase smartcase
 
-"高亮显示当前行
-set cursorline
 
 "打开新窗口时时为上下35行宽,左右118个字符宽的窗口
 "set lines=35 
