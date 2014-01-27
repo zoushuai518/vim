@@ -11,6 +11,14 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
+"字体、颜色、大小
+"set guifont=Arial_monospaced_for_SAP:h12:cANSI
+"set guifont=Courier_New:h14:cANSI
+"中文乱码
+"set langmenu=zh_CN.utf8
+"set fileencodings=utf-8,cp936,big5,latin1
+"set ambiwidth=double
+
 
 
 "在状态栏显示目前所执行的指令，未完成的指令片段也会显示出来
@@ -21,6 +29,10 @@ set number
 
 "关闭备份
 set nobackup
+"不产生临时文件
+"set nobackup
+"set nowritebackup
+"set noswapfile
 
 "关闭 swap 文件
 set noswapfile
@@ -28,11 +40,7 @@ set noswapfile
 "设置匹配模式
 set showmatch
 
-"显示光标的状态行
-set guioptions-=T
-
 set bsdir=buffer 
-
 
 "开启新行时自动智能缩进
 set smartindent
@@ -46,7 +54,6 @@ set nocompatible
 autocmd! bufwritepost _vimrc source %
 
 
-
 "1）设置（软）制表符宽度为4
 set tabstop=4
 set softtabstop=4
@@ -56,16 +63,20 @@ set shiftwidth=4
 set autoindent
 "4）设置使用 C/C++ 语言的自动缩进方式：
 set cindent
+"设置行间距
+"set linespace=4
 
 
+"不自动换行
+"set nowrap
 
 "配色方案
 colorscheme desert
+"colorscheme molokai
 
 " 语法高亮
 syntax enable
 syntax on
-
 
 
 "默认区分大小写
@@ -99,8 +110,14 @@ set backspace=indent,eol,start
 set incsearch
 set nohls
 
+
 "搜索结果高亮显示
 set hlsearch
+"用nh去掉查找后的高亮
+nmap nh :noh<cr> 
+filetype plugin on
+set ofu=syntaxcomplete#Complete
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
 "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set ignorecase smartcase
@@ -110,6 +127,8 @@ set ignorecase smartcase
 "set lines=35 
 "set columns=118
 
+"命令行补全
+set wildmenu
 
 "php缩进
 let PHP_autoformatcomment=1
@@ -122,7 +141,6 @@ autocmd! bufwritepost _vimrc source %
 
 
 set fileencoding=utf-8  
-
 set fileencodings=utf-8,gbk,cp936,gb18030,utf-16,big5 
 
 
@@ -177,9 +195,11 @@ let javascript_enable_domhtmlcss=1
 
 "窗口最大化,只适合windows
 autocmd GUIEnter * simalt ~x
-
-"命令行补全
-set wildmenu
+"全屏
+"if has('win32')
+"	map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>    #非插入模式下F11全屏
+"	imap <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>    #插入模式下F11全屏
+"endif
 
 
 "多文件编辑
@@ -204,6 +224,7 @@ let g:snippets_dir = "C:/Users/ZS-THINKPAD/Desktop/vim/vimfiles/snippets"
 
 
 "Toggle Menu and Toolbar; 隐藏工具栏
+"F2切换菜单栏和工具栏
 set guioptions-=m
 set guioptions-=T
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
@@ -213,6 +234,13 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+
+"显示光标的状态行
+set guioptions-=T
+"隐藏左、右侧滚动条
+set guioptions-=r       
+set guioptions-=L       
+
 
 " comments.vim 注释插件
 " 修改 Ctrl+c[添加注释]->Alt+c ; Ctrl+v[取消注释]->Alt+v ; 
