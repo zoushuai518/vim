@@ -118,7 +118,7 @@ if has('gui_running')
 else
         set background=dark
 endif
-colorscheme solarized
+"colorscheme solarized
 
 "snipMate
 let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
