@@ -184,9 +184,6 @@ map <silent> <leader>tl :TlistToogle<cr>
 "set tags=C:\xampp\htdocs\cms-web\tags;
 "set tags=D:\wamp\www\cms\cms-web-test\tags;
 set tags=D:\wamp\www\cms\ad\tags;
-set tags=D:\wamp\www\cms\cms-web-test\tags;
-set tags=D:\wamp\www\cms\cms-web-test\tags;
-set tags=D:\wamp\www\cms\cms-admin\tags;
 set autochdir
 
 
