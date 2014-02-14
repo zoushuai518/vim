@@ -57,7 +57,7 @@ let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 使用：
 {
 cd 进入项目根目录;
-运行：Ctags -R * {ctags -R *} {生成 tags文件}
+运行：Ctags -R * {ctags -R *} {生成 tags文件}  {适用于 Linux/windows平台}
 }
 {
 Ctrl+] 追踪
