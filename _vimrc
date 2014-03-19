@@ -1,4 +1,5 @@
 "http://www.vimer.cn/
+"http://blog.csdn.net/G_BrightBoy/article/details/14229139
 "windows平台下,vim配置文件,仅供参考
 "配置中 inoremap 开头的表示后面的设置针对的是插入模式下的
 "如 inoremap <a-c>w <ESC>ciw 表示的是在插入模式下按下 alt + c 后 按w
