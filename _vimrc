@@ -58,6 +58,8 @@ set guioptions-=L
 " set fileencodings=utf-8,gbk,cp936,latin-1
 " 解决consle输出乱码
 " language messages zh_CN.utf-8
+set fileencoding=utf-8  
+set fileencodings=utf-8,gbk,cp936,gb18030,utf-16,big5 
 
 
 "1）设置（软/tab）制表符宽度为4
@@ -191,8 +193,6 @@ set ignorecase smartcase
 
 " vim 代码折叠设置 s
 set fdm=indent
-set fileencoding=utf-8  
-set fileencodings=utf-8,gbk,cp936,gb18030,utf-16,big5 
 
 "窗口最大化,只适合windows
 autocmd GUIEnter * simalt ~x
