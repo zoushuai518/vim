@@ -29,6 +29,13 @@ vim常用快捷键:
 			L：移动光标到屏幕下面
 			#--
 			%：在成对的括号等符号间移动，比如成对的 [ ] ， { }， ( ) 之间。将光标放到任意符号上，然后通过 % 来移动到和这个符号匹配的符号上，% 还可以正确的识别括号的嵌套层数，总是移动到真正匹配的位置上。因此这个命令在编辑程序代码的时候非常有用，可以让你方便的在一段代码的头尾间移动。	
+			[[     跳转到代码块的开头去(但要求代码块中'{'必须单独占一行)
+			]p    和 p 的功能差不多，但是它会自动调整被粘贴的文本的缩进去适应当前代码的位置。试一下！
+			>>    缩进所有选择的代码
+			<<    和上面类似，但是反缩进
+			gd    到达光标所在处函数或者变量的定义处。
+			K    在 Man 里面查找光标当前所在处的词。
+			''    跳转到光标上次停靠的地方, 是两个', 而不是一个
 
 			#--
 			Ctrl+F       向下滚动一屏
@@ -62,8 +69,8 @@ vim常用快捷键:
 
 		替换:
 		{
-			r:替换一个字符
-			R:连续替换多个字符
+			r:修改光标所在字符
+			R:修改光标所在位置的字符，可以一直替换字符，知道按下ESC键
 			#--
 			cw：更改光标所在处的字到字尾处
 			c#w：例如，「c3w」表示更改3个字
@@ -137,10 +144,15 @@ vim常用快捷键:
 			ndw：删除n个单词
 			d^|$：删除光标到行首|尾处
 			d0: 删至行首
-			x或X: 删除一个字符，x删除光标后的，而X删除光标前的
+			nx或X: 删除n个字符，x删除光标后的，而X删除光标前的
 			Ctrl+u: 删除输入方式下所输入的文本
 			全部删除：按esc后，然后dG
 			全部复制：按esc后，然后ggyG
+			D:将光标所在行后面所有的单词删除
+			n+d+左方向键        连续按d和左方向键，将光标所在位置前n个字符删除
+			n+d+右方向键        将光标所在位置字符+后n个删除
+			n+d+上方向键        将光标所在位置行与其上n行同时删除
+			n+d+下方向键        将光标所在位置与下n行同时删除|ndd
 		}
 
 		数字&命令:
@@ -204,18 +216,33 @@ vim常用快捷键:
 			#--
 			=a{ | =a( |=i{  ｛ =a{或者=i{ ｝                                          如果在方法体内，对齐整个函数体；如果在数组内，对整个数组进行对其
 			gg =:1,$                                            对整个文件代码进行美化；{首先需要跳到代码的第一行，然后再输入=:1,$ } php测试通过
+			#--
+			set nu : 显示行号
+			set fileencoding=utf8 : 显示|设置文件编码
+			#--
+			:set ff=unix -> 设定文件成unix格式 (set file in unix format)
+			:set ff=dos -> 设定文件成dos格式 (set file in dos format)
+			:set ff? -> 检查当前文件格式 (check the format of current file)
+			如果改变格式，直接:w存档就会存成新的格式了
+			#--
+			:syntax enable -> 打开语法的颜色显示 (turn on syntax color)
+			:syntax clear -> 关闭语法颜色 (remove syntax color)
+			:syntax off -> 完全关闭全部语法功能 (turn off syntax)
+			:syntax manual -> 手动设定语法 (set the syntax manual, when need syntax use :set syntax=ON)
 		
 		}
 
 		Other:
 		{
 			u: 撤销
+			U:取消对行所作的所有改变 
 			Ctrl + r ：取消撤销
 			#--
 			e:重载页面
 			#--
 			w:保存文件
 			wq:保存退出
+			ZZ:保存退出
 			q:退出
 			q!:强制退出|不保存退出
 			qall:关闭所有窗口
@@ -224,26 +251,45 @@ vim常用快捷键:
 			vim上下两行交换位置：
 			nxp 交换前后两个字符的位置 [nx：剪切n个字符，p黏贴]
 			nddp  上下两行位置交换  [ndd：删除n行，p黏贴]
+			#--
+			Ctrl+g    在最后一行中显示光标所在位置的行数及文章的总行数
 		}
 
 		TAB:
 		{
 			TAB 就是制表符, 单独拿出来做一节是因为这个东西确实很有用.
-
 			<< 输入此命令则光标所在行向左移动一个 tab.
 			>> 输入此命令则光标所在行向右移动一个 tab.
 			5>> 输入此命令则光标后 5 行向右移动一个 tab.
 			:12,24> 此命令将12行到14行的数据都向右移动一个 tab.
 			:12,24>> 此命令将12行到14行的数据都向右移动两个 tab.
-
+			#--
 			那么如何定义 tab 的大小呢? 有人愿意使用 8 个空格位, 有人用4个, 有的用2个.
 			有的人希望 tab 完全用空格代替, 也有的人希望 tab 就是 tab. 没关系, vim 能
 			帮助你.以下的设置一般也都先写入配置文件中, 免得老敲.
-
+			#--
+			除了split之外， vim还可以用 tab
+			:tab split filename -> 这个就用tab的方式来显示多个文件 (use tab to display buffers)
+			gt -> 到下一个tab (go to next tab)
+			gT -> 到上一个tab (go to previous tab)
+			vim大多数东西都是可一给数字来执行的，tab也是一样
+			0gt ->跳到第一个tab (switch to 1st tab)
+			5gt -> 跳到第五个tab (switch to 5th tab)
+			#--
 			:set shiftwidth=4 设置自动缩进 4 个空格, 当然要设自动缩进先.
 			:set sts=4 即设置 softtabstop 为 4. 输入 tab 后就跳了 4 格.
 			:set tabstop=4 实际的 tab 即为 4 个空格, 而不是缺省的 8 个.
 			:set expandtab 在输入 tab 后, vim 用恰当的空格来填充这个 tab.
+			#--TAB键补全
+			Ctrl+X Ctrl+L    整行补全
+			Ctrl+X Ctrl+N     根据当前文件里关键字补全
+			Ctrl+X Ctrl+I     根据头文件内关键字补全
+			Ctrl+X Ctrl+]     根据标签补全
+			Ctrl+X Ctrl+F     补全文件名
+			Ctrl+X Ctrl+D     补全宏定义
+			Ctrl+X Ctrl+V     补全vim命令
+			Ctrl+X Ctrl+U     用户自定义补全方式
+			Ctrl+X Ctrl+S     拼写建议
 		}
 
 		plug:
