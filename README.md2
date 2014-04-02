@@ -115,6 +115,7 @@ map <silent> <leader>tl :TlistToogle<cr>
 ===
 VIM 插件list
 a.vim    //头文件和编程文件之间切换  
+minibufexpl.vim		//多文件编辑
 bufexplorer.vim      //文件浏览器，基本不用  
 color_sample_pack.vim   //各种颜色主题  
 csExplorer.vim                // 主题管理插件
@@ -136,7 +137,9 @@ wintagexplorer.vim
 ===
 vim phpide
 {
-
+	php.vim
+	phpcomplete
+	assistant |vim php assistant	//php语法增强插件
 }
 
 
