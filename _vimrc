@@ -91,7 +91,9 @@ set showcmd
 set laststatus=2
 " 命令行的高度，默认为1，这里设为2
 " set cmdheight=2              
-" 状态栏颜色配置
+"
+"
+" 状态栏颜色配置 s
 if version >= 700
   au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
@@ -119,6 +121,7 @@ hi statusline guibg=green
 ":help v:insertmode
 ":help :hi
 ":help hl-StatusLine
+" 状态栏颜色配置 e
 
 
 "命令行补全
