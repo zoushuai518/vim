@@ -5,11 +5,11 @@ Linux 平台常用插件安装：
 ===
 以下安装插件环境：CentOS 6.4 + vim72
 [
-插件安装：
-1>、下载对应的 .tar.gz|.zip压缩包
-2-1>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}} [NERDTree | neocomplcache | Calendar | solarized |TagList{Ctags}]
-|
-2-2>、解压到vim对应目录下,覆盖,  ag:{vim72: /usr/share/vim/vimfiles} [snipMate | ]
+	插件安装：
+	1>、下载对应的 .tar.gz|.zip压缩包
+	2-1>、解压到vim对应目录下,覆盖,  {ag:{vim72: /usr/share/vim/vim72 | vim73: /usr/share/vim/vim73}} [NERDTree | neocomplcache | Calendar | solarized |TagList{Ctags}]
+	|
+	2-2>、解压到vim对应目录下,覆盖,  ag:{vim72: /usr/share/vim/vimfiles} [snipMate | ]
 ]
 
 "已经安装的插件
@@ -22,8 +22,8 @@ let g:neocomplcache_enable_at_startup = 1
 
 3、Calendar			日历插件
 [
-使用：
-Calendar | CalendarH
+	使用：
+	Calendar | CalendarH
 ]
 let g:calendar_diary = "~/diary" " 设置日记的存储路径
 let g:calendar_monday = 1 "以星期一为开始
@@ -47,8 +47,8 @@ colorscheme solarized
 
 5、snipMate
 [
-使用：
-......
+	使用：
+	......
 ]
 let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 
@@ -56,15 +56,19 @@ let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 [
 使用：
 {
-cd 进入项目根目录;
-运行：Ctags -R * {ctags -R *} {生成 tags文件}  {适用于 Linux/windows平台}
+	cd 进入项目根目录;
+	运行：Ctags -R * {ctags -R *} {生成 tags文件}  {适用于 Linux/windows平台}
 }
+
 {
 Ctrl+] 追踪
 Ctrl+t 返回追踪起始位置
 }
+
 ]
+
 [
+
 Ctags编译安装：
     下载源码安装（网上提供的方法）
     1）从http://ctags.sourceforge.net/下载源代码包后，解压缩生成源代码目录，
@@ -72,40 +76,73 @@ Ctags编译安装：
     3）然后执行make，
     4）编译成功后执行make install。
     {
-    make install后执行：
-    cd 进入ctags解压后的目录
-    cp ctags /usr/local/bin/ctags  &&  chmod 755 /usr/local/bin/ctags
-    cp ./ctags.1 /usr/local/share/man/man1/ctags.1  &&  chmod 644 /usr/local/share/man/man1/ctags.1
+		make install后执行：
+		cd 进入ctags解压后的目录
+		cp ctags /usr/local/bin/ctags  &&  chmod 755 /usr/local/bin/ctags
+		cp ./ctags.1 /usr/local/share/man/man1/ctags.1  &&  chmod 644 /usr/local/share/man/man1/ctags.1
     }
+
 CentOS:
 {
-yum install ctags
+	yum install ctags
+
+	"Ctags
+	let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
+	"Taglist                                                                                                  
+	"map <silent> <leader>tl :TlistToogle<cr>                                                                                        
+	let Tlist_Auto_Highlight_Tag = 1                                                       
+	let Tlist_Auto_Open = 1                                                                
+	let Tlist_Auto_Update = 1                                                                         
+	let Tlist_Close_On_Select = 0                                                                       
+	let Tlist_Compact_Format = 0                                                                   
+	let Tlist_Display_Prototype = 0                                                                    
+	let Tlist_Display_Tag_Scope = 1                                                                 
+	let Tlist_Enable_Fold_Column = 0                                                                 
+	let Tlist_Exit_OnlyWindow = 0                                                                
+	let Tlist_File_Fold_Auto_Close = 0                                                                   
+	let Tlist_GainFocus_On_ToggleOpen = 1                                                              
+	let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
+	let Tlist_Inc_Winwidth = 0                                                        
+	let Tlist_Use_Right_Window = 1                                                                      
+	map <silent> <leader>tl :TlistToogle<cr> 
+
 }
+
 Ubuntu:
 {
-apt-get install ctags
+	apt-get install ctags
+
+	"CTags
+	"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
+	let Tlist_Ctags_Cmd="/usr/bin/ctags"   "linux 下 ctags执行文件目录
+	"Taglist                                                                                                  
+	""map <silent> <leader>tl :TlistToogle<cr>                                                                                        
+	let Tlist_Auto_Highlight_Tag = 1                                                       
+	let Tlist_Auto_Open = 1                                                                
+	let Tlist_Auto_Update = 1                                                                         
+	let Tlist_Close_On_Select = 0                                                                       
+	let Tlist_Compact_Format = 0                                                                   
+	let Tlist_Display_Prototype = 0                                                                    
+	let Tlist_Display_Tag_Scope = 1                                                                 
+	let Tlist_Enable_Fold_Column = 0                                                                 
+	let Tlist_Exit_OnlyWindow = 0                                                                
+	let Tlist_File_Fold_Auto_Close = 0                                                                   
+	let Tlist_GainFocus_On_ToggleOpen = 1                                                              
+	let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
+	let Tlist_Inc_Winwidth = 0                                                        
+	let Tlist_Use_Right_Window = 1                                                                      
+	map <silent> <leader>tl :TlistToogle<cr> 
+
+	"Taglist
+	"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
+	let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+	let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+	let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
+	"map <silent> <F9> :TlistToggle<cr>
 }
 
 ]
-"Ctags
-let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
-"Taglist                                                                                                  
-"map <silent> <leader>tl :TlistToogle<cr>                                                                                        
-let Tlist_Auto_Highlight_Tag = 1                                                       
-let Tlist_Auto_Open = 1                                                                
-let Tlist_Auto_Update = 1                                                                         
-let Tlist_Close_On_Select = 0                                                                       
-let Tlist_Compact_Format = 0                                                                   
-let Tlist_Display_Prototype = 0                                                                    
-let Tlist_Display_Tag_Scope = 1                                                                 
-let Tlist_Enable_Fold_Column = 0                                                                 
-let Tlist_Exit_OnlyWindow = 0                                                                
-let Tlist_File_Fold_Auto_Close = 0                                                                   
-let Tlist_GainFocus_On_ToggleOpen = 1                                                              
-let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
-let Tlist_Inc_Winwidth = 0                                                        
-let Tlist_Use_Right_Window = 1                                                                      
-map <silent> <leader>tl :TlistToogle<cr> 
+
 
 ===
 
