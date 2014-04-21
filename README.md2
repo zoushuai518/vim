@@ -49,8 +49,13 @@ colorscheme solarized
 [
 	使用：
 	......
+	"Linux / ubuntu
+    git clone git://github.com/msanders/snipmate.vim.git
+	cd snipmate.vim
+	cp -R * ~/.vim
+	"windows	
+	let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 ]
-let g:snippets_dir="/usr/share/vim/vimfiles/snippets"
 
 6、Ctags + TagList
 [
