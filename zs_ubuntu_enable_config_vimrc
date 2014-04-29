@@ -227,28 +227,6 @@ let javascript_enable_domhtmlcss=1
 "设定doc文档目录
 "let helptags=$VIMFILES.'/doc'
 
-""""""""""""""""""""'
-"打开链接
-function! OpenUrl()
-	let s:url =
-	GetPatternAtCursor('\v(https?://|ftp://|file:/{3}|www\.)((\w|-)+\.)+(\w|-)+(:\d+)?(/(\w|[~@#$%^&+=/.?-])+)?')
-	"echo s:url
-	if s:url == ""
-		echohl WarningMsg
-		echomsg '在光标处未发现URL！'
-		echohl None
-	else
-		if GetSystem() == "windows"
-			call system("explorer " . s:url)
-		else
-			call system("firefox " . s:url . " &")
-		endif
-	endif
-	unlet s:url
-endfunction
-nmap <C-LeftMouse> :call OpenUrl()<CR>
-"
-""""""""""""""""""""'
 
 """"""""""""""""""""'
 "F2处理行尾的空格以及文件尾部的多余空行
@@ -346,10 +324,10 @@ set wildignore+=*.sw? " Vim swap files
 "
 " You might also find this useful
 " PHP Generated Code Highlights (HTML & SQL)
- let php_sql_query=1
- let php_htmlInStrings=1
- let g:php_folding=2
- set foldmethod=syntax
+" let php_sql_query=1
+" let php_htmlInStrings=1
+" let g:php_folding=2
+" set foldmethod=syntax
 "
 "
 " syntax enable
