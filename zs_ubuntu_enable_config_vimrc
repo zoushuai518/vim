@@ -97,6 +97,7 @@ set wrap        "自动折行
 set fileencoding=utf8  "默认文件编码
 set fileencodings==utf8,gbk,cp936  "可以识别的文件编码;需要Linux系统支持中文方可
 
+"set guifont=Courier\\23		"在Linux种这样设置
 
 " 中文帮助
 " if version > 603
