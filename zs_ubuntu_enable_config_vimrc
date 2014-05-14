@@ -285,7 +285,7 @@ if has('gui_running')
 else
 	set background=dark
 endif
-set t_Co=16
+set t_Co=16		"需要添加,否则会出现 文字 有阴影的情况
 colorscheme solarized
 "set background=dark
 "
