@@ -96,6 +96,10 @@ set wrap        "自动折行
 " source $VIMRUNTIME/menu.vim
 set fileencoding=utf8  "默认文件编码
 set fileencodings==utf8,gbk,cp936  "可以识别的文件编码;需要Linux系统支持中文方可
+"打开文件都会显示^M符号
+set fileformats=unix,dos
+":set fileformats=unix,dos
+
 
 "set guifont=Courier\\23		"在Linux种这样设置
 
