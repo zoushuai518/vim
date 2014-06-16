@@ -101,6 +101,7 @@ set fileformats=unix,dos
 ":set fileformats=unix,dos
 
 
+"设置字体大小
 "set guifont=Courier\\23		"在Linux种这样设置
 
 " 中文帮助
