@@ -173,6 +173,12 @@ set lcs=tab:\|\ ,nbsp:%,trail:-
 highlight LeaderTab guifg=#666666
 " 匹配行首tab
 match LeaderTab /^\t/
+
+" 设定行尾tab为灰色 没效果
+"highlight EndTab guifg=#666666
+" 匹配行尾tab 没效果
+"match EndTab /^\t/
+
 "上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
 "
 " 显示tab和空格   zs测试可用
