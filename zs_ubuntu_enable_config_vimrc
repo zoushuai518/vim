@@ -1,3 +1,5 @@
+" ubuntu 平台 vim7.3
+"
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
 " /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
 " you can find below.  If you wish to change any of those settings, you should
@@ -54,7 +56,6 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 
-
 "zs 注
 "
 "use: gg=:1,$ Enter 文件代码格式化
@@ -69,13 +70,19 @@ endif
 "zs config
 
 "base config s
-set tabstop=4
+set tabstop=4			"设定tab宽度为4个字符
 set softtabstop=4
-set shiftwidth=4
+set shiftwidth=4		"设定自动缩进为4个字符
+"set noexpandtab        "不用space替代tab的输入
+"set expandtab			"用space替代tab的输入
+"%ret! 4					"每个tab用4个space替代
 set autoindent
 set number
+
+"命令行提示有关设置 zs
 set wildmenu
 set showcmd
+
 set nobackup
 "set bg=dark		"显示不同的底色色调
 set wrap        "自动折行
@@ -96,8 +103,11 @@ set wrap        "自动折行
 " source $VIMRUNTIME/menu.vim
 set fileencoding=utf8  "默认文件编码
 set fileencodings==utf8,gbk,cp936  "可以识别的文件编码;需要Linux系统支持中文方可
+
 "打开文件都会显示^M符号
 set fileformats=unix,dos
+"转换文件换行方式
+"解决方法：设置fileformat属性，:set ff=dos (\r\n win换行) :set ff=unix (\n unix/linux换行) :set ff=mac (\r Mac换行)
 ":set fileformats=unix,dos
 
 
@@ -135,6 +145,38 @@ set guioptions-=L
 " set comments=://
 " " 段落注释
 " set comments=s1:/*,mb:*,ex0:/
+
+"与windows共享剪贴板
+"set clipboard+=unnamed
+"
+
+
+"vim 中设置 tab 空格 等特殊字符 zs dev s
+"
+"配置:
+"set list
+"set listchars=tab:▸\ ,eol:-
+
+" 显示 空格|TAB
+" 命令行输入:
+" :set list listchars=tab:>-,trail:-
+"
+"vim 中设置 tab 空格 等特殊字符 zs dev e
+
+"
+" 显示tab和空格   zs测试可用
+" http://zshou.is-programmer.com/posts/39381
+set list
+" 设置tab和空格样式
+set lcs=tab:\|\ ,nbsp:%,trail:-
+" 设定行首tab为灰色
+highlight LeaderTab guifg=#666666
+" 匹配行首tab
+match LeaderTab /^\t/
+"上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
+"
+" 显示tab和空格   zs测试可用
+
 
 
 "设置状态栏标尺
@@ -214,6 +256,7 @@ let javascript_enable_domhtmlcss=1
 
 
 """""""
+"VIM判断 操作系统 类型
 "return OS type, eg: windows, or linux, mac, et.st..
 "function! MySys()
 "	if has("win16") || has("win32") || has("win64") || has("win95")
@@ -425,10 +468,11 @@ endif
 
 "quickfix s
 
+
 "quickfix s
 
 
-"php documentor插件  s
+"phpdocumentor插件 s
 "
 "http://www.vim.org/scripts/script.php?script_id=1355
 "下载php-doc.vim
@@ -442,7 +486,7 @@ endif
 "nnoremap <C-P> :call PhpDocSingle()<CR> 
 "vnoremap <C-P> :call PhpDocRange()<CR>
 "
-"php documentor插件  e
+"phpdocumentor插件 e
 " run file with PHP CLI (CTRL-M)
 " :autocmd FileType php noremap <C-M> :w!<CR>:!/usr/bin/php %<CR>
 "
@@ -455,6 +499,7 @@ endif
 
 
 " PHP code sniffer s
+"
 " If code sniffer is installed you can run it on current php file by running
 " :Phpcs
 function! RunPhpcs()
@@ -476,6 +521,7 @@ command! Phpcs execute RunPhpcs()
 
 "Autocompletition s
 
+
 "Autocompletition e
 
 "php ide e
@@ -484,6 +530,7 @@ command! Phpcs execute RunPhpcs()
 "html自动补全 s
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 "html自动补全 e
+
 
 "html_autoclosetag.vim s
 "html自动输入匹配标签，输入>之后自动完成匹配标签
@@ -586,8 +633,8 @@ hi statusline guibg=green
 
 
 "CTags s
-"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
-let Tlist_Ctags_Cmd="/usr/bin/ctags"   "linux 下 ctags执行文件目录
+"let Tlist_Ctags_Cmd="/usr/share/CTags"		"linux 下 ctags执行文件目录
+let Tlist_Ctags_Cmd="/usr/bin/ctags"		"linux 下 ctags执行文件目录
 "Taglist
 ""map <silent> <leader>tl :TlistToogle<cr>
 let Tlist_Auto_Highlight_Tag = 1
@@ -626,16 +673,16 @@ set tags=/var/www/html/zixun/tags
 set tags=tags;
 set autochdir
 function! UpdateTagsFile()
-    silent !ctags -R --fields=+ianS --extra=+q
+	silent !ctags -R --fields=+ianS --extra=+q
 endfunction
 nmap <F12> :call UpdateTagsFile()<CR>
 
 "Ctrl + F12删除tags文件
 function! DeleteTagsFile()
-    "Linux下的删除方法
-    "silent !rm tags
-    "Windows下的删除方法
-    silent !del /F /Q tags
+	"Linux下的删除方法
+	"silent !rm tags
+	"Windows下的删除方法
+	silent !del /F /Q tags
 endfunction
 nmap <C-F12> :call DeleteTagsFile()<CR>
 "退出VIM之前删除tags文件
@@ -722,7 +769,58 @@ nmap <C-F12> :call DeleteTagsFile()<CR>
 "
 "snipMate e
 "
+
+
+"vim 赋值符号对齐 s
+"Tabular
+"有时候我们可能希望我们一段的赋值代码都用=号对齐
+
+"添加 Tabularize映射
+let mapleader=','
+if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+	let p = '^\s*|\s.*\s|\s*$'
+	if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+		let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+		let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+		Tabularize/|/l1
+		normal! 0
+		call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+	endif
+endfunction
+
+"zs use
+"V 选择要对齐的行
+"按 : 进入命令模式; 此时命令行会显示 :'<,'>
+"输出对齐命令: Tabularize /=
+"此时 命令行 如下
+":'<,'>Tabularize /=
+"直接回车即可 按照 = 对齐
 "
+map <F6> :Tabularize /=<CR>		"F6快捷键,zs set
+
+
+"解决方法：安装Tabular插件，选中要对齐的代码，输入:Tab/= 让代码通过=两边对齐
+
+"V 选择, 之後在下面繼續打, 都會自動排序. (若文字過長, 上面都會自動對齊)
+"
+":Tab/ 後面接要分隔的符號, ex: 上述是用 "|" 分隔, 所以輸入 :Tab/|, 程式若要排
+""=", 則輸入 :Tab/=, 更多範例可見下述:
+
+":Tab/:
+":Tab/=
+":Tab/:\zs # 只有排序 ":" 後面的文字
+
+"vim 赋值符号对齐 e
+
 
 " plugin config e
 
