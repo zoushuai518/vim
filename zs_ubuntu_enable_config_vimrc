@@ -285,40 +285,45 @@ let javascript_enable_domhtmlcss=1
 
 """"""""""""""""""""'
 "F2处理行尾的空格以及文件尾部的多余空行
-"Automatically remove trailing spaces when saving a file.
-autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-"Remove indenting on empty line
-map <F2> :w<CR>:call CleanupBuffer(1)<CR>:noh<CR>
-function! CleanupBuffer(keep)
-	" Skip binary files
-	if (&bin > 0)
-		return
-	endif
-	" Remove spaces and tabs from end of every line, if possible
-	silent! %s/\s\+$//ge
-	" Save current line number
-	let lnum = line(".")
-	" number of last line
-	let lastline = line("$")
-	let n        = lastline
-	" while loop
-	while (1)
-		" content of last line
-		let line = getline(n)
-		" remove spaces and tab
-		if (!empty(line))
-			break
-		endif
-		let n = n - 1
-	endwhile
-	" Delete all empty lines at the end of file
-	let start = n+1+a:keep
-	if (start < lastline)
-		execute n+1+a:keep . "," . lastline . "d"
-	endif
-	" after clean spaces and tabs, jump back
-	exec "normal " . lnum . "G"
-endfunction
+" zs 测试可用;暂时隐藏
+
+" s
+""Automatically remove trailing spaces when saving a file.
+"autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+""Remove indenting on empty line
+"map <F2> :w<CR>:call CleanupBuffer(1)<CR>:noh<CR>
+"function! CleanupBuffer(keep)
+"	" Skip binary files
+"	if (&bin > 0)
+"		return
+"	endif
+"	" Remove spaces and tabs from end of every line, if possible
+"	silent! %s/\s\+$//ge
+"	" Save current line number
+"	let lnum = line(".")
+"	" number of last line
+"	let lastline = line("$")
+"	let n        = lastline
+"	" while loop
+"	while (1)
+"		" content of last line
+"		let line = getline(n)
+"		" remove spaces and tab
+"		if (!empty(line))
+"			break
+"		endif
+"		let n = n - 1
+"	endwhile
+"	" Delete all empty lines at the end of file
+"	let start = n+1+a:keep
+"	if (start < lastline)
+"		execute n+1+a:keep . "," . lastline . "d"
+"	endif
+"	" after clean spaces and tabs, jump back
+"	exec "normal " . lnum . "G"
+"endfunction
+" e
+
 """"""""""""""""""""'
 "
 "ext config e
@@ -328,6 +333,9 @@ endfunction
 " plugin config s
 
 "color theme s
+"
+"ubuntu 需要使用 solarized.sh脚本, dir:~/zs_ubuntu/vim_ide/solarized.sh
+"
 "一般的Linux发行版默认的终端都是16色的，但事实上几乎所有的终端都支持256色终端
 "1.将Terminal设为Xterm模式:编辑->配置文件首选项->颜色
 "设置为自定义,内置方案选择XTerm.
