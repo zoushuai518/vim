@@ -75,7 +75,7 @@ set softtabstop=4
 set shiftwidth=4		"设定自动缩进为4个字符
 "set noexpandtab        "不用space替代tab的输入
 "set expandtab			"用space替代tab的输入
-"%ret! 4					"每个tab用4个space替代
+"%ret! 4				"每个tab用4个space替代
 set autoindent
 set number
 
@@ -132,7 +132,6 @@ set smartindent
 " 设置自动缩进
 set ai!
 
-"set expandtab          "将tab替换为相应数量空格
 
 "显示光标的状态行
 set guioptions-=T
@@ -481,9 +480,8 @@ endif
 
 
 "quickfix s
-
-
-"quickfix s
+"vim7.3 已经集成此插件,无需另外安装
+"quickfix e
 
 
 "phpdocumentor插件 s
@@ -501,6 +499,7 @@ endif
 "vnoremap <C-P> :call PhpDocRange()<CR>
 "
 "phpdocumentor插件 e
+"
 " run file with PHP CLI (CTRL-M)
 " :autocmd FileType php noremap <C-M> :w!<CR>:!/usr/bin/php %<CR>
 "
@@ -568,12 +567,14 @@ map <M-left> <ESC>:bp<RETURN>
 
 
 "NERDTree s
-nmap <F3> :NERDTreeToggle<CR>		"F3快捷键
+"目录插件
 "let NERDTreeDirArrows=0
+nmap <F3> :NERDTreeToggle<CR>		"F3快捷键
 "NERDTree e
 
 
 "neocomplcache s
+"自动补全插件
 let g:neocomplcache_enable_at_startup = 1
 "neocomplcache e
 
@@ -586,6 +587,7 @@ let g:neocomplcache_enable_at_startup = 1
 
 "DoxygenToolkit s
 "生成注释
+
 "doxygen toolkit
 let g:DoxygenToolkit_briefTag_pre="Function name "
 "let g:DoxygenToolkit_briefTag_post = "<++>"
@@ -619,10 +621,12 @@ let g:doxygen_enhanced_color=1
 "光标在文件头，用 :DoxAuthor 自动生成文件说明
 "用 :DoxLic
 "可以结合doxygen自动生成各种格式的文档
+
 "DoxygenToolkit e
 
 
 " 状态栏颜色配置 s
+
 if version >= 700
 	au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
 	au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
@@ -643,12 +647,14 @@ au InsertLeave * hi statusline guibg=green
 " default the statusline to green when entering Vim
 hi statusline guibg=green
 "插入模式也有很多种派生的状态 e
+
 " 状态栏颜色配置 e
 
 
 "CTags s
 "let Tlist_Ctags_Cmd="/usr/share/CTags"		"linux 下 ctags执行文件目录
 let Tlist_Ctags_Cmd="/usr/bin/ctags"		"linux 下 ctags执行文件目录
+
 "Taglist
 ""map <silent> <leader>tl :TlistToogle<cr>
 let Tlist_Auto_Highlight_Tag = 1
@@ -667,7 +673,6 @@ let Tlist_Inc_Winwidth = 0
 let Tlist_Use_Right_Window = 1
 "map <silent> <leader>tl :TlistToogle<cr>
 map <F4> :TlistToggle<CR>		"F4快捷键
-"CTags e
 
 "Taglist s
 "let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
@@ -676,11 +681,13 @@ let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口
 let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
 "map <silent> <F9> :TlistToggle<cr>
 "Taglist e
-"
+
+
 "Ctags 生成的tags文件路径
 set tags=/var/www/html/zixun/tags
 " 增强检索功能
 "set tags=./tags,./../tags,./**/tags
+
 
 """""""""""""""""""""""
 "F12生成/更新tags文件
@@ -705,6 +712,7 @@ nmap <C-F12> :call DeleteTagsFile()<CR>
 "
 "zs use: Ctrl+] || Ctrl+t
 "
+"CTags e
 
 
 "vim tab补全插件 s
@@ -754,6 +762,8 @@ nmap <C-F12> :call DeleteTagsFile()<CR>
 
 
 "snipMate s
+"片断补全,可自定义补全片段
+"
 "重启vim。
 "如果还是不可以的话。可以在gvim任意打开一个文件，然后输入以下命令查看vim文件夹路径，并修改第3步中路径参数。
 ":echo $VIM                <<=================>>          D:/安装目录/Vim
@@ -785,7 +795,7 @@ nmap <C-F12> :call DeleteTagsFile()<CR>
 "
 
 
-"vim 赋值符号对齐 s
+"vim 赋值[但不限于]符号对齐 s
 "Tabular
 "有时候我们可能希望我们一段的赋值代码都用=号对齐
 
@@ -833,7 +843,7 @@ map <F6> :Tabularize /=<CR>		"F6快捷键,zs set
 ":Tab/=
 ":Tab/:\zs # 只有排序 ":" 後面的文字
 
-"vim 赋值符号对齐 e
+"vim 赋值[但不限于]符号对齐 e
 
 
 " plugin config e
