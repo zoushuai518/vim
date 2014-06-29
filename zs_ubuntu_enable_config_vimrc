@@ -180,6 +180,7 @@ match LeaderTab /^\t/
 
 "上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
 "
+":set list | :set nolist
 " 显示tab和空格   zs测试可用
 
 
