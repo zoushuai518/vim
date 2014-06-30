@@ -3,7 +3,7 @@ vim IDE
 Linux 平台常用插件安装：
 
 ===
-以下安装插件环境：CentOS 6.4 + vim72
+以下安装插件环境：vim7.3
 [
 	插件安装：
 	1>、下载对应的 .tar.gz|.zip压缩包
@@ -37,7 +37,8 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 "syntax enable
 "set background=light
 "set background=dark
-set t_Co=256 "如果是在模拟终端需要把颜色设置成256色
+"set t_Co=256 "如果是在模拟终端需要把颜色设置成256色
+set t_Co=16		"需要添加,否则会出现 文字 有阴影的情况
 if has('gui_running')
     set background=light
 else
@@ -59,92 +60,155 @@ colorscheme solarized
 
 6、Ctags + TagList
 [
-使用：
-{
-	cd 进入项目根目录;
-	运行：Ctags -R * {ctags -R *} {生成 tags文件}  {适用于 Linux/windows平台}
-}
+	使用：
+	{
+		cd 进入项目根目录;
+		运行：Ctags -R * {ctags -R *} {生成 tags文件}  {适用于 Linux/windows平台}
+	}
 
-{
-Ctrl+] 追踪
-Ctrl+t 返回追踪起始位置
-}
-
+	{
+	Ctrl+] 追踪
+	Ctrl+t 返回追踪起始位置
+	}
 ]
 
 [
 
-Ctags编译安装：
-    下载源码安装（网上提供的方法）
-    1）从http://ctags.sourceforge.net/下载源代码包后，解压缩生成源代码目录，
-    2）然后进入源代码根目录执行./configure，
-    3）然后执行make，
-    4）编译成功后执行make install。
-    {
-		make install后执行：
-		cd 进入ctags解压后的目录
-		cp ctags /usr/local/bin/ctags  &&  chmod 755 /usr/local/bin/ctags
-		cp ./ctags.1 /usr/local/share/man/man1/ctags.1  &&  chmod 644 /usr/local/share/man/man1/ctags.1
-    }
+	Ctags编译安装：
+		下载源码安装（网上提供的方法）
+		1）从http://ctags.sourceforge.net/下载源代码包后，解压缩生成源代码目录，
+		2）然后进入源代码根目录执行./configure，
+		3）然后执行make，
+		4）编译成功后执行make install。
+		{
+			make install后执行：
+			cd 进入ctags解压后的目录
+			cp ctags /usr/local/bin/ctags  &&  chmod 755 /usr/local/bin/ctags
+			cp ./ctags.1 /usr/local/share/man/man1/ctags.1  &&  chmod 644 /usr/local/share/man/man1/ctags.1
+		}
 
-CentOS:
+	CentOS:
+	{
+		yum install ctags
+
+		"Ctags
+		let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
+		"Taglist                                                                                                  
+		"map <silent> <leader>tl :TlistToogle<cr>                                                                                        
+		let Tlist_Auto_Highlight_Tag = 1                                                       
+		let Tlist_Auto_Open = 1                                                                
+		let Tlist_Auto_Update = 1                                                                         
+		let Tlist_Close_On_Select = 0                                                                       
+		let Tlist_Compact_Format = 0                                                                   
+		let Tlist_Display_Prototype = 0                                                                    
+		let Tlist_Display_Tag_Scope = 1                                                                 
+		let Tlist_Enable_Fold_Column = 0                                                                 
+		let Tlist_Exit_OnlyWindow = 0                                                                
+		let Tlist_File_Fold_Auto_Close = 0                                                                   
+		let Tlist_GainFocus_On_ToggleOpen = 1                                                              
+		let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
+		let Tlist_Inc_Winwidth = 0                                                        
+		let Tlist_Use_Right_Window = 1                                                                      
+		map <silent> <leader>tl :TlistToogle<cr> 
+
+	}
+
+	Ubuntu:
+	{
+		apt-get install ctags
+
+		"CTags
+		"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
+		let Tlist_Ctags_Cmd="/usr/bin/ctags"   "linux 下 ctags执行文件目录
+		"Taglist                                                                                                  
+		""map <silent> <leader>tl :TlistToogle<cr>                                                                                        
+		let Tlist_Auto_Highlight_Tag = 1                                                       
+		let Tlist_Auto_Open = 1                                                                
+		let Tlist_Auto_Update = 1                                                                         
+		let Tlist_Close_On_Select = 0                                                                       
+		let Tlist_Compact_Format = 0                                                                   
+		let Tlist_Display_Prototype = 0                                                                    
+		let Tlist_Display_Tag_Scope = 1                                                                 
+		let Tlist_Enable_Fold_Column = 0                                                                 
+		let Tlist_Exit_OnlyWindow = 0                                                                
+		let Tlist_File_Fold_Auto_Close = 0                                                                   
+		let Tlist_GainFocus_On_ToggleOpen = 1                                                              
+		let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
+		let Tlist_Inc_Winwidth = 0                                                        
+		let Tlist_Use_Right_Window = 1                                                                      
+		map <silent> <leader>tl :TlistToogle<cr> 
+
+		"Taglist
+		"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
+		let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+		let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+		let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
+		"map <silent> <F9> :TlistToggle<cr>
+	}
+
+]
+
+7、vim xdebug 调试之 - vim dbgp
+[
+vim+xdebug+dbgp调试php程序:
 {
-	yum install ctags
-
-	"Ctags
-	let Tlist_Ctags_Cmd="/usr/bin/ctags/bin/ctags"   "linux 下 ctags执行文件目录
-	"Taglist                                                                                                  
-	"map <silent> <leader>tl :TlistToogle<cr>                                                                                        
-	let Tlist_Auto_Highlight_Tag = 1                                                       
-	let Tlist_Auto_Open = 1                                                                
-	let Tlist_Auto_Update = 1                                                                         
-	let Tlist_Close_On_Select = 0                                                                       
-	let Tlist_Compact_Format = 0                                                                   
-	let Tlist_Display_Prototype = 0                                                                    
-	let Tlist_Display_Tag_Scope = 1                                                                 
-	let Tlist_Enable_Fold_Column = 0                                                                 
-	let Tlist_Exit_OnlyWindow = 0                                                                
-	let Tlist_File_Fold_Auto_Close = 0                                                                   
-	let Tlist_GainFocus_On_ToggleOpen = 1                                                              
-	let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
-	let Tlist_Inc_Winwidth = 0                                                        
-	let Tlist_Use_Right_Window = 1                                                                      
-	map <silent> <leader>tl :TlistToogle<cr> 
-
+	使用此插件，要求你的vim编译时加上了python 和signs 功能：
+	要检测是否安装
+	:version
+	看有没有+python 和 +signs字样。如果没有请百度		|sudo apt-get install vim-full
 }
 
-Ubuntu:
-{
-	apt-get install ctags
+1. 安装xdebug
+下载xdebug源码包并解压
+#cd xdebug-2.2.x
+#phpize
+#./configure --enable-xdebug --with-php-config=/path/to/php-config
+#make
+#cp modules/xdebug.so /path/to/php/extensiondir
+在php.ini尾部加上
+==============
+[xdebug]
+zend_extension="/usr/local/php/lib/php/extensions/no-debug-zts-20121212/xdebug.so"
+xdebug.auto_trace=1
+;xdebug.remote_enable = 1
+xdebug.remote_enable = on
+;xdebug.remote_host = localhost
+xdebug.remote_host = 127.0.0.1
+;xdebug.remote_port = 9001
+xdebug.remote_port = 9001
+xdebug.remote_handler=dbgp
+xdebug.collect_params=1
+xdebug.collect_return=1
+xdebug.trace_output_dir="var/log/xdebug/trace"
+xdebug.profiler_output_dir="var/log/xdebug/profiler"
+===============
+重启php-fpm，查看phpinfo即可看到xdebug的信息
 
-	"CTags
-	"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
-	let Tlist_Ctags_Cmd="/usr/bin/ctags"   "linux 下 ctags执行文件目录
-	"Taglist                                                                                                  
-	""map <silent> <leader>tl :TlistToogle<cr>                                                                                        
-	let Tlist_Auto_Highlight_Tag = 1                                                       
-	let Tlist_Auto_Open = 1                                                                
-	let Tlist_Auto_Update = 1                                                                         
-	let Tlist_Close_On_Select = 0                                                                       
-	let Tlist_Compact_Format = 0                                                                   
-	let Tlist_Display_Prototype = 0                                                                    
-	let Tlist_Display_Tag_Scope = 1                                                                 
-	let Tlist_Enable_Fold_Column = 0                                                                 
-	let Tlist_Exit_OnlyWindow = 0                                                                
-	let Tlist_File_Fold_Auto_Close = 0                                                                   
-	let Tlist_GainFocus_On_ToggleOpen = 1                                                              
-	let Tlist_Hightlight_Tag_On_BufEnter = 1                                                           
-	let Tlist_Inc_Winwidth = 0                                                        
-	let Tlist_Use_Right_Window = 1                                                                      
-	map <silent> <leader>tl :TlistToogle<cr> 
+2. 安装dbgp
+执行vim
+输入:version，看看输出里是否有+python和+signs，如果没有，上网查怎么解决。
+下载dbgp源码包并解压
+将里面的debugger.py和debugger.vim拷贝到~/.vim/plugin/下
+修改 vimrc
+===============
+let g:debuggerPort = 9001
+let g:debuggerMaxDepth = 5
+===============
 
-	"Taglist
-	"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
-	let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
-	let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
-	let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
-	"map <silent> <F9> :TlistToggle<cr>
-}
+执行vim
+输入:scriptnames确定vim加载了debugger.vim
+
+3. 使用xdebug
+通过浏览器调试
+vim打开一个php文件
+移动光标到任意一行，:Bp设置断点
+按F5启动调试，5秒内在浏览器里打开该文件（注意第一次打开需要在链接后面加上XDEBUG_SESSION_START=1参数，这样就会在cookie里记录下来，以后再打开就不用带这个参数了），再看vim窗口底部可以看到连接上了。
+此时窗口右侧有4个小窗口，分别是watch_window、help_window、stack_window、trace_window。help_window里介绍了调试快捷键，比如F2是进入，F3是下一步，F4是跳出，F5是启动调试，F6是终止调试，F11是获取变量值。
+直接按F4可以跳到断点处，按F11可以看到所有变量值情况（在watch_window里），也可以光标移到某变量，按F12看该变量值，实在方便。
+
+因为窗口不大，那4个小窗口只有watch_window对我有用，所以可以直接修改debugger.py，把对应窗口的代码都注视掉，只留下watch_window，这样watch_window就独占右侧了。
+
+参考： http://xdebug.org/docs/remote
 
 ]
 
@@ -174,6 +238,7 @@ taglist.vim                     //前提是安装了ctags，此插件才好用,E
 winfileexplorer.vim        //winmanager里的，winmanager可以控制taglist和bufexplorer的显示。  
 winmanager.vim  
 wintagexplorer.vim  
+xdebug					// vim xdebug插件
 
 
 ===
