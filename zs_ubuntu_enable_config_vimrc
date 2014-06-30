@@ -183,6 +183,12 @@ match LeaderTab /^\t/
 ":set list | :set nolist
 " 显示tab和空格   zs测试可用
 
+"
+"vim打开时窗口设置默认大小
+"lines是上下宽度,以行为单位
+"columns是左右宽度,以字符个数为单位
+"所以这句设置就是打开时为上下35行宽,左右118个字符宽的窗口
+"set lines=35 columns=118
 
 
 "设置状态栏标尺
@@ -240,8 +246,10 @@ set ignorecase smartcase
 
 " vim 代码折叠设置 s
 
+"zs use
 set fdm=indent
 set autochdir				 " 自动切换当前目录为当前文件所在的目录
+
 
 "set foldenable              " 开始折叠
 "set foldmethod=syntax       " 设置语法折叠
@@ -366,8 +374,10 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "javascript ide e
 
 
+
 "php ide s
-"
+
+
 "colorscheme peachpuff
 
 "php缩进
@@ -408,6 +418,18 @@ set ofu=syntaxcomplete#Complete
 "#只有在是PHP文件时，才启用PHP补全
 "
 "php complete e
+
+
+"php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc 中加入以下代码：
+if !exists('g:AutoComplPop_Behavior')
+	let g:AutoComplPop_Behavior = {}
+	let g:AutoComplPop_Behavior['php'] = []
+	call add(g:AutoComplPop_Behavior['php'], {
+				\   'command'   : "\<C-x>\<C-o>",
+				\   'pattern'   : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
+				\   'repeat'    : 0,
+				\})
+endif
 
 
 "php 函数字典 s
@@ -468,18 +490,6 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 "php 函数字典 e
 
 
-"php 中 一般是会在 "$", "->", "::" 后需要出现自动补全，在 .vimrc 中加入以下代码：
-if !exists('g:AutoComplPop_Behavior')
-	let g:AutoComplPop_Behavior = {}
-	let g:AutoComplPop_Behavior['php'] = []
-	call add(g:AutoComplPop_Behavior['php'], {
-				\   'command'   : "\<C-x>\<C-o>",
-				\   'pattern'   : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
-				\   'repeat'    : 0,
-				\})
-endif
-
-
 "quickfix s
 "vim7.3 已经集成此插件,无需另外安装
 "quickfix e
@@ -512,29 +522,7 @@ endif
 " set complete+=kspell
 
 
-" PHP code sniffer s
-"
-" If code sniffer is installed you can run it on current php file by running
-" :Phpcs
-function! RunPhpcs()
-	let l:filename=@%
-	let l:phpcs_output=system('phpcs --report=csv --standard=YMC'.l:filename)
-	"   echo l:phpcs_output
-	let l:phpcs_list=split(l:phpcs_output, "\n")
-	unlet l:phpcs_list[0]
-	cexpr l:phpcs_list
-	cwindow
-endfunction
-
-set errorformat+=\"%f\"\\,%l\\,%c\\,%t%*[a-zA-Z]\\,\"%m\"
-"zs注:添加 Phpcs命令为Runphpcs()函数
-command! Phpcs execute RunPhpcs()
-"
-" PHP code sniffer e
-
-
 "Autocompletition s
-
 
 "Autocompletition e
 
@@ -556,12 +544,155 @@ function! CheckSyntax()
 	execute "normal :"
 	execute "copen"
 endfunction
-map <F7> :call CheckSyntax()<CR>
+"map <F7> :call CheckSyntax()<CR>
 
 
-"Debug with xdebug s
+" php ide ext s
 
-"Debug with xdebug e
+" PHP code sniffer s
+" 代码风格检测
+" If code sniffer is installed you can run it on current php file by running
+" :Phpcs
+function! RunPhpcs()
+	let l:filename=@%
+	let l:phpcs_output=system('phpcs --report=csv --standard=YMC'.l:filename)
+	"   echo l:phpcs_output
+	let l:phpcs_list=split(l:phpcs_output, "\n")
+	unlet l:phpcs_list[0]
+	cexpr l:phpcs_list
+	cwindow
+endfunction
+
+set errorformat+=\"%f\"\\,%l\\,%c\\,%t%*[a-zA-Z]\\,\"%m\"
+"zs注:添加 Phpcs命令为Runphpcs()函数
+command! Phpcs execute RunPhpcs()
+" PHP code sniffer e
+
+
+" php md s		|php depend
+" php 静态代码检测
+" PHP的静态代码检测最出名的就是php
+" depend,然后，在其基础上有很多的修改版本。这里我们使用的是PHPMD来做静态代码检测
+" http://phpmd.org/
+
+" php md e		|php depend
+
+
+"phpqa.vim s
+
+"phpqa.vim e
+
+
+"xdebug | Vdebug
+"vim DBGp client s
+"
+"设置dbgp客户端要监听的端口号		|注意：要与xdebug.ini中端口配置一致
+"let g:debuggerPort = 9000
+let g:debuggerPort = 9001
+"为了能看到php数组的值，还需要设置下.vimrc
+let g:debuggerMaxDepth = 5
+
+"zs use
+":Bp		"设置断点
+
+"dbgp 快捷键
+"vim DBGP快捷键和 ubuntu系统快捷键冲突,解决:
+"自定义配置 示例来自  debugger.vim文件
+map <F1> :python debugger_resize()<cr>
+map <F2> :python debugger_command('step_into')<cr>
+map <F3> :python debugger_command('step_over')<cr>
+map <F4> :python debugger_command('step_out')<cr>
+
+map <Leader>dr :python debugger_resize()<cr>
+map <Leader>di :python debugger_command('step_into')<cr>
+map <Leader>do :python debugger_command('step_over')<cr>
+map <Leader>dt :python debugger_command('step_out')<cr>
+
+nnoremap ,e :python debugger_watch_input("eval")<cr>A
+
+map <F5> :python debugger_run()<cr>
+map <F6> :python debugger_quit()<cr>
+
+map <F7> :python debugger_command('step_into')<cr>
+map <F8> :python debugger_command('step_over')<cr>
+map <F9> :python debugger_command('step_out')<cr>
+
+map <F11> :python debugger_context()<cr>
+map <F12> :python debugger_property()<cr>
+map <F11> :python debugger_watch_input("context_get")<cr>A<cr>
+map <F12> :python debugger_watch_input("property_get", '<cword>')<cr>A<cr>
+
+hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
+hi DbgBreakPt term=reverse ctermfg=White ctermbg=Green gui=reverse
+
+command! -nargs=? Bp python debugger_mark('<args>')
+command! -nargs=0 Up python debugger_up()
+command! -nargs=0 Dn python debugger_down()
+sign define current text=->  texthl=DbgCurrent linehl=DbgCurrent
+sign define breakpt text=B>  texthl=DbgBreakPt linehl=DbgBreakPt
+"....
+
+"RADME DBGP
+"因为窗口不大，那4个小窗口只有watch_window对我有用，所以可以直接修改debugger.py，把对应窗口的代码都注视掉，只留下watch_window，这样watch_window就独占右侧了
+"
+"minibufexplorer 插件,在执行 DBGP调试的时候,会使窗口混乱;尚未找到解决方法
+"vim 设置折叠,在进行 DBGP调试的时候,也不是很友好,可以设置 vim打开文件默认不开启折叠
+
+"vim DBGP config s
+"There are some variables that you can configure in Vim:
+"
+"g:debuggerPort [9000]
+"The port that the plugin will use to receive the connections from the
+"debugger
+"g:debuggerProxyHost [localhost]
+"Host where the proxy is
+"g:debuggerProxyPort
+"Port used to connect to the proxy, leave it unset if not using proxy
+"g:debuggerProxyKey
+"Key used in the connection with the proxy
+"g:debuggerMaxChildren [32]
+"TODO
+"g:debuggerMaxData [32]
+"TODO
+"g:debuggerMaxChildren [1024]
+"TODO
+"g:debuggerMaxDepth [1]
+"Maximum depth level when dumping variables
+"g:debuggerMiniBufExpl [0]
+"TODO
+"g:debuggerFileMapping [[]]
+"Array with pairs of regular expressions to match and replacement strings,
+"e,g: [['/var/www/[^/]+/(.*)', '/home/' . $USER . '/project/\\1']]
+"vim DBGP config e
+
+"vim DBGp client e
+
+
+"vim php debug README s
+"vim DBGP|[xdebug]
+"vim php调试
+
+"PHP Mess Detector(http://phpmd.org/)
+"PHP项目体检工具，根据你设定的标准（如单一文件代码体积，未使用的参数个数，未使用的方法数）检查PHP代码，超出设定的标准时报警。
+
+"PHP Copy Paste Detector(https://github.com/sebastianbergmann/phpcpd)
+"顾名思义，检查冗余代码的
+
+"PHP Dead Code Detector(https://github.com/sebastianbergmann/phpdcd)
+"看名字就知道了，检查从未被调用过的方法
+
+"PHP Code Sniffer(http://pear.php.net/package/PHP_CodeSniffer)
+"老牌代码格式化工具，PHP写的，Pear包，可自己hack，可集成到命令行里。我一直用的PHP
+
+"Code Beautifier，只有Windows GUI，Windows CMD很难用，已经打算跳槽到PHP CS了
+"你还可以用jenkins把上述工具以plugins形式整合起来，做持续集成：http://jenkins-php.org/
+"你还可以用xinc+phing跟上述工具集成起来做持续集成后的自动化打包发布：http://code.google.com/p/xinc/
+
+"PHPLint http://www.icosaedro.it/phplint/
+"vim php debug README e
+
+" php ide ext e
+
 
 "php ide e
 
@@ -579,23 +710,67 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
 "多文件编辑 s
 ""MiniBufExplorer
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplMapWindowsNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMapWindowsNavVim=1		"可以用<C-h,j,k,l>切换到上下左右的窗口中去
+let g:miniBufExplMapWindowNavArrows=1		"用<C-箭头键>切换到上下左右窗口中去
 let g:miniBufExplMapCTabSwitchWindows=1
-let g:miniBufExplorerMoreThanOne=1
+
+"<C-Tab> 向前循环切换到每个buffer上,并在但前窗口打开
+"<C-S-Tab> 向后循环切换到每个buffer上,并在但前窗口打开
+let g:miniBufExplMapCTabSwitchBufs=1
+
+"let g:miniBufExplModSelTarget = 1
+
+"解决FileExplorer窗口变小问题
+"let g:bufExplorerMaxHeight=40
+"let g:miniBufExplorerMoreThanOne=0		"这个设置保证在打开0个以上的文件是最高限制都是有用的
+
+"minibufexplorer其它常用命令
+" :MiniBufExplorer  ,mbe   " Open and/or goto Explorer
+" :CMiniBufExplorer ,mbc  " Close the Explorer if it's open
+" :UMiniBufExplorer ,mbu  " Update Explorer without naviting
+" :TMiniBufExplorer ,mbt  " Toggle the Explorer window open and closed
 "多文件编辑 e
-"Alt + -> 打开下一个文件
-map <M-right> <ESC>:bn<RETURN>
-"Alt + <- 打开上一个文件
-map <M-left> <ESC>:bp<RETURN>
+"Alt + -> 打开下一个文件,zs set
+"map <M-right> <ESC>:bn<RETURN>
+map <A-right> <ESC>:bn<RETURN>
+"Alt + <- 打开上一个文件,zs set
+"map <M-left> <ESC>:bp<RETURN>
+map <A-left> <ESC>:bp<RETURN>
+
+"zs 注 vim 绑定快捷键 s
+"
+"zs use s
+"Alt快捷键定义方式 : Alt+o
+"map <A-o> <ESC>:bp<CR>
+"Ctrl快捷键定义方式 : Ctrl+o
+"map <C-o> <ESC>:bp<CR>
+"Shift快捷键定义方式 : Shift+o
+"map <S-o> <ESC>:bp<CR>
+"zs use e
+"
+"适用于普通模式的映射命令有：
+"1. :map 
+"[语法] :map {lhs} {rhs} |mapmode-nvo| *:map* 
+"1.1 作用模式： n、v、o （普通、可视和选择、操作符等待） 
+"1.2 命令格式： 
+":map {lhs} {rhs} 
+"含义： 在:map作用的模式中把键系列 {lhs} 映射为
+"{rhs}，{rhs}可进行映射扫描，也就是可递归映射。 
+"1.3 举例： 
+":map td :tabnew .<cr> 
+"含义：在其作用模式（普通、可视、操作符）下，输入td等价于输入 :tabnew .
+"<cr>。而普通模式下输入:tabnew . <cr>就是打开当前目录 
+"如果再定义绑定 :map ts
+"td，就是指在其作用模式下输入ts等价于td，也就是打开当前目录。不过如果没有特殊需要，一般不建议递归映射。 
+"
+"zs 注 vim 绑定快捷键 e
 
 
 "NERDTree s
 "目录插件
 "let NERDTreeDirArrows=0
-nmap <F3> :NERDTreeToggle<CR>		"F3快捷键
+"map <F3> :NERDTreeToggle<CR>		"F3快捷键,zs set
+nmap ne :NERDTreeToggle<CR>		"ne快捷键
 "NERDTree e
 
 
@@ -698,7 +873,8 @@ let Tlist_Hightlight_Tag_On_BufEnter = 1
 let Tlist_Inc_Winwidth = 0
 let Tlist_Use_Right_Window = 1
 "map <silent> <leader>tl :TlistToogle<cr>
-map <F4> :TlistToggle<CR>		"F4快捷键
+"map <F4> :TlistToggle<CR>		"F4快捷键,zs set
+map tl :TlistToggle<CR>		"tl快捷键,
 
 "Taglist s
 "let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
@@ -855,7 +1031,8 @@ endfunction
 ":'<,'>Tabularize /=
 "直接回车即可 按照 = 对齐
 "
-map <F6> :Tabularize /=<CR>		"F6快捷键,zs set
+"map <F6> :Tabularize /=<CR>		"F6快捷键,zs set
+map t= :Tabularize /=<CR>		"t=快捷键,zs set
 
 
 "解决方法：安装Tabular插件，选中要对齐的代码，输入:Tab/= 让代码通过=两边对齐
