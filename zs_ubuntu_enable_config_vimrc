@@ -333,6 +333,16 @@ let javascript_enable_domhtmlcss=1
 " e
 
 """"""""""""""""""""'
+
+" zs 配置快捷键
+" 垂直增加10宽度
+map vr+ :vertical resize +10<CR>
+" 垂直减少10宽度
+map vr- :vertical resize -10<CR>
+" 水平增加10宽度
+map r+  :resize +10<CR>
+" 水平减少10宽度
+map r-  :resize -10<CR>
 "
 "ext config e
 
