@@ -545,6 +545,7 @@ function! CheckSyntax()
 	execute "copen"
 endfunction
 "map <F7> :call CheckSyntax()<CR>
+map cs :call CheckSyntax()<CR>
 
 
 " php ide ext s
