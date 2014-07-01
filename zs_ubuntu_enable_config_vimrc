@@ -831,6 +831,11 @@ nmap ttn :TrinityToggleNERDTree<CR>
 "回车跳转到定义的文本，空格跳转回来
 "
 "srcexpl config
+"
+""=================== SrcExpl ==================== 
+"nmap <F5> :SrcExplToggle<CR> "快捷键映射 let g:SrcExpl_winHeight = 8 "默认高度 let g:SrcExpl_refreshTime = 100 "更新时间(ms) let g:SrcExpl_isUpdateTags = 0 "每次打开SrcExpl时是否更新tags(0为不更新) let g:SrcExpl_updateTagsKey = "<F12>" "更新tags的快捷键
+"
+"
 "" // The switch of the Source Explorer 
 "nmap <F8> :SrcExplToggle<CR> 
 "
