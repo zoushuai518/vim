@@ -725,6 +725,14 @@ let g:miniBufExplMapCTabSwitchBufs=1
 "let g:bufExplorerMaxHeight=40
 "let g:miniBufExplorerMoreThanOne=0		"这个设置保证在打开0个以上的文件是最高限制都是有用的
 
+" MiniBufExpl Colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+
 "minibufexplorer其它常用命令
 " :MiniBufExplorer  ,mbe   " Open and/or goto Explorer
 " :CMiniBufExplorer ,mbc  " Close the Explorer if it's open
@@ -769,10 +777,97 @@ map <A-left> <ESC>:bp<RETURN>
 
 "NERDTree s
 "目录插件
-"let NERDTreeDirArrows=0
+"map <F1> :NERDTreeToggle<CR>
+"map <C-F1> :NERDTreeFind<CR>
+"let NERDTreeChDirMode=2  "选中root即设置为当前目录
+"let NERDTreeQuitOnOpen=1 "打开文件时关闭树
+"let NERDTreeShowBookmarks=1 "显示书签
+"let NERDTreeMinimalUI=1 "不显示帮助面板
+"let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
 "map <F3> :NERDTreeToggle<CR>		"F3快捷键,zs set
-nmap ne :NERDTreeToggle<CR>		"ne快捷键
+"nmap ne :NERDTreeToggle<CR>		"ne快捷键
 "NERDTree e
+
+
+
+"Trinity s
+
+"集成, NERD_tree,taglist,srcexpl 三个插件
+" Open and close all the three plugins on the same time 
+"nmap tta  :TrinityToggleAll<CR> 
+nmap tta  :TrinityToggleAll<CR> 
+" Open and close the Source Explorer separately 
+"nmap tts  :TrinityToggleSourceExplorer<CR> 
+nmap tts  :TrinityToggleSourceExplorer<CR> 
+" Open and close the Taglist separately 
+"nmap ttl :TrinityToggleTagList<CR> 
+nmap ttl :TrinityToggleTagList<CR> 
+" Open and close the NERD Tree separately 
+"nmap ttn :TrinityToggleNERDTree<CR> 
+nmap ttn :TrinityToggleNERDTree<CR> 
+
+"----
+
+"NERD_Tree s
+"NERD_Tree config
+"NERD_Tree e
+
+"taglist s
+"taglist config
+"taglist e
+
+"srcexpl s
+"zs use
+"回车跳转到定义的文本，空格跳转回来
+"
+"srcexpl config
+"" // The switch of the Source Explorer 
+"nmap <F8> :SrcExplToggle<CR> 
+"
+"" // Set the height of Source Explorer window 
+"let g:SrcExpl_winHeight = 8 
+"
+"" // Set 100 ms for refreshing the Source Explorer 
+"let g:SrcExpl_refreshTime = 100 
+"
+"" // Set "Enter" key to jump into the exact definition context 
+"let g:SrcExpl_jumpKey = "<ENTER>" 
+"
+"" // Set "Space" key for back from the definition context 
+"let g:SrcExpl_gobackKey = "<SPACE>" 
+"
+"" // In order to avoid conflicts, the Source Explorer should know what plugins
+"" // except itself are using buffers. And you need add their buffer names into
+"" // below listaccording to the command ":buffers!"
+"let g:SrcExpl_pluginList = [ 
+"        \ "__Tag_List__", 
+"        \ "_NERD_tree_" 
+"    \ ] 
+"
+"" // Enable/Disable the local definition searching, and note that this is not 
+"" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+"" // It only searches for a match with the keyword according to command 'gd' 
+"let g:SrcExpl_searchLocalDef = 1 
+"
+"" // Do not let the Source Explorer update the tags file when opening 
+"let g:SrcExpl_isUpdateTags = 0 
+"
+"" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+"" // create/update the tags file 
+"let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+"
+"" // Set "<F12>" key for updating the tags file artificially 
+"let g:SrcExpl_updateTagsKey = "<F12>" 
+"
+"" // Set "<F3>" key for displaying the previous definition in the jump list 
+"let g:SrcExpl_prevDefKey = "<F3>" 
+"
+"" // Set "<F4>" key for displaying the next definition in the jump list 
+"let g:SrcExpl_nextDefKey = "<F4>" 
+"srcexpl e
+
+"Trinity e
+
 
 
 "neocomplcache s
@@ -854,63 +949,59 @@ hi statusline guibg=green
 
 
 "CTags s
-"let Tlist_Ctags_Cmd="/usr/share/CTags"		"linux 下 ctags执行文件目录
-let Tlist_Ctags_Cmd="/usr/bin/ctags"		"linux 下 ctags执行文件目录
-
-"Taglist
-""map <silent> <leader>tl :TlistToogle<cr>
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Auto_Open = 1
-let Tlist_Auto_Update = 1
-let Tlist_Close_On_Select = 0
-let Tlist_Compact_Format = 0
-let Tlist_Display_Prototype = 0
-let Tlist_Display_Tag_Scope = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 0
-let Tlist_File_Fold_Auto_Close = 0
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Hightlight_Tag_On_BufEnter = 1
-let Tlist_Inc_Winwidth = 0
-let Tlist_Use_Right_Window = 1
-"map <silent> <leader>tl :TlistToogle<cr>
-"map <F4> :TlistToggle<CR>		"F4快捷键,zs set
-map tl :TlistToggle<CR>		"tl快捷键,
+""let Tlist_Ctags_Cmd="/usr/share/CTags"		"linux 下 ctags执行文件目录
+"let Tlist_Ctags_Cmd="/usr/bin/ctags"		"linux 下 ctags执行文件目录
 
 "Taglist s
-"let Tlist_Ctags_Cmd="/usr/share/CTags"   "linux 下 ctags执行文件目录
-let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
-"map <silent> <F9> :TlistToggle<cr>
+""map <silent> <leader>tl :TlistToogle<cr>
+"let Tlist_Auto_Highlight_Tag = 1
+"let Tlist_Auto_Open = 1
+"let Tlist_Auto_Update = 1
+"let Tlist_Close_On_Select = 0
+"let Tlist_Compact_Format = 0
+"let Tlist_Display_Prototype = 0
+"let Tlist_Display_Tag_Scope = 1
+"let Tlist_Enable_Fold_Column = 0
+"let Tlist_Exit_OnlyWindow = 0
+"let Tlist_File_Fold_Auto_Close = 0
+"let Tlist_GainFocus_On_ToggleOpen = 1
+"let Tlist_Hightlight_Tag_On_BufEnter = 1
+"let Tlist_Inc_Winwidth = 0
+"let Tlist_Use_Right_Window = 1
+""map <silent> <leader>tl :TlistToogle<cr>
+""map <F4> :TlistToggle<CR>		"F4快捷键,zs set
+""map tl :TlistToggle<CR>		"tl快捷键,
+"
+"let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
+""map <silent> <F9> :TlistToggle<cr>
 "Taglist e
-
 
 "Ctags 生成的tags文件路径
 set tags=/var/www/html/zixun/tags
 " 增强检索功能
 "set tags=./tags,./../tags,./**/tags
 
-
 """""""""""""""""""""""
-"F12生成/更新tags文件
-set tags=tags;
-set autochdir
-function! UpdateTagsFile()
-	silent !ctags -R --fields=+ianS --extra=+q
-endfunction
-nmap <F12> :call UpdateTagsFile()<CR>
-
-"Ctrl + F12删除tags文件
-function! DeleteTagsFile()
-	"Linux下的删除方法
-	"silent !rm tags
-	"Windows下的删除方法
-	silent !del /F /Q tags
-endfunction
-nmap <C-F12> :call DeleteTagsFile()<CR>
-"退出VIM之前删除tags文件
-"au VimLeavePre * call DeleteTagsFile()
+""F12生成/更新tags文件
+"set tags=tags;
+"set autochdir
+"function! UpdateTagsFile()
+"	silent !ctags -R --fields=+ianS --extra=+q
+"endfunction
+"nmap <F12> :call UpdateTagsFile()<CR>
+"
+""Ctrl + F12删除tags文件
+"function! DeleteTagsFile()
+"	"Linux下的删除方法
+"	"silent !rm tags
+"	"Windows下的删除方法
+"	silent !del /F /Q tags
+"endfunction
+"nmap <C-F12> :call DeleteTagsFile()<CR>
+""退出VIM之前删除tags文件
+""au VimLeavePre * call DeleteTagsFile()
 """""""""""""""""""""""
 "
 "zs use: Ctrl+] || Ctrl+t
