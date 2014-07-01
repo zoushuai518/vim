@@ -221,7 +221,7 @@ vim打开一个php文件
 ===
 VIM 插件list
 a.vim    //头文件和编程文件之间切换  
-minibufexpl.vim		//多文件编辑
+AutoComplPop		//自动补全插件
 bufexplorer.vim      //文件浏览器，基本不用  
 color_sample_pack.vim   //各种颜色主题  
 csExplorer.vim                // 主题管理插件
@@ -229,7 +229,7 @@ DoxygenToolkit.vim         //个性文本生成工具，知道大概干什么，
 genutils.vim   
 lookupfile.vim                 //查找文件插件  
 mark.vim                        //标记高亮显示  
-minibufexpl.vim              //很好用的打开文件显示浏览器  
+minibufexpl.vim				//多文件编辑
 NERD_commenter.vim   //注释插件  
 NERD_tree.vim  
 project.vim                    //工程目录插件  
@@ -239,6 +239,41 @@ winfileexplorer.vim        //winmanager里的，winmanager可以控制taglist和
 winmanager.vim  
 wintagexplorer.vim  
 xdebug					// vim xdebug插件
+
+echofunc.vim
+[
+	插件 echofunc 依赖于另一个插件 ctags 。创建 tags 文件时使用以下命令：
+	$ ctags -R --fields=+lS
+	--
+	当在函数名后输入 ( ，就会在命令行上现实出该函数的声明
+	--
+	如果该函数在工程中有多个声明，可通过 ctrl+- 或者 ctrl+= 进行前翻或后翻。要注意的是该功能只能在 gvim 上使用。至少我的 vim 没有响应这个功能
+]
+
+srcexpl.vim				//实现source insight的预览框的功能
+
+trinity.vim				//这个插件将 srcexpl、taglist、NERD_tree这三个插件集中起来做成IDE
+[
+	// http://www.vim.org/scripts/script.php?script_id=2347
+	这个也是上面那个大牛写的，里面有含有NERD_tree这个插件。我直接用NERD_tree原插件替换过没有出现过问题。
+	NERD_tree是实现图中最右边的功能框。就是实现文件树这个功能，而这个Trinity的文件下有一个trinity.vim，是实现三个功能框快速开关的功能
+	把这三个文件解压后会有taglist.vim  srcexpl.vim  NERD_tree.vim  trinity.vim这四个插件，直接复制到vim安装目录下的plugin文件夹下，我的RHEL6.3的vim是安装在/urs/share/vim文件夹下。我把这四个插件复制到了/usr/share/vim/vimfiles/plugin。然后在修改/etc文件夹下的vimrc文件。在最后一行加上
+	" Open and close all the three plugins on the same time 
+	nmap <F8>   :TrinityToggleAll<CR> 
+
+	" Open and close the srcexpl.vim separately 
+	nmap <F9>   :TrinityToggleSourceExplorer<CR> 
+
+	" Open and close the taglist.vim separately 
+	nmap <F10>  :TrinityToggleTagList<CR> 
+
+	" Open and close the NERD_tree.vim separately 
+	nmap <F11>  :TrinityToggleNERDTree<CR> 
+	这个是Trinity中的使用介绍，也就是F8打开关闭所有的功能框，F9打开关闭SourceExplorer功能框，剩下的都是相关的键控制相关的功能框。可以自己定义功能键。F10另一个功能就是更新ctags的内容，如果更改了代码保存后按下F10更新ctags。
+	当然如果再加上set mouse=a  就可以再vim下使用鼠标了。
+	这时先在你的工程目录下执行ctags -R后用vim打开一个文件，按下F8(打开所有的功能框)，试一试是不是和source insight一样了。
+	要去到预览框中的文件直接在预览框中双击鼠标，要返回就按空格键
+]
 
 
 ===
