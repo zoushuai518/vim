@@ -608,38 +608,55 @@ map cs :call CheckSyntax()<CR>
 
 " php ide ext s
 
-" PHP code sniffer s
-" 代码风格检测
-" If code sniffer is installed you can run it on current php file by running
-" :Phpcs
-function! RunPhpcs()
-	let l:filename=@%
-	let l:phpcs_output=system('phpcs --report=csv --standard=YMC'.l:filename)
-	"   echo l:phpcs_output
-	let l:phpcs_list=split(l:phpcs_output, "\n")
-	unlet l:phpcs_list[0]
-	cexpr l:phpcs_list
-	cwindow
-endfunction
+"php code_sniffer,php-md. phpqa.vim s
+"zs 测试中
 
-set errorformat+=\"%f\"\\,%l\\,%c\\,%t%*[a-zA-Z]\\,\"%m\"
-"zs注:添加 Phpcs命令为Runphpcs()函数
-command! Phpcs execute RunPhpcs()
-" PHP code sniffer e
+"let g:phpqa_codesniffer_args = "--standard=Zend"
+"let g:phpqa_codesniffer_cmd  = '/usr/bin/phpcs'
+"let g:phpqa_codesniffer_autorun = 1        "default =1 on save
+"let g:phpqa_messdetector_ruleset = ''
+"let g:phpqa_messdetector_cmd = '/usr/bin/phpmd'
+"let g:phpqa_messdetector_autorun = 0
+
+"zs use
+"在 linux终端执行
+":!php -l % 这个是检查当前php文件语法参数
+"
+"phpcs -h
+":phpcs 这个就是code sniffer了
+"
+":phpmd  这个是mess detector , 需要一个XML规则文件如果没有设置
+"
+":phpcc  这个显示code coverage. 也需要一个XML规则文件如果没有设置
+"
+
+"ext:
+"
+"php code_sniffer
+"参数里面的 --standard=Zend 意思是codesniffer采用Zend的编码风格来效验。
+"你可以自定义一些效验规则， 这个规则在debian里面
+"/usr/share/php/PHP/CodeSniffer/Standards/ 
+"里面，你可以把自定义的放进去。然后把
+"let g:phpqa_codesniffer_args = "--standard=Zend"
+"改为
+"let g:phpqa_codesniffer_args = "--standard=自定义的"
+"就可以使用自定义的代码风格效验了.
+
+"php code_sniffer,php-md. phpqa.vim e
 
 
-" php md s		|php depend
-" php 静态代码检测
-" PHP的静态代码检测最出名的就是php
-" depend,然后，在其基础上有很多的修改版本。这里我们使用的是PHPMD来做静态代码检测
-" http://phpmd.org/
+"phpcpd s
+"PHP Copy Paste Detector(https://github.com/sebastianbergmann/phpcpd)
+"顾名思义，检查冗余代码的
 
-" php md e		|php depend
+"phpcpd e
 
+"phpdcd s
+"PHP Dead Code Detector(https://github.com/sebastianbergmann/phpdcd)
+"看名字就知道了，检查从未被调用过的方法
 
-"phpqa.vim s
+"phpdcd s
 
-"phpqa.vim e
 
 
 "xdebug | Vdebug
@@ -741,7 +758,7 @@ sign define breakpt text=B>  texthl=DbgBreakPt linehl=DbgBreakPt
 "看名字就知道了，检查从未被调用过的方法
 
 "PHP Code Sniffer(http://pear.php.net/package/PHP_CodeSniffer)
-"老牌代码格式化工具，PHP写的，Pear包，可自己hack，可集成到命令行里。我一直用的PHP
+"老牌代码格式化工具，PHP写的，Pear包，可自己hack，可集成到命令行里。
 
 "Code Beautifier，只有Windows GUI，Windows CMD很难用，已经打算跳槽到PHP CS了
 "你还可以用jenkins把上述工具以plugins形式整合起来，做持续集成：http://jenkins-php.org/
