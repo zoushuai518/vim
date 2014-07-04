@@ -378,9 +378,18 @@ map r-  :resize -10<CR>
 map nu :set nu<CR>
 "关闭行号
 map nnu :set nonu<CR>
-"
-" 保存
+
+" 保存当前窗口
 map s :w<CR>
+" 保存当前窗口
+map sq :wq<CR>
+" 保存当前窗口
+map sa :wqa<CR>
+
+" 不保存退出当前窗口
+map q :q!<CR>
+" 不保存打开的所有窗口
+map qa :qa!<CR>
 " Ctrl + v = Esc
 
 "ext config e
