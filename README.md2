@@ -215,82 +215,82 @@ colorscheme solarized
 8.vim中调试php, 安装php code_sniffer,php-md. phpqa.vim
 [
 
-#sudo apt-get install php-pear
-#sudo apt-get install ImageMagick-devel
+	sudo apt-get install php-pear
+	sudo apt-get install ImageMagick-devel
 
-#pear install PHP_CodeSniffer
-#pear channel-discover pear.phpmd.org
-#pear channel-discover pear.pdepend.org
-#pear install --alldeps phpmd/PHP_PMD 
-修改php.ini文件,加入extension=imagick.so
+	pear install PHP_CodeSniffer
+	pear channel-discover pear.phpmd.org
+	pear channel-discover pear.pdepend.org
+	pear install --alldeps phpmd/PHP_PMD 
+	修改php.ini文件,加入extension=imagick.so
 
-打开vim:	|用vim打开php文件
-:!php -l % 这个是检查当前php文件语法参数
-:phpcs 这个就是code sniffer了
-:phpmd  这个是mess detector , 需要一个XML规则文件如果没有设置
-:phpcc  这个显示code coverage. 也需要一个XML规则文件如果没有设置
+	打开vim:	|用vim打开php文件
+	:!php -l % 这个是检查当前php文件语法参数
+	:phpcs 这个就是code sniffer了
+	:phpmd  这个是mess detector , 需要一个XML规则文件如果没有设置
+	:phpcc  这个显示code coverage. 也需要一个XML规则文件如果没有设置
 
 
-安装phpqa.vim 
-https://github.com/rainysia/vimrc/commits/master
-去clone下来,放到$~.vim里面, 注意是user下面的.vim 
+	安装phpqa.vim 
+	https://github.com/rainysia/vimrc/commits/master
+	去clone下来,放到$~.vim里面, 注意是user下面的.vim 
 
-在.vimrc里面加上
-let g:phpqa_codesniffer_args = "--standard=Zend"
-let g:phpqa_codesniffer_cmd  = '/usr/bin/phpcs'
-let g:phpqa_codesniffer_autorun = 1				"default =1 on save
-let g:phpqa_messdetector_ruleset = ''
-let g:phpqa_messdetector_cmd = '/usr/bin/phpmd'
-let g:phpqa_messdetector_autorun = 0
-"其中cmd 这两个是上面第一步安装后 type出来的路径
+	在.vimrc里面加上
+	let g:phpqa_codesniffer_args = "--standard=Zend"
+	let g:phpqa_codesniffer_cmd  = '/usr/bin/phpcs'
+	let g:phpqa_codesniffer_autorun = 1				"default =1 on save
+	let g:phpqa_messdetector_ruleset = ''
+	let g:phpqa_messdetector_cmd = '/usr/bin/phpmd'
+	let g:phpqa_messdetector_autorun = 0
+	"其中cmd 这两个是上面第一步安装后 type出来的路径
 
---------
-参数里面的 --standard=Zend 意思是codesniffer采用Zend的编码风格来效验。 你可以自定义一些效验规则， 这个规则在debian里面
-/usr/share/php/PHP/CodeSniffer/Standards/ 
-里面，你可以把自定义的放进去。然后把
+	--------
+	参数里面的 --standard=Zend 意思是codesniffer采用Zend的编码风格来效验。 你可以自定义一些效验规则， 这个规则在debian里面
+	/usr/share/php/PHP/CodeSniffer/Standards/ 
+	里面，你可以把自定义的放进去。然后把
 
-let g:phpqa_codesniffer_args = "--standard=Zend"
-改为
-let g:phpqa_codesniffer_args = "--standard=自定义的"
-就可以使用自定义的代码风格效验了.
+	let g:phpqa_codesniffer_args = "--standard=Zend"
+	改为
+	let g:phpqa_codesniffer_args = "--standard=自定义的"
+	就可以使用自定义的代码风格效验了.
 
---------
-http://pear.php.net/manual/en/package.php.php-codesniffer.config-options.php
+	--------
+	http://pear.php.net/manual/en/package.php.php-codesniffer.config-options.php
 
--------
-#type phpcs
-/usr/bin/phpcs
-autorun = 1是自动开启 ,当你保存的时候就会自动运行提示了
-把下面的内容保存为phpmd.xml ，保存在vim文件里面，然后打开任意的php文件，保存的时候会提示让你输入phpmd的文件所在，填你刚才保存的路径和phpmd.xml 然后就可以了
+	-------
+	#type phpcs
+	/usr/bin/phpcs
+	autorun = 1是自动开启 ,当你保存的时候就会自动运行提示了
+	把下面的内容保存为phpmd.xml ，保存在vim文件里面，然后打开任意的php文件，保存的时候会提示让你输入phpmd的文件所在，填你刚才保存的路径和phpmd.xml 然后就可以了
 
-<?xml version="1.0"?>
-<ruleset name="Sebastian"
-         xmlns="http://pmd.sf.net/ruleset/1.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
-		 xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
-	<description>Sebastian Bergmann's ruleset</description>
+	<?xml version="1.0"?>
+	<ruleset name="Sebastian"
+			 xmlns="http://pmd.sf.net/ruleset/1.0.0"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+			 xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+		<description>Sebastian Bergmann's ruleset</description>
 
-	<rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
-	<rule ref="rulesets/codesize.xml/NPathComplexity" />
-	<rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" />
-	<rule ref="rulesets/codesize.xml/ExcessiveClassLength" />
-	<rule ref="rulesets/codesize.xml/ExcessiveMethodLength" />
-	<rule ref="rulesets/codesize.xml/ExcessiveParameterList" />
+		<rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
+		<rule ref="rulesets/codesize.xml/NPathComplexity" />
+		<rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" />
+		<rule ref="rulesets/codesize.xml/ExcessiveClassLength" />
+		<rule ref="rulesets/codesize.xml/ExcessiveMethodLength" />
+		<rule ref="rulesets/codesize.xml/ExcessiveParameterList" />
 
-	<rule ref="rulesets/design.xml/EvalExpression" />
-	<rule ref="rulesets/design.xml/ExitExpression" />
-	<rule ref="rulesets/design.xml/GotoStatement" />
+		<rule ref="rulesets/design.xml/EvalExpression" />
+		<rule ref="rulesets/design.xml/ExitExpression" />
+		<rule ref="rulesets/design.xml/GotoStatement" />
 
-	<rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
+		<rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
 
-	<rule ref="rulesets/unusedcode.xml/UnusedFormalParameter" />
-	<rule ref="rulesets/unusedcode.xml/UnusedLocalVariable" />
-	<rule ref="rulesets/unusedcode.xml/UnusedPrivateField" />
-	<rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod" />
-</ruleset>
+		<rule ref="rulesets/unusedcode.xml/UnusedFormalParameter" />
+		<rule ref="rulesets/unusedcode.xml/UnusedLocalVariable" />
+		<rule ref="rulesets/unusedcode.xml/UnusedPrivateField" />
+		<rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod" />
+	</ruleset>
 
-现在做下测试,打开vim 输入<?php ?>  然后:w保存,提示错误,说php不能关闭..看来语法要求很严格. 去掉?> 然后保存就没错误提示了
+	现在做下测试,打开vim 输入<?php ?>  然后:w保存,提示错误,说php不能关闭..看来语法要求很严格. 去掉?> 然后保存就没错误提示了
 
 ]
 
