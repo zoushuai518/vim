@@ -150,65 +150,152 @@ colorscheme solarized
 
 7、vim xdebug 调试之 - vim dbgp
 [
-vim+xdebug+dbgp调试php程序:
-{
-	使用此插件，要求你的vim编译时加上了python 和signs 功能：
-	要检测是否安装
-	:version
-	看有没有+python 和 +signs字样。如果没有请百度		|sudo apt-get install vim-full
-}
+	vim+xdebug+dbgp调试php程序:
+	{
+		使用此插件，要求你的vim编译时加上了python 和signs 功能：
+		要检测是否安装
+		:version
+		看有没有+python 和 +signs字样。如果没有请百度		|sudo apt-get install vim-full
+	}
 
-1. 安装xdebug
-下载xdebug源码包并解压
+	1. 安装xdebug
+	下载xdebug源码包并解压
 #cd xdebug-2.2.x
 #phpize
 #./configure --enable-xdebug --with-php-config=/path/to/php-config
 #make
 #cp modules/xdebug.so /path/to/php/extensiondir
-在php.ini尾部加上
-==============
-[xdebug]
-zend_extension="/usr/local/php/lib/php/extensions/no-debug-zts-20121212/xdebug.so"
-xdebug.auto_trace=1
-;xdebug.remote_enable = 1
-xdebug.remote_enable = on
-;xdebug.remote_host = localhost
-xdebug.remote_host = 127.0.0.1
-;xdebug.remote_port = 9001
-xdebug.remote_port = 9001
-xdebug.remote_handler=dbgp
-xdebug.collect_params=1
-xdebug.collect_return=1
-xdebug.trace_output_dir="var/log/xdebug/trace"
-xdebug.profiler_output_dir="var/log/xdebug/profiler"
-===============
-重启php-fpm，查看phpinfo即可看到xdebug的信息
+	在php.ini尾部加上
+	==============
+	[xdebug]
+	zend_extension="/usr/local/php/lib/php/extensions/no-debug-zts-20121212/xdebug.so"
+	xdebug.auto_trace=1
+	;xdebug.remote_enable = 1
+	xdebug.remote_enable = on
+	;xdebug.remote_host = localhost
+	xdebug.remote_host = 127.0.0.1
+	;xdebug.remote_port = 9001
+	xdebug.remote_port = 9001
+	xdebug.remote_handler=dbgp
+	xdebug.collect_params=1
+	xdebug.collect_return=1
+	xdebug.trace_output_dir="var/log/xdebug/trace"
+	xdebug.profiler_output_dir="var/log/xdebug/profiler"
+	===============
+	重启php-fpm，查看phpinfo即可看到xdebug的信息
 
-2. 安装dbgp
-执行vim
-输入:version，看看输出里是否有+python和+signs，如果没有，上网查怎么解决。
-下载dbgp源码包并解压
-将里面的debugger.py和debugger.vim拷贝到~/.vim/plugin/下
-修改 vimrc
-===============
-let g:debuggerPort = 9001
-let g:debuggerMaxDepth = 5
-===============
+	2. 安装dbgp
+	执行vim
+	输入:version，看看输出里是否有+python和+signs，如果没有，上网查怎么解决。
+	下载dbgp源码包并解压
+	将里面的debugger.py和debugger.vim拷贝到~/.vim/plugin/下
+	修改 vimrc
+	===============
+	let g:debuggerPort = 9001
+	let g:debuggerMaxDepth = 5
+	===============
 
-执行vim
-输入:scriptnames确定vim加载了debugger.vim
+	执行vim
+	输入:scriptnames确定vim加载了debugger.vim
 
-3. 使用xdebug
-通过浏览器调试
-vim打开一个php文件
-移动光标到任意一行，:Bp设置断点
-按F5启动调试，5秒内在浏览器里打开该文件（注意第一次打开需要在链接后面加上XDEBUG_SESSION_START=1参数，这样就会在cookie里记录下来，以后再打开就不用带这个参数了），再看vim窗口底部可以看到连接上了。
-此时窗口右侧有4个小窗口，分别是watch_window、help_window、stack_window、trace_window。help_window里介绍了调试快捷键，比如F2是进入，F3是下一步，F4是跳出，F5是启动调试，F6是终止调试，F11是获取变量值。
-直接按F4可以跳到断点处，按F11可以看到所有变量值情况（在watch_window里），也可以光标移到某变量，按F12看该变量值，实在方便。
+	3. 使用xdebug
+	通过浏览器调试
+	vim打开一个php文件
+	移动光标到任意一行，:Bp设置断点
+	按F5启动调试，5秒内在浏览器里打开该文件（注意第一次打开需要在链接后面加上XDEBUG_SESSION_START=1参数，这样就会在cookie里记录下来，以后再打开就不用带这个参数了），再看vim窗口底部可以看到连接上了。
+	此时窗口右侧有4个小窗口，分别是watch_window、help_window、stack_window、trace_window。help_window里介绍了调试快捷键，比如F2是进入，F3是下一步，F4是跳出，F5是启动调试，F6是终止调试，F11是获取变量值。
+	直接按F4可以跳到断点处，按F11可以看到所有变量值情况（在watch_window里），也可以光标移到某变量，按F12看该变量值，实在方便。
 
-因为窗口不大，那4个小窗口只有watch_window对我有用，所以可以直接修改debugger.py，把对应窗口的代码都注视掉，只留下watch_window，这样watch_window就独占右侧了。
+	因为窗口不大，那4个小窗口只有watch_window对我有用，所以可以直接修改debugger.py，把对应窗口的代码都注视掉，只留下watch_window，这样watch_window就独占右侧了。
 
-参考： http://xdebug.org/docs/remote
+	参考： http://xdebug.org/docs/remote
+
+]
+
+8.vim中调试php, 安装php code_sniffer,php-md. phpqa.vim
+[
+
+#sudo apt-get install php-pear
+#sudo apt-get install ImageMagick-devel
+
+#pear install PHP_CodeSniffer
+#pear channel-discover pear.phpmd.org
+#pear channel-discover pear.pdepend.org
+#pear install --alldeps phpmd/PHP_PMD 
+修改php.ini文件,加入extension=imagick.so
+
+打开vim:	|用vim打开php文件
+:!php -l % 这个是检查当前php文件语法参数
+:phpcs 这个就是code sniffer了
+:phpmd  这个是mess detector , 需要一个XML规则文件如果没有设置
+:phpcc  这个显示code coverage. 也需要一个XML规则文件如果没有设置
+
+
+安装phpqa.vim 
+https://github.com/rainysia/vimrc/commits/master
+去clone下来,放到$~.vim里面, 注意是user下面的.vim 
+
+在.vimrc里面加上
+let g:phpqa_codesniffer_args = "--standard=Zend"
+let g:phpqa_codesniffer_cmd  = '/usr/bin/phpcs'
+let g:phpqa_codesniffer_autorun = 1				"default =1 on save
+let g:phpqa_messdetector_ruleset = ''
+let g:phpqa_messdetector_cmd = '/usr/bin/phpmd'
+let g:phpqa_messdetector_autorun = 0
+"其中cmd 这两个是上面第一步安装后 type出来的路径
+
+--------
+参数里面的 --standard=Zend 意思是codesniffer采用Zend的编码风格来效验。 你可以自定义一些效验规则， 这个规则在debian里面
+/usr/share/php/PHP/CodeSniffer/Standards/ 
+里面，你可以把自定义的放进去。然后把
+
+let g:phpqa_codesniffer_args = "--standard=Zend"
+改为
+let g:phpqa_codesniffer_args = "--standard=自定义的"
+就可以使用自定义的代码风格效验了.
+
+--------
+http://pear.php.net/manual/en/package.php.php-codesniffer.config-options.php
+
+-------
+#type phpcs
+/usr/bin/phpcs
+autorun = 1是自动开启 ,当你保存的时候就会自动运行提示了
+把下面的内容保存为phpmd.xml ，保存在vim文件里面，然后打开任意的php文件，保存的时候会提示让你输入phpmd的文件所在，填你刚才保存的路径和phpmd.xml 然后就可以了
+
+<?xml version="1.0"?>
+<ruleset name="Sebastian"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+		 xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+	<description>Sebastian Bergmann's ruleset</description>
+
+	<rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
+	<rule ref="rulesets/codesize.xml/NPathComplexity" />
+	<rule ref="rulesets/codesize.xml/ExcessiveClassComplexity" />
+	<rule ref="rulesets/codesize.xml/ExcessiveClassLength" />
+	<rule ref="rulesets/codesize.xml/ExcessiveMethodLength" />
+	<rule ref="rulesets/codesize.xml/ExcessiveParameterList" />
+
+	<rule ref="rulesets/design.xml/EvalExpression" />
+	<rule ref="rulesets/design.xml/ExitExpression" />
+	<rule ref="rulesets/design.xml/GotoStatement" />
+
+	<rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
+
+	<rule ref="rulesets/unusedcode.xml/UnusedFormalParameter" />
+	<rule ref="rulesets/unusedcode.xml/UnusedLocalVariable" />
+	<rule ref="rulesets/unusedcode.xml/UnusedPrivateField" />
+	<rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod" />
+</ruleset>
+
+现在做下测试,打开vim 输入<?php ?>  然后:w保存,提示错误,说php不能关闭..看来语法要求很严格. 去掉?> 然后保存就没错误提示了
+
+]
+
+9.php assistant
+[
 
 ]
 
