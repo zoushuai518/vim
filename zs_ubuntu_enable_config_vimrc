@@ -334,6 +334,36 @@ let javascript_enable_domhtmlcss=1
 
 """"""""""""""""""""'
 
+
+"zs 注 vim 绑定快捷键 s
+"
+"zs use s
+"Alt快捷键定义方式 : Alt+o
+"map <A-o> <ESC>:bp<CR>
+"Ctrl快捷键定义方式 : Ctrl+o
+"map <C-o> <ESC>:bp<CR>
+"Shift快捷键定义方式 : Shift+o
+"map <S-o> <ESC>:bp<CR>
+"zs use e
+"
+"适用于普通模式的映射命令有：
+"1. :map 
+"[语法] :map {lhs} {rhs} |mapmode-nvo| *:map* 
+"1.1 作用模式： n、v、o （普通、可视和选择、操作符等待） 
+"1.2 命令格式： 
+":map {lhs} {rhs} 
+"含义： 在:map作用的模式中把键系列 {lhs} 映射为
+"{rhs}，{rhs}可进行映射扫描，也就是可递归映射。 
+"1.3 举例： 
+":map td :tabnew .<cr> 
+"含义：在其作用模式（普通、可视、操作符）下，输入td等价于输入 :tabnew .
+"<cr>。而普通模式下输入:tabnew . <cr>就是打开当前目录 
+"如果再定义绑定 :map ts
+"td，就是指在其作用模式下输入ts等价于td，也就是打开当前目录。不过如果没有特殊需要，一般不建议递归映射。 
+"
+"zs 注 vim 绑定快捷键 e
+"
+
 " zs 配置快捷键
 " 垂直增加10宽度
 map vr+ :vertical resize +10<CR>
@@ -344,6 +374,15 @@ map r+  :resize +10<CR>
 " 水平减少10宽度
 map r-  :resize -10<CR>
 "
+"开启行号
+map nu :set nu<CR>
+"关闭行号
+map nnu :set nonu<CR>
+"
+" 保存
+map s :w<CR>
+" Ctrl + v = Esc
+
 "ext config e
 
 
@@ -755,34 +794,6 @@ map <A-right> <ESC>:bn<RETURN>
 "Alt + <- 打开上一个文件,zs set
 "map <M-left> <ESC>:bp<RETURN>
 map <A-left> <ESC>:bp<RETURN>
-
-"zs 注 vim 绑定快捷键 s
-"
-"zs use s
-"Alt快捷键定义方式 : Alt+o
-"map <A-o> <ESC>:bp<CR>
-"Ctrl快捷键定义方式 : Ctrl+o
-"map <C-o> <ESC>:bp<CR>
-"Shift快捷键定义方式 : Shift+o
-"map <S-o> <ESC>:bp<CR>
-"zs use e
-"
-"适用于普通模式的映射命令有：
-"1. :map 
-"[语法] :map {lhs} {rhs} |mapmode-nvo| *:map* 
-"1.1 作用模式： n、v、o （普通、可视和选择、操作符等待） 
-"1.2 命令格式： 
-":map {lhs} {rhs} 
-"含义： 在:map作用的模式中把键系列 {lhs} 映射为
-"{rhs}，{rhs}可进行映射扫描，也就是可递归映射。 
-"1.3 举例： 
-":map td :tabnew .<cr> 
-"含义：在其作用模式（普通、可视、操作符）下，输入td等价于输入 :tabnew .
-"<cr>。而普通模式下输入:tabnew . <cr>就是打开当前目录 
-"如果再定义绑定 :map ts
-"td，就是指在其作用模式下输入ts等价于td，也就是打开当前目录。不过如果没有特殊需要，一般不建议递归映射。 
-"
-"zs 注 vim 绑定快捷键 e
 
 
 "NERDTree s
