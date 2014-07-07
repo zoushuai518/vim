@@ -56,7 +56,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 
-"zs 注
+"zs config 注
 "
 "use: gg=:1,$ Enter 文件代码格式化
 
@@ -65,6 +65,12 @@ endif
 "常用变量
 "$VIMRUNTIME
 "$VIM : vim的安装的根目录.	[ad: ubuntu /usr/share/vim]
+"
+":echo $VIM
+":ehco $VIMRUNTIME
+":scriptname
+"
+":version
 
 
 "zs config
@@ -609,6 +615,8 @@ map cs :call CheckSyntax()<CR>
 " php ide ext s
 
 "php code_sniffer,php-md. phpqa.vim s
+"php code_sniffer 默认安装目录:/usr/bin/phpcs
+"php mess Detector 默认安装目录:/usr/bin/phpmd
 "zs 测试中
 
 "let g:phpqa_codesniffer_args = "--standard=Zend"
@@ -1135,6 +1143,8 @@ set tags=/var/www/html/zixun/tags
 "在 .vimrc里面添加配置
 "set runtimepath=/usr/share/vim/vim73,~/vim,~/vim/after
 "let g:snippets_dir='~/.vim/snippets'
+"注：上述路径是自己的安装目录，根据自己情况进行修改。
+"ubuntu直接放在 ~./vim/目录下即可; 很多其它插件可类比
 "filetype plugin on
 "
 "snipMate e
