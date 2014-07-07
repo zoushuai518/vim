@@ -891,6 +891,7 @@ nmap ttn :TrinityToggleNERDTree<CR>
 "taglist e
 
 "srcexpl s
+"SrcExpl 类比与 Taglist + Ctags 跳转插件
 "
 "回车跳转到定义的文本，空格跳转回来
 "
