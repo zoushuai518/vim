@@ -586,6 +586,24 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 " set complete+=kspell
 
 
+" assistant.vim s
+" php语法增强插件
+"
+"assistant.vim文件 配置 assistant支持的语言
+"let s:aType = {}
+"let s:aType = { 
+"|             \'php':'php', 'phps':'php', 'phtml':'php',
+"|   |   |     \'vim':'vim', 'vimrc':'vim'
+"|   |   |     \}  
+ 
+"打开 assistant.vim文件 查看如何使用 assistant插件
+"Description:  1. Display the definition of functions, variables, etc(<C-k>).
+"|   |   |     2. Complete keywords(<C-x><C-u>).
+"Description:提示 使用 Ctrl + k , Ctrl + x , Ctrl + u快捷键
+"
+"assistant.vim e
+
+
 "Autocompletition s
 
 "Autocompletition e
@@ -615,9 +633,10 @@ map cs :call CheckSyntax()<CR>
 " php ide ext s
 
 "php code_sniffer,php-md. phpqa.vim s
+"zs 测试中
+"
 "php code_sniffer 默认安装目录:/usr/bin/phpcs
 "php mess Detector 默认安装目录:/usr/bin/phpmd
-"zs 测试中
 
 "let g:phpqa_codesniffer_args = "--standard=Zend"
 "let g:phpqa_codesniffer_cmd  = '/usr/bin/phpcs'
@@ -878,8 +897,8 @@ nmap ttn :TrinityToggleNERDTree<CR>
 "srcexpl config
 "
 ""=================== SrcExpl ==================== 
+"zs 测试中:
 "nmap <F5> :SrcExplToggle<CR> "快捷键映射 let g:SrcExpl_winHeight = 8 "默认高度 let g:SrcExpl_refreshTime = 100 "更新时间(ms) let g:SrcExpl_isUpdateTags = 0 "每次打开SrcExpl时是否更新tags(0为不更新) let g:SrcExpl_updateTagsKey = "<F12>" "更新tags的快捷键
-"
 "
 "" // The switch of the Source Explorer 
 "nmap <F8> :SrcExplToggle<CR> 
@@ -918,6 +937,7 @@ nmap ttn :TrinityToggleNERDTree<CR>
 "
 "" // Set "<F12>" key for updating the tags file artificially 
 "let g:SrcExpl_updateTagsKey = "<F12>" 
+"let g:SrcExpl_updateTagsKey = "<C-s>" 
 "
 "" // Set "<F3>" key for displaying the previous definition in the jump list 
 "let g:SrcExpl_prevDefKey = "<F3>" 
@@ -1039,7 +1059,7 @@ hi statusline guibg=green
 "Taglist e
 
 "Ctags 生成的tags文件路径
-set tags=/var/www/html/zixun/tags
+"set tags=/var/www/html/zixun/tags
 " 增强检索功能
 "set tags=./tags,./../tags,./**/tags
 
@@ -1138,14 +1158,17 @@ set tags=/var/www/html/zixun/tags
 "/usr/shre/vim/
 "/usr/shre/vim/vim73
 "第三个会输出vim加载的脚本名,可以看到这里是没有加载/snipMate 的
+"filetype plugin on
 "
 "
+"zs 注:
 "在 .vimrc里面添加配置
 "set runtimepath=/usr/share/vim/vim73,~/vim,~/vim/after
 "let g:snippets_dir='~/.vim/snippets'
 "注：上述路径是自己的安装目录，根据自己情况进行修改。
 "ubuntu直接放在 ~./vim/目录下即可; 很多其它插件可类比
-"filetype plugin on
+"
+"...zs需要研究,vim snipMate的自定义配置方法
 "
 "snipMate e
 "
