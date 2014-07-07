@@ -904,6 +904,9 @@ nmap ttn :TrinityToggleNERDTree<CR>
 "回车跳转到定义的文本，空格跳转回来
 "
 "zs use
+"sudo apt-get install ctags
+"cd ./project
+"sudo ctags -R *
 "先跳到 SrcExpl窗口指定的行 -> 按下<ENTER>跳转到函数处, 按下 <SPACE>跳转回原处
 "
 "srcexpl config
