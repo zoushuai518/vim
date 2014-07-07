@@ -393,7 +393,7 @@ map sq :wq<CR>
 map sa :wqa<CR>
 
 " 不保存退出当前窗口
-map q :q!<CR>
+map qq :q!<CR>
 " 不保存打开的所有窗口
 map qa :qa!<CR>
 " Ctrl + v = Esc
