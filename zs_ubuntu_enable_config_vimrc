@@ -404,7 +404,7 @@ map qa :qa!<CR>
 
 " plugin config s
 
-"color theme s
+"color theme s		|zzz
 "
 "ubuntu 需要使用 solarized.sh脚本, dir:~/zs_ubuntu/vim_ide/solarized.sh
 "
@@ -428,6 +428,7 @@ colorscheme solarized
 
 """"""
 
+"javascript		|zz
 "javascript ide s
 "
 "javascript dict
@@ -496,6 +497,7 @@ if !exists('g:AutoComplPop_Behavior')
 endif
 
 
+"php 函数字典	|zzz
 "php 函数字典 s
 
 "autocmd FileType php set dictionary+=~/.vim/php_funclist.dict
@@ -586,6 +588,7 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 " set complete+=kspell
 
 
+" assistant.vim		|zzz
 " assistant.vim s
 " php语法增强插件
 "
@@ -609,7 +612,7 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 "Autocompletition e
 
 
-"php 语法检查
+"php 语法检查	|z
 "zs 测试中
 function! CheckSyntax()
 	if &filetype!="php"
@@ -632,7 +635,7 @@ map cs :call CheckSyntax()<CR>
 
 " php ide ext s
 
-"php code_sniffer,php-md. phpqa.vim s
+"php code_sniffer,php-md. phpqa.vim s	|z
 "zs 测试中
 "
 "php code_sniffer 默认安装目录:/usr/bin/phpcs
@@ -686,7 +689,7 @@ map cs :call CheckSyntax()<CR>
 
 
 
-"xdebug | Vdebug
+"xdebug | Vdebug	|z
 "vim DBGp client s
 "
 "设置dbgp客户端要监听的端口号		|注意：要与xdebug.ini中端口配置一致
@@ -800,17 +803,20 @@ sign define breakpt text=B>  texthl=DbgBreakPt linehl=DbgBreakPt
 "php ide e
 
 
+"html自动补全	|zz
 "html自动补全 s
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 "html自动补全 e
 
 
+"html_autoclosetag.vim	|z
 "html_autoclosetag.vim s
 "html自动输入匹配标签，输入>之后自动完成匹配标签
 "au FileType xhtml,xml so ~/.vim/ftplugin/html_autoclosetag.vim
 "html_autoclosetag.vim e
 
 
+"MiniBufExplorer	|zzzz
 "多文件编辑 s
 ""MiniBufExplorer
 let g:miniBufExplMapWindowsNavVim=1		"可以用<C-h,j,k,l>切换到上下左右的窗口中去
@@ -828,12 +834,12 @@ let g:miniBufExplMapCTabSwitchBufs=1
 "let g:miniBufExplorerMoreThanOne=0		"这个设置保证在打开0个以上的文件是最高限制都是有用的
 
 " MiniBufExpl Colors
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+"hi MBENormal               guifg=#808080 guibg=fg
+"hi MBEChanged              guifg=#CD5907 guibg=fg
+"hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+"hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+"hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+"hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 "minibufexplorer其它常用命令
 " :MiniBufExplorer  ,mbe   " Open and/or goto Explorer
@@ -849,6 +855,7 @@ map <A-right> <ESC>:bn<RETURN>
 map <A-left> <ESC>:bp<RETURN>
 
 
+"NERDTree	|zzz
 "NERDTree s
 "目录插件
 "map <F1> :NERDTreeToggle<CR>
@@ -864,6 +871,7 @@ map <A-left> <ESC>:bp<RETURN>
 
 
 
+"Trinity	|zzzz
 "Trinity s
 
 "集成, NERD_tree,taglist,srcexpl 三个插件
@@ -954,6 +962,7 @@ nmap ttn :TrinityToggleNERDTree<CR>
 
 
 
+"neocomplcache		|zzzz
 "neocomplcache s
 "自动补全插件
 let g:neocomplcache_enable_at_startup = 1
@@ -966,6 +975,7 @@ let g:neocomplcache_enable_at_startup = 1
 "autocomplpop e
 
 
+"DoxygenToolkit		|zz
 "DoxygenToolkit s
 "生成注释
 
@@ -1006,7 +1016,7 @@ let g:doxygen_enhanced_color=1
 "DoxygenToolkit e
 
 
-" 状态栏颜色配置 s
+" 状态栏颜色配置 s		|zzzz
 
 if version >= 700
 	au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
@@ -1032,10 +1042,12 @@ hi statusline guibg=green
 " 状态栏颜色配置 e
 
 
+"CTags	|zzzz
 "CTags s
 ""let Tlist_Ctags_Cmd="/usr/share/CTags"		"linux 下 ctags执行文件目录
 "let Tlist_Ctags_Cmd="/usr/bin/ctags"		"linux 下 ctags执行文件目录
 
+"Taglist	|zzzz
 "Taglist s
 ""map <silent> <leader>tl :TlistToogle<cr>
 "let Tlist_Auto_Highlight_Tag = 1
@@ -1139,6 +1151,7 @@ hi statusline guibg=green
 
 
 
+"snipMate	|zzzz
 "snipMate s
 "片断补全,可自定义补全片段
 "
@@ -1178,6 +1191,7 @@ hi statusline guibg=green
 "
 
 
+"Tabular	|zzzz
 "vim 赋值[但不限于]符号对齐 s
 "Tabular
 "有时候我们可能希望我们一段的赋值代码都用=号对齐
