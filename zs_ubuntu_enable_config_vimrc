@@ -558,6 +558,28 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 
 "quickfix s
 "vim7.3 已经集成此插件,无需另外安装
+"set makeprg=php\ -ln\ %
+"set errorformat=%m\ in\ %f\ on\ line\ %l
+"nmap <f9> :sil! make<cr>:cwindow<cr>
+
+" php quickfix
+" zs 测试可用
+" 639
+setlocal makeprg=php\ -ln\ %
+setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+"nmap <buffer> <f9> :sil! make<cr>:cwindow<cr>
+nmap <buffer> <C-f> :sil! make<cr>:cwindow<cr>
+
+" javascript |nodejs quickfix
+" zs 测试可用
+""sudo apt-get install npm
+""sudo npm -g install jslint
+"set makeprg=jslint\ %
+"set errorformat=%-P%f,
+"        \%E%>\ #%n\ %m,%Z%.%#Line\ %l\\,\ Pos\ %c,
+"        \%-G%f\ is\ OK.,%-Q
+"":make
+"nmap <buffer> <C-j> :sil! make<cr>:cwindow<cr>
 "quickfix e
 
 
@@ -614,23 +636,25 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 
 "php 语法检查	|z
 "zs 测试中
-function! CheckSyntax()
-	if &filetype!="php"
-		echohl WarningMsg | echo "Fail to check syntax! Please select the right file!" | echohl None
-		return
-	endif
-	if &filetype=="php"
-		setlocal makeprg=\"php\"\ -l\ -n\ -d\ html_errors=off
-		setlocal shellpipe=>
-		setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-	endif
-	execute "silent make %"
-	set makeprg=make
-	execute "normal :"
-	execute "copen"
-endfunction
-"map <F7> :call CheckSyntax()<CR>
-map cs :call CheckSyntax()<CR>
+" 见559行 quickfix
+"
+"function! CheckSyntax()
+"	if &filetype!="php"
+"		echohl WarningMsg | echo "Fail to check syntax! Please select the right file!" | echohl None
+"		return
+"	endif
+"	if &filetype=="php"
+"		setlocal makeprg=\"php\"\ -l\ -n\ -d\ html_errors=off
+"		setlocal shellpipe=>
+"		setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+"	endif
+"	execute "silent make %"
+"	set makeprg=make
+"	execute "normal :"
+"	execute "copen"
+"endfunction
+""map <F7> :call CheckSyntax()<CR>
+"map cs :call CheckSyntax()<CR>
 
 
 " php ide ext s
@@ -704,38 +728,38 @@ let g:debuggerMaxDepth = 5
 "dbgp 快捷键
 "vim DBGP快捷键和 ubuntu系统快捷键冲突,解决:
 "自定义配置 示例来自  debugger.vim文件
-map <F1> :python debugger_resize()<cr>
-map <F2> :python debugger_command('step_into')<cr>
-map <F3> :python debugger_command('step_over')<cr>
-map <F4> :python debugger_command('step_out')<cr>
-
-map <Leader>dr :python debugger_resize()<cr>
-map <Leader>di :python debugger_command('step_into')<cr>
-map <Leader>do :python debugger_command('step_over')<cr>
-map <Leader>dt :python debugger_command('step_out')<cr>
-
-nnoremap ,e :python debugger_watch_input("eval")<cr>A
-
-map <F5> :python debugger_run()<cr>
-map <F6> :python debugger_quit()<cr>
-
-map <F7> :python debugger_command('step_into')<cr>
-map <F8> :python debugger_command('step_over')<cr>
-map <F9> :python debugger_command('step_out')<cr>
-
-map <F11> :python debugger_context()<cr>
-map <F12> :python debugger_property()<cr>
-map <F11> :python debugger_watch_input("context_get")<cr>A<cr>
-map <F12> :python debugger_watch_input("property_get", '<cword>')<cr>A<cr>
-
-hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
-hi DbgBreakPt term=reverse ctermfg=White ctermbg=Green gui=reverse
-
-command! -nargs=? Bp python debugger_mark('<args>')
-command! -nargs=0 Up python debugger_up()
-command! -nargs=0 Dn python debugger_down()
-sign define current text=->  texthl=DbgCurrent linehl=DbgCurrent
-sign define breakpt text=B>  texthl=DbgBreakPt linehl=DbgBreakPt
+"map <F1> :python debugger_resize()<cr>
+"map <F2> :python debugger_command('step_into')<cr>
+"map <F3> :python debugger_command('step_over')<cr>
+"map <F4> :python debugger_command('step_out')<cr>
+"
+"map <Leader>dr :python debugger_resize()<cr>
+"map <Leader>di :python debugger_command('step_into')<cr>
+"map <Leader>do :python debugger_command('step_over')<cr>
+"map <Leader>dt :python debugger_command('step_out')<cr>
+"
+"nnoremap ,e :python debugger_watch_input("eval")<cr>A
+"
+"map <F5> :python debugger_run()<cr>
+"map <F6> :python debugger_quit()<cr>
+"
+"map <F7> :python debugger_command('step_into')<cr>
+"map <F8> :python debugger_command('step_over')<cr>
+"map <F9> :python debugger_command('step_out')<cr>
+"
+"map <F11> :python debugger_context()<cr>
+"map <F12> :python debugger_property()<cr>
+"map <F11> :python debugger_watch_input("context_get")<cr>A<cr>
+"map <F12> :python debugger_watch_input("property_get", '<cword>')<cr>A<cr>
+"
+"hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
+"hi DbgBreakPt term=reverse ctermfg=White ctermbg=Green gui=reverse
+"
+"command! -nargs=? Bp python debugger_mark('<args>')
+"command! -nargs=0 Up python debugger_up()
+"command! -nargs=0 Dn python debugger_down()
+"sign define current text=->  texthl=DbgCurrent linehl=DbgCurrent
+"sign define breakpt text=B>  texthl=DbgBreakPt linehl=DbgBreakPt
 "....
 
 "RADME DBGP
