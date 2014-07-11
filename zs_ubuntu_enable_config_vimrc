@@ -600,7 +600,7 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 setlocal makeprg=php\ -ln\ %
 setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 "nmap <buffer> <f9> :sil! make<cr>:cwindow<cr>
-nmap <buffer> <C-h> :sil! make<cr>:cwindow<cr>
+nmap <buffer> <C-p> :sil! make<cr>:cwindow<cr>
 
 " javascript |nodejs quickfix
 " zs 测试可用
