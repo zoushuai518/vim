@@ -338,6 +338,12 @@ let javascript_enable_domhtmlcss=1
 "endfunction
 " e
 
+
+"vim配置文件中的nnoremap和inoremap有什么区别:
+"一个是在普通模式(normal mode)下生效的映射，一个是在插入模式(insert mode)下生效。
+"这样可以在不同模式下使用同一个按键产生不同的效果。
+"noremap 和 map 的区别是，被映射的序列不会再被递归映射))
+"
 "vim自动补全括号、引号 s
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
