@@ -338,6 +338,32 @@ let javascript_enable_domhtmlcss=1
 "endfunction
 " e
 
+"vim自动补全括号、引号 s
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+""可以写一个函数手动用call调用:
+"function MyCompleteAdd()
+"	inoremap ( ()<ESC>i
+"	inoremap [ []<ESC>i
+"	inoremap { {}<ESC>i
+"	inoremap < <><ESC>i
+"	inoremap " ""<ESC>i
+"	inoremap ' ''<ESC>i
+"endfunction
+"function MyCompleteDel()
+"	noremap ( (
+"	inoremap [ [
+"	inoremap { {
+"	inoremap < <
+"	inoremap " "
+"	inoremap ' '
+"endfunction
+"vim自动补全括号、引号 e
+
 """"""""""""""""""""'
 
 
