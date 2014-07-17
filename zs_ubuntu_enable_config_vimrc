@@ -346,7 +346,13 @@ let javascript_enable_domhtmlcss=1
 "
 "vim自动补全括号、引号 s
 inoremap ( ()<ESC>i
+inoremap ), (),<ESC>hi
+inoremap ); ();<ESC>hi
+
 inoremap [ []<ESC>i
+inoremap ], [],<ESC>hi
+inoremap ]; [];<ESC>hi
+
 inoremap { {}<ESC>i
 inoremap < <><ESC>i
 inoremap " ""<ESC>i
@@ -429,6 +435,9 @@ map qq :q!<CR>
 " 不保存打开的所有窗口
 map qa :qa!<CR>
 " Ctrl + v = Esc
+
+" 退到 linux终端
+map sh :sh<CR>
 
 "ext config e
 
