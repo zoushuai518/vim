@@ -356,7 +356,11 @@ inoremap ]; [];<ESC>hi
 inoremap { {}<ESC>i
 inoremap < <><ESC>i
 inoremap " ""<ESC>i
+inoremap ", "",<ESC>hi
+inoremap "; "";<ESC>hi
 inoremap ' ''<ESC>i
+inoremap ', '',<ESC>hi
+inoremap '; '';<ESC>hi
 ""可以写一个函数手动用call调用:
 "function MyCompleteAdd()
 "	inoremap ( ()<ESC>i
