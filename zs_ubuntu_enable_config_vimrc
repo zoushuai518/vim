@@ -441,7 +441,7 @@ map qa :qa!<CR>
 " Ctrl + v = Esc
 
 " 退到 linux终端
-map sh :sh<CR>
+map shl :sh<CR>
 
 "ext config e
 
