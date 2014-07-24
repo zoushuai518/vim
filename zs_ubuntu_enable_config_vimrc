@@ -187,6 +187,7 @@ match LeaderTab /^\t/
 "上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
 "
 ":set list | :set nolist
+"
 " 显示tab和空格   zs测试可用
 
 "
@@ -217,6 +218,12 @@ set cursorcolumn
 
 
 "ext config s
+
+" history文件中需要记录的行数
+set history=100
+" 在处理未保存或只读文件的时候，弹出确认
+set confirm
+
 
 "set mouse=a		" Enable mouse usage (all modes)
 
@@ -339,6 +346,32 @@ let javascript_enable_domhtmlcss=1
 " e
 
 
+" 高亮指定的列
+" zs测试可用
+" set cc=80
+map ch :set cc=100<CR>
+"按下,ch就可以将当前光标下的列高亮，再按下一次，取消高亮；并且可以同时多列高亮
+
+"配合 vim Indent Guides 垂直对其插件
+let g:indent_guides_guide_size=1
+"zs注：vim7.3以后版本,不需要此插件。直接设置 ruler即可,见 line 201行设置
+
+
+"zs 测试不可用
+"map ch :call SetColorColumn()<CR>
+"function! SetColorColumn()
+"	let col_num = virtcol(".")
+"	let cc_list = split(&cc, '')
+"	if count(cc_list, string(col_num)) <= 0
+"		execute "set cc+=".col_num
+"	else
+"		execute "set cc-=".col_num
+"	endif
+"endfunction
+"按下,ch就可以将当前光标下的列高亮，再按下一次，取消高亮；并且可以同时多列高亮
+
+
+
 "vim配置文件中的nnoremap和inoremap有什么区别:
 "一个是在普通模式(normal mode)下生效的映射，一个是在插入模式(insert mode)下生效。
 "这样可以在不同模式下使用同一个按键产生不同的效果。
@@ -442,6 +475,19 @@ map qa :qa!<CR>
 
 " 退到 linux终端
 map shl :sh<CR>
+
+"zs ext注:
+"
+":set ic设置搜索时忽略大小写 
+":set noic搜索时对大小写敏感 
+":set list显示不可视字符 
+":set nolist不显示不可视字符 
+":set showmode显示当前操作模式 
+":set shownomode不显示当前操作模式 
+":set显示所有的vi环境变量设置 
+":set all显示所有的vi环境变量可能取值及其当前设置值 
+"你也可以把这些操作放在home目录下你创建的文件.exec中，set操作放在该文件中，不用带前面的：，一行一个命令，一旦该文件存在时，每次你开启一个vi会话时系统将取读取该文件来设置对应的vi环境变量
+"
 
 "ext config e
 
