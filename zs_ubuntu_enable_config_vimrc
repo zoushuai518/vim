@@ -71,6 +71,7 @@ endif
 ":scriptname
 "
 ":version
+":scriptnames
 
 
 "zs config
@@ -807,6 +808,7 @@ nmap <buffer> <C-p> :sil! make<cr>:cwindow<cr>
 
 
 
+"Vim + Xdebug + DBGp
 "xdebug | Vdebug	|z
 "vim DBGp client s
 "
