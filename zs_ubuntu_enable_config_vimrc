@@ -84,7 +84,25 @@ set shiftwidth=4		"设定自动缩进为4个字符
 "set expandtab			"用space替代tab的输入
 "%ret! 4				"每个tab用4个space替代
 set autoindent
-set number
+"set number
+
+" 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
+set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+" 插入模式下用绝对行号, 普通模式下用相对
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
+
 
 "命令行提示有关设置 zs
 set wildmenu
@@ -207,6 +225,9 @@ set cursorline
 "hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "高亮显示当前列
 set cursorcolumn
+
+" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=7
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 " cursor
 "set cursorline
