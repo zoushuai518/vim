@@ -1,3 +1,6 @@
+" fuck~~
+" rubbish
+"
 " linux 平台下,vim配置文件,仅供参考
 " 摘自:CentOS 6.4 + vim72
 
