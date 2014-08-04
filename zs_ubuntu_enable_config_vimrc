@@ -1,5 +1,5 @@
 " rubbish  && fuck~~~
-" 2014-08-03 end
+" last modify 2014-08-04 end
 "
 " ubuntu 平台 vim7.3
 "
@@ -84,7 +84,7 @@ set tabstop=4			"设定tab宽度为4个字符
 set softtabstop=4
 set shiftwidth=4		"设定自动缩进为4个字符
 "set noexpandtab        "不用space替代tab的输入
-"set expandtab			"用space替代tab的输入
+"set expandtab			"用space替代tab的输入 [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 "%ret! 4				"每个tab用4个space替代
 set autoindent
 "set number
@@ -104,12 +104,13 @@ function! NumberToggle()
   endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
-
+" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=7
 
 
 "命令行提示有关设置 zs
 set wildmenu
-set showcmd
+set showcmd		"当我们输入命令时就会在屏幕的下部显示出部分命令
 
 set nobackup
 "set bg=dark		"显示不同的底色色调
@@ -209,8 +210,70 @@ match LeaderTab /^\t/
 "上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
 "
 ":set list | :set nolist
-"
 " 显示tab和空格   zs测试可用
+
+"在一般的情况下,list命令使用^I来表示Tab而使用$来表示一行的结尾.我们也可以自定义这种形为.我们可以使用listchars选项来定义list模式如何工作.这个命令的格式如下:
+":set listchars=key:string,key:string
+"而key:string可以用到的值如下:
+"eol:{char} 定义放在一行结尾处的字符
+"tab:{char1}{char2} 一个Tab值为char1和char2的组合来表示.
+"trail:{char} 用来表示结尾空格的字符.
+"extends:{char} 用来表示一行的结尾和下一行连接的字符
+"我们可以使用highlight选项来改变许多对象的高亮显示.这个选项的格式如下:
+":set highlight=key:group,[key:group]...
+"我们可以使用下面的key值:
+"key Default Meaning
+"8 SpeicalKey 当用:map命令列出特殊键时用来高亮显示
+"@ NonText Vim用~和@来表示不在缓冲区中的内容时适用.
+"M Modemsg 在屏幕下部显示的模式信息.
+"S StatusLineNC 除当前窗口外的每一个窗口的状态行.
+"V VisualNOS 可视化模式下选择的文本.
+"w WildMenu 作为通配符的一部分而显示
+"d Directroy 当我们按下CTRL-D时显示的目录
+"e ErrorMsg 错误信息.
+"i IncSearch 作为增量查找的一部分而显示
+"I Search 作来查找的一部分而显示
+"m MoreMsg --More--提示
+"n LineNr 由命令:number打印出的行号
+"r Question 按下回车的提示及其他的问题
+"s StatusLine 当前窗口的状态行
+"t Title 输入信息的命令标题.
+"v Visual 在可视化模式下选择的文本
+"w WaringMsg 警告信息.
+"我们还可以使用缩写字符:
+"r Reverse
+"i Italic
+"b Bold
+"s Standout
+"u Underline
+"n None
+"- None
+"所以我们可以通过下面的命令来使用ErrorMsg组来高亮显示错误信息:
+":set highlight=e:ErrorMsg
+"或者我们可以通过下面的命令来以reverse,bold,italic方式来显示错误:
+":set highlight=ervb
+"如果我们设置了more选项,当一个命令的显示会超出一屏时就会显示More提示.如果没有进行设置只是会翻滚屏幕.默认如下:
+":set more
+"下面的命令定义了可以由CTRL-A,CTRL-X识别的数字格式.
+":set nrformats=octal,hex
+"(注:十进制总是可以识别)
+"如果我们设置了下面的选项,Vim就会试着重新装入终端屏幕的内容.
+":set restorescreen
+"换句话说,他会试着使得我们运行这个程序以后的屏幕看起来就像他运行以前的一样.
+"xterm可以允许我们按下鼠标左键拉动时选择文本.这个文本可以粘贴到其他的窗口中.然后一些由于兼容的问题会使得我们在粘贴文本时出现问题.为了避免这样的问题,我们可以使用下面的命令来设置粘贴模式:
+":set paste
+"然而有时我们希望是粘贴模式而有时希望不是.pastetoggle选项可以使得我们定义一个键在这两种模式中进行切换.例如,如果我们使用F12键进行切换,我们可以用下面的命令:
+":set pastetoggle=<F12>
+"当关闭粘贴模式时,所以的选项就会恢复到先前的值.
+"当我们在ex模式下输入命令时,我们可以实现文件名的自动完成.例如如果我们想要读入文件input.txt,我们可以输入下面的命令:
+":read input<Tab>
+"Vim就会试着猜出我们想要的文件.如果在我们当前的目录下只有文件input.txt,他就会显示出如下的形式:
+":read input.txt
+"如果在当前目录下有几个带有input的文件名,则会显示第一个.如果我们再按下Tab,就会显示出第二个相匹配的结果,再按下Tab就会显示第三个.
+"我们可以通过下面的命令来定义完成通配符的键:
+":set wildchar=character
+
+
 
 "
 "vim打开时窗口设置默认大小
@@ -220,17 +283,15 @@ match LeaderTab /^\t/
 "set lines=35 columns=118
 
 
-"设置状态栏标尺
-set ruler               "可显示最后一行的状态
-set showmode            "左下角那一行的状态
+"设置标尺
+set ruler               " 在编辑过程中，在右下角显示光标位置的状态行
+set showmode            "屏幕的下部显示出我们当前所处的状态
 "高亮显示当前行
 set cursorline
 "hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "高亮显示当前列
 set cursorcolumn
 
-" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
-set scrolloff=7
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 " cursor
 "set cursorline
@@ -238,6 +299,13 @@ set scrolloff=7
 "set cursorcolumn
 "hi CursorColumn ctermbg=lightgray
 "
+"如果我们要定义我们自己的标尺格式,我们可以用下面的命令:
+":set rulerformat=string
+"这里的string就是我们在statusline选项用到的.
+"当我们删除或是修改了一些行的文本,如果这些行数超出了report所指定的行数,Vim编辑器就会告诉这一些情况.所以如果我们要Vim报告所有的变化,我们可以用下面的命令:
+":set report=0
+"相反,如果我们不希望Vim来告诉我们这些变化,我们可以将这个值设成一个相当大的值就可了.
+
 "base config e
 "
 
@@ -248,6 +316,14 @@ set scrolloff=7
 set history=100
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
+
+
+"在一般的情况下,当我们执行了:shell命令时Vim就会警告我们文件已修改.如果我们要关闭这个选项,我们可以执行下面的命令:
+":set nowarn
+"当Vim捕获一个错误时,他只是会显示出一个错误信息.如果我们要打开声音警告我们可以执行下面的命令:
+":set errorbells
+"但是有时这样的设置会影响我们的其他的同事,在这样的情况下我们可以来设置visualbell选项.这样当我们输入错误时屏幕就会闪动然后回到正常状态.要设置这样的选项我们可以执行下面的命令:
+":set visualbell
 
 
 "set mouse=a		" Enable mouse usage (all modes)
@@ -263,9 +339,57 @@ filetype plugin on
 " 启用插件
 filetype plugin indent on
 
+
+" 自定义状态行,显示
+" 参考 line 1558	" PowerLine插件,会使 set statusline设置失效
 " set cmdheight=1	" 设定命令行的行数为 1
 set laststatus=2	" 显示状态栏 (默认值为 1, 无法显示状态栏)
-" set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\%c:%l/%L%)\		" 设置在状态行显示的信息
+"状态行显示的内容（包括文件类型和解码） 
+"set statusline=%F%m%r%h%w%=\[共%L行][%l,%v][%p%%]\%{strftime(\"%d/%m/%y\ -\ %H:%M\")}
+
+":set statusline=format
+"%用来指明一个特殊的区域.例如%f来告诉Vim在状行中包含文件名.如下面的命令:
+":set statusline=The/ file/ is//"%f/"
+"这时的状态行为:
+"The file is "sample.txt"
+"我们可以指定一个内容的最大和最小的宽度.例如下面的命令告诉Vim编辑器文件至少为8个字符但是最多为19个字符.这些内容是右对齐的,如果我们希望他们能左对齐,我们可以在%后面加上-.数字的内容是忽略开头的0来显示.如果我们需要我们可以在%后加上一个0.例如我们要显示列数而需要开始的0,我们可以使用下面的命令:
+":set statusline=%05.10c
+"格式,类型以及描述如下:
+"%(...%) 定义一个项目组.如果在这个组中的所有的内容均为空,整个组的内容就不会显示.
+"%{n}* %对其余的行使用高亮显示组Usern,直到看到另一个%n*.格式%0*会使得行成为正常的高亮显示.如果高亮显示组User1带有下划线(:set statusline=File:/%1*%f%0).这时状态行显示的文件名就会带有下划线.
+"%< 如果状态行过长，在何处换行。缺省是在开头
+"%= 定义在一行中部的某处.所有向左的字符串放在这行的左部,而向右的字符串放在一行中靠近右边的部.
+"% 字符%
+"%B 光标下字符的十六进制形式
+"%F 全路径的文件名
+"%H 如果为帮助缓冲区则为HLP
+"%L 缓冲区中的行数.
+"%M 如果缓冲区修改过则显示为+
+"%O 以十六进制方式显示文件中的字符偏移
+"%P 文件中光标前的%
+"%R 如果缓冲区只读则为RO
+"%V 列数.如果与%c相同则为空字符串
+"%W 如果窗口为预览窗口则为PRV
+"%Y 文件类型
+"a%(字符串) 如果我们在编辑多行文本,这个字行串就是"({current} of
+"{arguments})".例如:(5 of 18).如果在命令行中只有一行,这个字符串为空.
+"%b(数字) 光标下的字符的十进制表示形式.
+"%c(数字) 列号
+"%f(字符串) 在命令行中指定的文件名
+"%h(标记) 如果为帮助缓冲区为[Help]
+"%l(数字) 行号
+"%m(标记) 如果缓冲区已修改则表示为+
+"%n(数字) 缓冲区号
+"%o(数字) 在光标前的字符数,包括光标下的字符
+"%p(数字) 文件中所在行的百分比
+"%r(标记) 如果缓冲区为只读则表示为RO
+"%t(字符串) 文件名(无路径)
+"%v(数字) 虚列号
+"%w(标记) 如果为预览窗口则显示为Preview
+"%y(标记) 我们输入的文件类型
+"%{expr%} 表达式的结果
+"标记的内容会被特殊的对待.多行标记,例如RO和PRV,则会自动的由逗号来分隔.而例如+和help则会由空格来分隔.例如:
+":set statusline=%h%m%r
 
 
 "search config s
@@ -474,6 +598,7 @@ inoremap '; '';<ESC>hi
 "
 
 " zs 配置快捷键
+"
 " 垂直增加10宽度
 map vr+ :vertical resize +10<CR>
 " 垂直减少10宽度
@@ -503,6 +628,12 @@ map qa :qa!<CR>
 
 " 退到 linux终端
 map shl :sh<CR>
+
+" 关闭方向键, 强迫自己用 hjkl
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
 
 "zs ext注:
 "
@@ -536,14 +667,39 @@ map shl :sh<CR>
 if has('gui_running')
 	set background=light
 else
-	set background=dark
+	"set background=dark
+    set guifont=Monaco:h14
+    set guioptions-=T
+    set guioptions+=e
+    set guioptions-=r
+    set guioptions-=L
+    set guitablabel=%M\ %t
+    set showtabline=1
+    set linespace=2
+    set noimd
+    set t_Co=256
 endif
-set t_Co=16		"需要添加,否则会出现 文字 有阴影的情况
+set background=dark
 colorscheme solarized
-"set background=dark
+"set t_Co=16		"需要添加,否则会出现 文字 有阴影的情况
+set t_Co=256
+" 增强显示配置
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
 "
 "colorscheme desert
 "color theme e
+"
+"" for error highlight，防止错误整行标红导致看不清
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
 
 """"""
 
@@ -1164,7 +1320,7 @@ let g:doxygen_enhanced_color=1
 
 
 " 状态栏颜色配置 s		|zzzz
-
+" 参考 line 354
 if version >= 700
 	au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
 	au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
@@ -1184,6 +1340,14 @@ au InsertChange * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=green
 " default the statusline to green when entering Vim
 hi statusline guibg=green
+
+":help InsertEnter
+":help InsertChange
+":help InsertLeave
+":help v:insertmode
+":help :hi
+":help hl-StatusLine
+
 "插入模式也有很多种派生的状态 e
 
 " 状态栏颜色配置 e
@@ -1389,6 +1553,41 @@ map t= :Tabularize /=<CR>		"t=快捷键,zs set
 ":Tab/:\zs # 只有排序 ":" 後面的文字
 
 "vim 赋值[但不限于]符号对齐 e
+
+
+"PowerLine s
+" 参考 line 343
+"PowerLine是一个增强的Vim状态栏插件 s
+"PowerLine是一个增强的Vim状态栏插件。当Vim处于NORMAL、INSERT、BLOCK等状态时，状态栏会呈现不同的颜色，同时状态栏还会显示当前编辑文件的格式（uft-8等）、文件类型（java、xml等）和光标位置等。
+"从https://github.com/Lokaltog/vim-powerline下载PowerLine插件，将文件解压得到的autoload、doc、plugin和fontpatcher文件夹放到~/Vim/Vim73/bundler目录下，往_vimrc文件中增加下面配置即可
+"
+"set laststatus=2
+set guifont=PowerlineSymbols\ for\ Powerline
+"set guifont=Ubuntu\ Mono\ 12endifelseif
+set nocompatible
+set t_Co=256
+"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols='unicode'
+"set fillchars+=stl:\ ,stlnc:\
+
+"nmap <Leader>r :PowerlineReloadColorscheme<CR>
+""autocmd BufWinEnter * call Pl#UpdateStatusline(1)
+""autocmd BufWritePost _vimrc call PowerlineReloadColorscheme
+"let g:Powerline_mode_n  = 'N'  " Normal (surrounded by spaces)
+"let g:Powerline_mode_i  = 'I'  " Insert
+"let g:Powerline_mode_R  = 'R'  " Replace
+"let g:Powerline_mode_v  = 'v'  " Visual
+"let g:Powerline_mode_V  = 'V'  " Visual linewise
+"let g:Powerline_mode_cv = 'cv' " Visual blockwise
+"let g:Powerline_mode_s  = 's'  " Select
+"let g:Powerline_mode_S  = 'S'  " Select linewise
+"let g:Powerline_mode_cs = 'cs' " Select blockwise
+"配置待研究...
+
+":PowerlineClearCache清理过powerline缓存，而且终端字体也换成了打过补丁的字体了
+":help Powerline
+
+"PowerLine e
 
 
 "日历
