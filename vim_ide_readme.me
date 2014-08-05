@@ -1,0 +1,394 @@
+ubuntu 13.04	|vim7.3
+
+
+vim ide config
+{
+	zs vim base config
+	{
+
+	}
+
+	zs vim plugin list|config
+	{
+
+		pathogen	|zzz	|n
+		{
+			desc:是一款管理vim插件的插件,它采用bundle方式管理Vim插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		Bundle		|zzz	|n
+		{
+			desc:vim 插件管理
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		Vundle		|zzz	|n
+		{
+			desc:vim 插件管理
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+
+		minibufexpl		|zzzz
+		{
+			desc:vim 多文件编辑
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		PowerLine	|zzzz
+		{
+			desc:增强的Vim状态栏插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		neocomplcache	|zzzz
+		{
+			desc:Vim自动补全插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		NERDTree	|zzzz
+		{
+			desc:Vim目录数插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		snipmate	|zzzz
+		{
+			desc:一款功能强大的代码补齐插件,可自定义代码模板,并具备单词补齐的功能
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		solarized	|zzzz
+		{
+			desc:vim主题插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		tabular		|zzzz
+		{
+			desc:vim中文本对齐插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		Trinity		|zzzz
+		{
+			desc:插件将 srcexpl、taglist、NERD_tree这三个插件集中起来做成IDE
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		vim-srcexpl		|zzzz
+		{
+			desc:源代码预览插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+			other:{
+				需要,tags文件支持
+			}
+		}
+
+		taglist & ctags		|zzzz
+		{
+			desc:文件追踪跳转插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		vim dictionary		|zzzz
+		{
+			desc:vim字典插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		supertab	|zzzz	|n
+		{
+			desc:vim超级tab补全插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+			other:{
+				supertab.vim的tab补全 会和 snipmate的tab补全冲突 ; 此问题,有待解决
+			}
+		}
+
+		vimcdoc	|zz
+		{
+			desc:vim 中文文档,help
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		vim-indent-guides	|zzzz	|n
+		{
+			desc:缩进提示线插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		calendar	|zz
+		{
+			desc:vim 日历插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+		DoxygenToolkit		|z
+		{
+			desc:vim 注释插件
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+		}
+
+
+		php plugin:
+		{
+			phpcomplete		|z		|n
+			{
+				desc:比官方版功能强大的全能补全插件
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+
+			phpvim		|z		|n
+			{
+				desc:暂时无介绍,暂定为 php语法检测相关插件
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+
+			vim-php-assistant	|zzzz
+			{
+				desc:提示PHP函数原型插件,支持各种语言
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+
+			php-doc		|zz		|n
+			{
+				desc:暂时无介绍
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+
+			code_sniffer,php-md,phpqa	|zz		|n
+			{
+				desc:vim中调试PHP
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+
+			xdebug		zz		|n
+			{
+				desc:vim xdebug插件
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+		}
+
+
+		html js css plugin:
+		{
+			emmet	|zz
+			{
+				desc:vim HTML/CSS代码快速编写
+				install:{
+				
+				}
+				config:{
+					
+				}
+				use:{
+					
+				}
+			}
+		}
+
+	}
+}
