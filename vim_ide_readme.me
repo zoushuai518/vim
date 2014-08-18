@@ -23,6 +23,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				uninstall
+			}
 		}
 
 		Bundle		|zzz	|n
@@ -37,6 +40,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				uninstall
+			}
 		}
 
 		Vundle		|zzz	|n
@@ -50,6 +56,9 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				uninstall
 			}
 		}
 
@@ -66,6 +75,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				install
+			}
 		}
 
 		PowerLine	|zzzz
@@ -79,6 +91,26 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				install
+			}
+		}
+
+		airline		|zzzz
+		{
+			desc:增强的Vim状态栏插件,airline用于代替之前的PowerLine
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+			status:{
+				uninstall
 			}
 		}
 
@@ -94,6 +126,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				install
+			}
 		}
 
 		NERDTree	|zzzz
@@ -107,6 +142,9 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				install
 			}
 		}
 
@@ -122,6 +160,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				install
+			}
 		}
 
 		solarized	|zzzz
@@ -136,11 +177,14 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				install
+			}
 		}
 
-		tabular		|zzzz
+		vim-surround + tpope/vim-repeat		|zzzz
 		{
-			desc:vim中文本对齐插件
+			desc:vim快速编辑
 			install:{
 			
 			}
@@ -149,6 +193,141 @@ vim ide config
 			}
 			use:{
 				
+					{
+						必装，很给力的功能，快速给词加环绕符号,例如引号
+						repeat进行增强,'.'可以重复命令
+						[d]
+						cs"' [inside]
+						"Hello world!" -> 'Hello world!'
+						ds"
+						"Hello world!" -> Hello world!
+						ysiw"
+						Hello -> "Hello"
+					}
+			}
+			status:{
+				uninstall
+			}
+		}
+
+		vim-multiple-cursors	|zzzz
+		{
+			desc:多光标选中编辑
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+					{
+						多光标批量操作
+						[sd]
+						ctrl + m 开始选择
+						ctrl + p 向上取消
+						ctrl + x 跳过
+						esc   退出]
+					}
+			}
+			status:{
+				uninstall
+			}
+		}
+
+		vim-trailing-whitespace		|zzzz
+		{
+			desc:vim将代码行最后无效的空格标红
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+					{
+						[sd] ,空格    去掉当前行末尾空格]
+					}
+			}
+			status:{
+				uninstall
+			}
+		}
+
+		vim-easymotion		|zzzz
+		{
+			desc:位置跳转,必装，效率提升杀手锏，跳转到光标后任意位置
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+					{
+						配置(我的leader键配置 let g:mapleader = '')
+						,, + w  跳转
+						,, + fe  查找'e'快速跳转定位到某个字符位置',''',)
+					}
+			}
+			status:{
+				uninstall
+			}
+		}
+
+		matchit		|zz
+		{
+			desc:符号匹配跳转,选装
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+					{
+						% 匹配成对的标签，跳转
+					}
+			}
+			status:{
+				uninstall
+			}
+		}
+
+		vim-signature	|zz
+		{
+			desc:mark跳转,快速选中
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+			status:{
+				uninstall
+			}
+		}
+
+		tabular		|zzzz
+		{
+			desc:vim赋值语句代码对齐
+			install:{
+			
+			}
+			config:{
+				
+			}
+			use:{
+				
+			}
+			status:{
+				install
 			}
 		}
 
@@ -163,6 +342,9 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				install
 			}
 		}
 
@@ -181,6 +363,9 @@ vim ide config
 			other:{
 				需要,tags文件支持
 			}
+			status:{
+				install
+			}
 		}
 
 		taglist & ctags		|zzzz
@@ -195,6 +380,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				install
+			}
 		}
 
 		vim dictionary		|zzzz
@@ -208,6 +396,9 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				install
 			}
 		}
 
@@ -226,6 +417,9 @@ vim ide config
 			other:{
 				supertab.vim的tab补全 会和 snipmate的tab补全冲突 ; 此问题,有待解决
 			}
+			status:{
+				uninstall
+			}
 		}
 
 		vimcdoc	|zz
@@ -239,6 +433,9 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				install
 			}
 		}
 
@@ -254,6 +451,9 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				uninstall
+			}
 		}
 
 		calendar	|zz
@@ -267,6 +467,9 @@ vim ide config
 			}
 			use:{
 				
+			}
+			status:{
+				install
 			}
 		}
 
@@ -282,10 +485,13 @@ vim ide config
 			use:{
 				
 			}
+			status:{
+				install
+			}
 		}
 
 
-		php plugin:
+		php ide plugin:
 		{
 			phpcomplete		|z		|n
 			{
@@ -298,6 +504,9 @@ vim ide config
 				}
 				use:{
 					
+				}
+				status:{
+					uninstall
 				}
 			}
 
@@ -313,6 +522,9 @@ vim ide config
 				use:{
 					
 				}
+				status:{
+					uninstall
+				}
 			}
 
 			vim-php-assistant	|zzzz
@@ -326,6 +538,9 @@ vim ide config
 				}
 				use:{
 					
+				}
+				status:{
+					install
 				}
 			}
 
@@ -341,6 +556,9 @@ vim ide config
 				use:{
 					
 				}
+				status:{
+					uninstall
+				}
 			}
 
 			code_sniffer,php-md,phpqa	|zz		|n
@@ -354,6 +572,9 @@ vim ide config
 				}
 				use:{
 					
+				}
+				status:{
+					uninstall
 				}
 			}
 
@@ -369,9 +590,16 @@ vim ide config
 				use:{
 					
 				}
+				status:{
+					uninstall
+				}
 			}
 		}
 
+		python ide plugin:
+		{
+		
+		}
 
 		html js css plugin:
 		{
@@ -386,6 +614,9 @@ vim ide config
 				}
 				use:{
 					
+				}
+				status:{
+					uninstall
 				}
 			}
 		}
