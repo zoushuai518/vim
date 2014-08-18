@@ -2,6 +2,7 @@
 " last modify 2014-08-04 end
 "
 " ubuntu 平台 vim7.3
+" zs config enable
 "
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
 " /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
