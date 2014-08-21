@@ -666,11 +666,29 @@ match LeaderTab /^\t/
 " 高亮指定的列
 " set cc=80
 " set colorcolumn=80
-map ch :set cc=150<CR>
+map ch :set cc=150<RETURN>
 "按下,ch就可以将当前光标下的列高亮
-map nch :set cc=0<CR>
+map nch :set cc=0<RETURN>
 "按下,nch取消列高亮
 
+
+"vim自动补全括号、引号
+inoremap ( ()<ESC>i
+inoremap ), (),<ESC>hi
+inoremap ); ();<ESC>hi
+
+inoremap [ []<ESC>i
+inoremap ], [],<ESC>hi
+inoremap ]; [];<ESC>hi
+
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
+inoremap " ""<ESC>i
+inoremap ", "",<ESC>hi
+inoremap "; "";<ESC>hi
+inoremap ' ''<ESC>i
+inoremap ', '',<ESC>hi
+inoremap '; '';<ESC>hi
 
 
 "加载 自定义配置文件
