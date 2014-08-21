@@ -1,0 +1,111 @@
+"==========================================
+" bundle 插件管理和配置项
+"==========================================
+"------------------------------------------- begin of configs --------------------------------------------
+"last modify 2014-08-21
+
+"################### 包依赖 #####################
+"package dependence:  ctags
+"python dependence:  pep8, pyflake
+"
+"非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+set nocompatible
+" configure Vundle
+filetype off " required! turn off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+
+"################### 插件管理 ###################
+
+"使用Vundle来管理插件
+" vim plugin bundle control, command model
+" :BundleInstall     install 安装配置的插件
+" :BundleInstall!    update  更新
+" :BundleClean       remove plugin not in list 删除本地无用插件
+" :BundleUpdate		 更新插件
+" :BundleClean		 清除不再使用的插件
+" :BundleList		 列出所有插件
+" :BundleSearch		 查找插件
+"
+" zs备注:
+"git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+" Vundle分为三类：
+" 在Github vim-scripts 用户下的repos,只需要写出repos名称
+" 在Github其他用户下的repos, 需要写出"用户名/repos名"
+" 不在Github上的插件，需要写出git全路径
+" -
+" demo:
+" " original repos on github （Github网站上非vim-scripts仓库的插件，按下面格式填写）
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'tpope/vim-rails.git'
+"
+" " vim-scripts repos （vim-scripts仓库里的，按下面格式填写）
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+"
+" " non github repos （非上面两种情况的，按下面格式填写）
+" Bundle 'git://git.wincent.com/command-t.git'
+
+" 使用 Bundle 插件安装在 ~./vim/Bundle/目录下
+"
+"
+" 参考：
+" https://github.com/gmarik/Vundle.vim
+" http://zuyunfei.com/2013/04/12/killer-plugin-of-vim-vundle/
+" http://jianshu.io/p/mHUR4e
+" http://www.cnblogs.com/merryfreespace/p/3438128.html
+" http://www.cnblogs.com/xia520pi/archive/2014/04/11/3659386.html
+Bundle 'gmarik/vundle'
+
+
+"################### 基础 ######################
+
+" 多语言语法检查
+"Bundle 'scrooloose/syntastic'
+"let g:syntastic_error_symbol='>>'
+"let g:syntastic_warning_symbol='>'
+"let g:syntastic_check_on_open=1
+"let g:syntastic_enable_highlighting = 0
+""let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+"let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+"let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+"let g:syntastic_html_checkers=['tidy', 'jshint']
+"highlight SyntasticErrorSign guifg=white guibg=black
+
+"autocmd FileType python set omnifunc=pythoncomplete#Complete  
+"autocmd FileType javascrīpt set omnifunc=javascrīptcomplete#CompleteJS  
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags  
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS  
+"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags  
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP  
+"autocmd FileType c set omnifunc=ccomplete#Complete 
+
+"################### php config ######################
+"php缩进
+let PHP_autoformatcomment=1
+
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+set ofu=syntaxcomplete#Complete
+
+"php语法检查
+setlocal makeprg=\/usr/bin/php\ -l\ -n\ -d\ html_errors=off\ %
+setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+"autocmd BufWritePost *.php,*.phps :make
+"map :w:noh:make
+
+"Disable phpsyntax based indenting for .php files
+au BufRead,BufNewFile *.php             set indentexpr= | set smartindent
+au BufRead,BufNewFile *.phps            set filetype=php
+
+
+"################### php.vim ######################
+Bundle 'jqlblue/php-vim'
+
+
+"################### txt.vim ######################
+" 高亮显示普通txt文件（需要txt.vim脚本） 
+"au BufRead,BufNewFile * setfiletype txt 
+
