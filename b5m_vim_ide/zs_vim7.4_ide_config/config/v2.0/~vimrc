@@ -3,6 +3,10 @@
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
 "last modify 2014-08-21
+"zs备注：
+"插件管理还有很多问题需要研究;
+"插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
+
 
 "################### 包依赖 #####################
 "package dependence:  ctags
@@ -101,11 +105,147 @@ au BufRead,BufNewFile *.php             set indentexpr= | set smartindent
 au BufRead,BufNewFile *.phps            set filetype=php
 
 
-"################### php.vim ######################
+"################### php.vim php语法高亮插件,新版本vim已经集成 ######################
 Bundle 'jqlblue/php-vim'
 
 
 "################### txt.vim ######################
 " 高亮显示普通txt文件（需要txt.vim脚本） 
 "au BufRead,BufNewFile * setfiletype txt 
+
+
+"################### snipMate ######################
+Bundle 'msanders/snipmate.vim'
+
+
+"################### powerline 旧版状态栏增强插件 ######################
+"Bundle 'Lokaltog/vim-powerline'
+"set guifont=PowerlineSymbols\ for\ Powerline
+"set nocompatible
+"set t_Co=256
+"let g:Powerline_symbols = 'fancy'
+
+
+"################### vim-airline 新版状态栏增强插件 ######################
+Bundle 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+":help airline
+
+
+"################### php assistant | php语法增强插件 ######################
+"Ctrl + k,查看函数如何使用
+Bundle 'assistant'
+
+
+"################### minibufexpl.vim 多文件编辑 ######################
+Bundle 'fholgado/minibufexpl.vim'
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+"解决FileExplorer窗口变小问题
+let g:miniBufExplForceSyntaxEnable = 1
+let g:miniBufExplorerMoreThanOne=2
+let g:miniBufExplCycleArround=1
+
+
+"################### trinity.vim集成了 NERD_tree.vim SrcExpl.vim taglist.vim三个插件 ######################
+""Bundle 'trinity.vim'
+"Bundle 'Trinity'
+"Bundle 'SrcExpl'
+"
+"" Open and close all the three plugins on the same time
+"nmap <F8>   :TrinityToggleAll
+"" Open and close the srcexpl.vim separately 
+"nmap <F9>   :TrinityToggleSourceExplorer
+"" Open and close the taglist.vim separately 
+"nmap <F10>  :TrinityToggleTagList
+"" Open and close the NERD_tree.vim separately 
+"nmap <F11>  :TrinityToggleNERDTree
+
+
+"################### NERT_Tree 目录树插件 ######################
+Bundle 'scrooloose/nerdtree'
+"map <F1> :NERDTreeToggle
+""map <C-F1> :NERDTreeFind
+let NERDTreeChDirMode=2  "选中root即设置为当前目录
+""let NERDTreeQuitOnOpen=1 "打开文件时关闭树
+let NERDTreeShowBookmarks=1 "显示书签
+""let NERDTreeMinimalUI=1 "不显示帮助面板
+let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
+""map <F3> :NERDTreeToggle
+nmap ne :NERDTreeToggle		"ne快捷键
+
+
+"################### taglist.vim 源码追踪,要配合 ctags  ######################
+Bundle 'taglist.vim'
+"let Tlist_Ctags_Cmd="/usr/bin/ctags"       "linux 下 ctags执行文件目录
+"Taglist s
+"map <silent> <leader>tl :TlistToogle<cr>
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Auto_Open = 1
+let Tlist_Auto_Update = 1
+let Tlist_Close_On_Select = 0
+let Tlist_Compact_Format = 0
+let Tlist_Display_Prototype = 0
+let Tlist_Display_Tag_Scope = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Exit_OnlyWindow = 0
+let Tlist_File_Fold_Auto_Close = 0
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Hightlight_Tag_On_BufEnter = 1
+let Tlist_Inc_Winwidth = 0
+let Tlist_Use_Right_Window = 1
+"map <F4> :TlistToggle<CR>     "F4快捷键,zs set
+map tl :TlistToggle<CR>       "tl快捷键,
+
+let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
+"map <silent> <F9> :TlistToggle<cr>
+"Taglist e
+
+"Ctags 生成的tags文件路径
+set tags=/var/www/html/b5msite/cart/tags
+" 增强检索功能
+"set tags=./tags,./../tags,./**/tags
+"use
+"Ctrl + ] 跳转到源
+"Ctrl + t 跳转到调用处
+
+
+"################### solarized 主题 ######################
+Bundle 'altercation/vim-colors-solarized'
+set background=dark
+colorscheme solarized
+set t_Co=16
+" 增强显示配置
+"let g:solarized_termtrans=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+
+
+"################### neocomplcache 自动补全插件 ######################
+Bundle 'neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
+
+
+"################### Calendar 日历插件 ######################
+"github地址: https://github.com/itchyny/calendar.vim
+Bundle 'itchyny/calendar.vim'
+let g:calendar_diary = "~/diary" " 设置日记的存储路径
+let g:calendar_monday = 1 "以星期一为开始
+let g:calendar_focus_today = 1 " 光标在当天的日期上
+let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
+"use
+":Calendar
+":Calendar 2000 1 1
+":Calendar -view=year
+":Calendar -view=year -split=vertical -width=27
+":Calendar -view=year -split=horizontal -position=below -height=12
+":Calendar -first_day=monday
+":Calendar -view=clock
+
 
