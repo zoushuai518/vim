@@ -149,6 +149,12 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplForceSyntaxEnable = 1
 let g:miniBufExplorerMoreThanOne=2
 let g:miniBufExplCycleArround=1
+"Alt + -> 打开下一个文件,zs set
+"map <M-right> <ESC>:bn<RETURN>
+map <A-right> <ESC>:bn<RETURN>
+"Alt + <- 打开上一个文件,zs set
+"map <M-left> <ESC>:bp<RETURN>
+map <A-left> <ESC>:bp<RETURN>
 
 
 "################### trinity.vim集成了 NERD_tree.vim SrcExpl.vim taglist.vim三个插件 ######################
