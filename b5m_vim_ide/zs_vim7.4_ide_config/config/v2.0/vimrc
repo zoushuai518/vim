@@ -673,22 +673,23 @@ map nch :set cc=0<RETURN>
 
 
 "vim自动补全括号、引号
-inoremap ( ()<ESC>i
-inoremap ), (),<ESC>hi
-inoremap ); ();<ESC>hi
+"inoremap ( ()<ESC>i
+"inoremap ), (),<ESC>hi
+"inoremap ); ();<ESC>hi
+"
+"inoremap [ []<ESC>i
+"inoremap ], [],<ESC>hi
+"inoremap ]; [];<ESC>hi
+"
+"inoremap { {}<ESC>i
+"inoremap < <><ESC>i
+"inoremap " ""<ESC>i
+"inoremap ", "",<ESC>hi
+"inoremap "; "";<ESC>hi
+"inoremap ' ''<ESC>i
+"inoremap ', '',<ESC>hi
+"inoremap '; '';<ESC>hi
 
-inoremap [ []<ESC>i
-inoremap ], [],<ESC>hi
-inoremap ]; [];<ESC>hi
-
-inoremap { {}<ESC>i
-inoremap < <><ESC>i
-inoremap " ""<ESC>i
-inoremap ", "",<ESC>hi
-inoremap "; "";<ESC>hi
-inoremap ' ''<ESC>i
-inoremap ', '',<ESC>hi
-inoremap '; '';<ESC>hi
 
 
 "加载 自定义配置文件
