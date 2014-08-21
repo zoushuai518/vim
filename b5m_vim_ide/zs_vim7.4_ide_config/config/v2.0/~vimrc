@@ -6,6 +6,7 @@
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
+"更多插件参考:https://github.com/wklken/k-vim
 
 
 "################### 包依赖 #####################
@@ -66,18 +67,17 @@ Bundle 'gmarik/vundle'
 
 
 "################### 基础 ######################
-
-" 多语言语法检查
-"Bundle 'scrooloose/syntastic'
-"let g:syntastic_error_symbol='>>'
-"let g:syntastic_warning_symbol='>'
-"let g:syntastic_check_on_open=1
-"let g:syntastic_enable_highlighting = 0
-""let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-"let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
-"let g:syntastic_javascript_checkers = ['jsl', 'jshint']
-"let g:syntastic_html_checkers=['tidy', 'jshint']
-"highlight SyntasticErrorSign guifg=white guibg=black
+"################### 多语言语法检查 ######################
+Bundle 'scrooloose/syntastic'
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_highlighting = 0
+"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+let g:syntastic_html_checkers=['tidy', 'jshint']
+highlight SyntasticErrorSign guifg=white guibg=black
 
 "autocmd FileType python set omnifunc=pythoncomplete#Complete  
 "autocmd FileType javascrīpt set omnifunc=javascrīptcomplete#CompleteJS  
@@ -87,27 +87,6 @@ Bundle 'gmarik/vundle'
 "autocmd FileType php set omnifunc=phpcomplete#CompletePHP  
 "autocmd FileType c set omnifunc=ccomplete#Complete 
 
-"################### php config ######################
-"php缩进
-let PHP_autoformatcomment=1
-
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-set ofu=syntaxcomplete#Complete
-
-"php语法检查
-setlocal makeprg=\/usr/bin/php\ -l\ -n\ -d\ html_errors=off\ %
-setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-"autocmd BufWritePost *.php,*.phps :make
-"map :w:noh:make
-
-"Disable phpsyntax based indenting for .php files
-au BufRead,BufNewFile *.php             set indentexpr= | set smartindent
-au BufRead,BufNewFile *.phps            set filetype=php
-
-
-"################### php.vim php语法高亮插件,新版本vim已经集成 ######################
-Bundle 'jqlblue/php-vim'
-
 
 "################### txt.vim ######################
 " 高亮显示普通txt文件（需要txt.vim脚本） 
@@ -115,6 +94,7 @@ Bundle 'jqlblue/php-vim'
 
 
 "################### snipMate ######################
+"Bundle 'snipMate'
 Bundle 'msanders/snipmate.vim'
 
 
@@ -132,11 +112,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 ":help airline
-
-
-"################### php assistant | php语法增强插件 ######################
-"Ctrl + k,查看函数如何使用
-Bundle 'assistant'
 
 
 "################### minibufexpl.vim 多文件编辑 ######################
@@ -233,9 +208,97 @@ set t_Co=16
 "let g:solarized_visibility="normal"
 
 
+"################### molokai 主题 ######################
+"Bundle 'molokai'
+"尚未使用
+
+
 "################### neocomplcache 自动补全插件 ######################
 Bundle 'neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
+
+
+"k-vim uninstall
+
+"################### delimitMate 引号配对补全 ######################
+"附:同类插件 kana/vim-smartinput
+"Bundle 'Raimondi/delimitMate'
+
+
+"################### vim-multiple-cursors 多光标选中编辑 ######################
+"多光标批量操作
+"[sd]
+"ctrl + m 开始选择
+"ctrl + p 向上取消
+"ctrl + x 跳过
+"esc   退出
+"Bundle 'vim-multiple-cursors'
+
+
+"################### kien/ctrlp.vim 搜索 ######################
+"文件搜索,ack/Command-T需要依赖于外部包,不喜欢有太多依赖的,除非十分强大
+"http://kien.github.io/ctrlp.vim/
+"[sd] ,p  打开ctrlp搜索
+"[sd] ,f  相当于mru功能，show recently opened files
+"ctrl + j/k 进行上下移动
+"ctrl + x/v 分屏打开该文件
+"ctrl + t   在新tab中打开该文件
+"Bundle 'kien/ctrlp.vim'
+
+
+"################### docunext/closetag.vim html/xml标签配对补全 ######################
+"Bundle 'docunext/closetag.vim'
+
+
+"################### tpope/vim-surround +tpope/vim-repeat 快速编辑 ######################
+"必装，很给力的功能，快速给词加环绕符号,例如引号
+"repeat进行增强,'.'可以重复命令
+"[d]
+"cs"' [inside]
+""Hello world!" -> 'Hello world!'
+"ds"
+"Hello world!" -> Hello world!
+"ysiw"
+"Hello -> "Hello"
+"Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-repeat'
+
+
+"################### bronson/vim-trailing-whitespace 去行尾空格 ######################
+"将代码行最后无效的空格标红
+"Bundle 'bronson/vim-trailing-whitespace'
+
+
+"################### godlygeek/tabular 赋值语句代码对齐 ######################
+"将代码,或者json等,进行对齐,具体见 tabular-vim
+"Bundle 'godlygeek/tabular'
+
+
+"################### Lokaltog/vim-easymotion 位置跳转 ######################
+"必装，效率提升杀手锏，跳转到光标后任意位置
+"配置(我的leader键配置 let g:mapleader = ',')
+",, + w  跳转
+",, + fe  查找'e',快速跳转定位到某个字符位置
+"Bundle 'Lokaltog/vim-easymotion'
+
+
+"################### sjl/gundo.vim 文件时光机 ######################
+"编辑文件时光机
+"[sd] ,h  查看文件编辑历史
+"Bundle 'sjl/gundo.vim'
+
+
+"################### kien/rainbow_parentheses.vim 括号上色高亮 ######################
+"Bundle 'kien/rainbow_parentheses.vim'
+
+
+"################### Tag majutsushi/tagbar ######################
+"必装,标签导航,纬度和taglist不同, taglist的替代者
+"注意:之前版本有装taglist,决定用tagbar替代,taglist的配置注解未删除,需要的自行打开
+" [sd] <F9> 打开
+"Bundle 'Tag majutsushi/tagbar'
+
+"k-vim uninstall
 
 
 "################### Calendar 日历插件 ######################
@@ -253,5 +316,53 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 ":Calendar -view=year -split=horizontal -position=below -height=12
 ":Calendar -first_day=monday
 ":Calendar -view=clock
+
+
+"################### TODO关键字列表 ######################
+"Bundle 'im-scripts/TaskList.vim '
+
+
+
+"不同语言 ide配置
+"
+"################### php ide config ######################
+"php缩进
+let PHP_autoformatcomment=1
+
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+set ofu=syntaxcomplete#Complete
+
+"php语法检查
+setlocal makeprg=\/usr/bin/php\ -l\ -n\ -d\ html_errors=off\ %
+setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+"autocmd BufWritePost *.php,*.phps :make
+"map :w:noh:make
+
+"Disable phpsyntax based indenting for .php files
+au BufRead,BufNewFile *.php             set indentexpr= | set smartindent
+au BufRead,BufNewFile *.phps            set filetype=php
+
+"################### php.vim php语法高亮插件,新版本vim已经集成 ######################
+Bundle 'jqlblue/php-vim'
+
+"################### php assistant | php语法增强插件 ######################
+"Ctrl + k,查看函数如何使用
+Bundle 'assistant'
+
+
+"################### Python ide config ######################
+
+
+"################### Golang ide config ######################
+
+
+"################### Markdown config ######################
+
+
+"################### Markdown config ######################
+"Bundle 'plasticboy/vim-markdown'
+
+
+"################### HTML/JS/JQUERY/CSS config ######################
 
 
