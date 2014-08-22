@@ -75,6 +75,13 @@ endif
 ":echo $VIMRUNTIME
 ":scriptname
 
+"1）Vim存在多个配置文件vimrc，比如/etc/vimrc，此文件影响整个系统的Vim。还有~/.vimrc，此文件只影响本用户的Vim。而且~/.vimrc文件中的配置会覆盖/etc/vimrc中的配置。这里我们只修改~/.vimrc文件。
+"2）Vim的插件（plugin）安装在Vim的runtimepath目录下，你可以在Vim命令行下运行"set rtp“命令查看。这里我们选择安装在~/.vim目录，没有就创建一个。
+"3）当本文说”在Vim命令行下运行cmdxx命令“时，意思是指在Vim的命令行模式下运行cmdxx命令，即在Vim的正常模式下通过输入冒号"："进入命令行模式，然后紧接着输入命令cmdxx。在后文描述中都会省略冒号"："输入。
+"4）如果没有说明“在Vim命令行下运行某命令”，则是在shell中执行该命令。
+"5）如果命令中间被空白符间隔或有与正文容易混淆的字符，我会用双引号将命令与正文区分。所以读者在实际操作时，不要输入命令最前面和最后面引号。
+"6）本文关于组合快捷键的描述，形如a-b形式的快捷键表示同时按下a键和b键，而形如"a-b c"形式的快捷键，则表示先同时按下a键和b键，然后放开ab键，再按下c键。
+
 
 "zs config
 "last modify 2014-08-21
@@ -187,8 +194,8 @@ set autoread
 
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
-set selection=inclusive
-set selectmode=mouse,key
+"set selection=inclusive
+"set selectmode=mouse,key
 "允许区域选择
 "set selection=exclusive
 "set selectmode=mouse,key
@@ -248,8 +255,9 @@ set formatoptions=tcrqn
 "显示行号：
 set number
 " 取消换行。
-set nowrap
-"set wrap        "自动折行
+"set nowrap
+"自动折行
+set wrap
 
 " 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
@@ -268,7 +276,9 @@ set smartcase     " ignore case if search pattern is all lowercase, case-sensiti
 "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 "set ignorecase smartcase
 "用nh去掉查找后的高亮 zs注 :noh是vim的命令;可以参考这个配置来配置其它vim命令的快捷键
-nmap nh :noh<CR>
+"nmap nh :noh<CR>	"无法自动处罚回车,vim7.3此种键盘映射是OK的,不知道为何
+"手动回车,只是减少了命令输入的复杂程度
+nmap nh :noh
 set ofu=syntaxcomplete#Complete
 
 " 代码折叠
@@ -485,6 +495,7 @@ nnoremap * #
 "noremap <silent><leader>/ :nohls<CR>
 
 " --------tab/buffer相关
+"  vim buffers概念,相关配置;有待研究
 
 "Use arrow key to change buffer"
 noremap <left> :bp<CR>
@@ -666,9 +677,11 @@ match LeaderTab /^\t/
 " 高亮指定的列
 " set cc=80
 " set colorcolumn=80
-map ch :set cc=150<RETURN>
+"map ch :set cc=150<RETURN>
+map ch :set cc=150
 "按下,ch就可以将当前光标下的列高亮
-map nch :set cc=0<RETURN>
+"map nch :set cc=0<RETURN>
+map nch :set cc=0
 "按下,nch取消列高亮
 
 
