@@ -1,0 +1,716 @@
+"http://www.vimer.cn/
+"http://blog.csdn.net/G_BrightBoy/article/details/14229139
+"windows平台下,vim7.3配置文件,仅供参考
+
+"配置中 inoremap 开头的表示后面的设置针对的是插入模式下的
+"如 inoremap <a-c>w <ESC>ciw 表示的是在插入模式下按下 alt + c 后 按w
+"删除光标下的单词
+"<a-c>w 表示设置的按键 空格后面跟的表示要执行的操作 
+" nnoremap  表示的是 正常模式下的设置
+" vmap  表示的是 选择状态下的设置
+
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+"禁用vi兼容模式
+set nocompatible
+
+"让配置文件自动加载
+autocmd! bufwritepost _vimrc source %
+
+"Toggle Menu and Toolbar; 隐藏工具栏
+"F2切换菜单栏和工具栏
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+    \endif<CR>
+
+"
+set autochdir
+" 打开javascript折叠
+let b:javascript_fold=1
+" 打开javascript对dom、html和css的支持
+let javascript_enable_domhtmlcss=1
+
+"显示光标的状态行
+set guioptions-=T
+"隐藏左、右侧滚动条
+set guioptions-=r       
+set guioptions-=L       
+
+"字体、颜色、大小
+"set guifont=Arial_monospaced_for_SAP:h12:cANSI
+"set guifont=Courier_New:h14:cANSI
+"中文乱码
+"set langmenu=zh_CN.utf8
+"set fileencodings=utf-8,cp936,big5,latin1
+"set ambiwidth=double
+
+" 设置编码
+" set fenc=utf-8
+" set encoding=utf-8
+" set fileencodings=utf-8,gbk,cp936,latin-1
+" 解决consle输出乱码
+" language messages zh_CN.utf-8
+" set encoding=utf-8
+set encoding=cp936
+set fileencoding=utf-8  
+set fileencodings=gb2312,ucs-bom,utf-8,cp936
+
+
+"1）设置（软/tab）制表符宽度为4
+set tabstop=4
+set softtabstop=4
+"2）设置缩进的空格数为4
+set shiftwidth=4
+"3）设置自动缩进：即每行的缩进值与上一行相等；使用 noautoindent 取消设置：
+set autoindent
+" 设置tab键换空格
+" set expandtab                
+
+" 设置退格键可用
+" set backspace=2              
+" 自动缩进4空格
+" set cindent shiftwidth=4     
+" 智能自动缩进
+" set smartindent              
+" 设置自动缩进
+" set ai!                      
+
+" 显示括号配对情况
+set showmatch               
+
+"在状态栏显示目前所执行的指令，未完成的指令片段也会显示出来
+set showcmd
+
+"开启状态栏信息
+set laststatus=2
+" 命令行的高度，默认为1，这里设为2
+" set cmdheight=2              
+"
+"
+" 状态栏颜色配置 s
+if version >= 700
+  au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
+  au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+endif
+"插入模式也有很多种派生的状态 s
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=magenta
+  elseif a:mode == 'r'
+    hi statusline guibg=blue
+  else
+    hi statusline guibg=red
+  endif
+endfunction
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertChange * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=green
+" default the statusline to green when entering Vim
+hi statusline guibg=green
+"插入模式也有很多种派生的状态 e
+"如果对 插入模式 的vim配置代码感到疑惑的话，可以在command模式下输入以下命令查看相关信息：
+":help InsertEnter
+":help InsertChange
+":help InsertLeave
+":help v:insertmode
+":help :hi
+":help hl-StatusLine
+" 状态栏颜色配置 e
+
+
+"命令行补全
+set wildmenu
+
+"显示行号
+set number
+"关闭备份
+set nobackup
+"不产生临时文件
+"set nobackup
+"set nowritebackup
+"set noswapfile
+"关闭 swap 文件
+set noswapfile
+"设置匹配模式
+set showmatch
+set bsdir=buffer 
+"开启新行时自动智能缩进
+set smartindent
+set shiftwidth=4
+
+"设置使用 C/C++ 语言的自动缩进方式：
+set cindent
+"设置行间距
+"set linespace=4
+
+"不自动换行
+"set nowrap
+"配色方案
+colorscheme desert
+"colorscheme molokai
+
+"默认区分大小写
+set noignorecase
+"设置冒号命令和搜索命令历史列表的长度
+set history =1000
+"设定在任何模式下鼠标都可用 | 启动鼠标
+"set mouse=a
+"设置命令行的高度为1
+set cmdheight=1
+
+"设置状态栏标尺
+set ruler
+"高亮显示当前行
+set cursorline
+"高亮显示当前列
+set cursorcolumn
+" cursor
+"set cursorline
+"hi CursorLine ctermbg=lightgray cterm=NONE
+"set cursorcolumn
+"hi CursorColumn ctermbg=lightgray
+
+"设定退格键和delete键
+set backspace=indent,eol,start
+
+"输入搜索内容时就显示搜索结果
+set incsearch
+set nohls
+"搜索结果高亮显示
+set hlsearch
+"用nh去掉查找后的高亮
+nmap nh :noh<cr> 
+set ofu=syntaxcomplete#Complete
+"搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set ignorecase smartcase
+
+"打开新窗口时时为上下35行宽,左右118个字符宽的窗口
+"set lines=35 
+"set columns=118
+
+" vim 代码折叠设置 s
+set fdm=indent
+
+"窗口最大化,只适合windows
+autocmd GUIEnter * simalt ~x
+"全屏
+"if has('win32')
+"	map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>    #非插入模式下F11全屏
+"	imap <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>    #插入模式下F11全屏
+"endif
+
+" For Haskell 尚未测试
+let hs_highlight_delimiters=1            " 高亮定界符
+let hs_highlight_boolean=1               " 把True和False识别为关键字
+let hs_highlight_types=1                 " 把基本类型的名字识别为关键字
+let hs_highlight_more_types=1            " 把更多常用类型识别为关键字
+let hs_highlight_debug=1                 " 高亮调试函数的名字
+let hs_allow_hash_operator=1             " 阻止把#高亮为错误
+
+
+" 语法高亮
+syntax enable
+"开启文件类型侦测
+syntax on
+" 针对不同的文件类型采用不同的缩进格式
+filetype indent on          
+" 针对不同的文件类型加载对应的插件
+filetype plugin on           
+" 启用自动补全
+filetype plugin indent on    
+
+"自定义 字典
+autocmd FileType javascript set dictionary=./dict/javascript.dict
+autocmd FileType php set dictionary=./dict/php_funclist.dict
+autocmd FileType css set dictionary=./dict/css2.1.dict
+
+
+"snipMate 自动补全
+"snipMate windows下功能失效原因：
+"snipMate插件解析源snippets路径是在windows下取出来的路径是用\，而在类Unix系统中，目录是用/，导致snipMate插件在解析获取snippets时路径错误，不能识别
+"
+"解决办法：
+"在你的_vimrc中添加如下行：
+let g:snippets_dir = "C:/Users/ZS-THINKPAD/Desktop/vim/vimfiles/snippets"
+"注：上述路径是自己的安装目录，根据自己情况进行修改。
+"zs注: snipMate插件一般放在 ./vim/vimfiles目录下;snippets补全可以自定义
+
+
+"==========================================
+" bundle 插件管理和配置项
+" 因为 windows下没有 git，所有 使用 bundle插件管理，来安装vim插件会失败!!!!!"
+"==========================================
+"------------------------------------------- begin of configs --------------------------------------------
+"last modify 2014-08-21
+"zs备注：
+"插件管理还有很多问题需要研究;
+"插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
+"更多插件参考:https://github.com/wklken/k-vim
+
+
+"################### 包依赖 #####################
+"package dependence:  ctags
+"python dependence:  pep8, pyflake
+"
+"非兼容vi模式。去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
+set nocompatible
+" configure Vundle
+filetype off " required! turn off
+set rtp+=./plugin/bundle/vundle/
+call vundle#rc()
+
+
+"################### 插件管理 ###################
+
+"使用Vundle来管理插件
+" vim plugin bundle control, command model
+" :BundleInstall     install 安装配置的插件
+" :BundleInstall!    update  更新
+" :BundleClean       remove plugin not in list 删除本地无用插件
+" :BundleUpdate		 更新插件
+" :BundleClean		 清除不再使用的插件
+" :BundleList		 列出所有插件
+" :BundleSearch		 查找插件
+"
+" zs备注:
+"git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+" Vundle分为三类：
+" 在Github vim-scripts 用户下的repos,只需要写出repos名称
+" 在Github其他用户下的repos, 需要写出"用户名/repos名"
+" 不在Github上的插件，需要写出git全路径
+" -
+" demo:
+" " original repos on github （Github网站上非vim-scripts仓库的插件，按下面格式填写）
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'tpope/vim-rails.git'
+"
+" " vim-scripts repos （vim-scripts仓库里的，按下面格式填写）
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+"
+" " non github repos （非上面两种情况的，按下面格式填写）
+" Bundle 'git://git.wincent.com/command-t.git'
+
+" 使用 Bundle 插件安装在 ~./vim/Bundle/目录下
+"
+"
+" 参考：
+" https://github.com/gmarik/Vundle.vim
+" http://zuyunfei.com/2013/04/12/killer-plugin-of-vim-vundle/
+" http://jianshu.io/p/mHUR4e
+" http://www.cnblogs.com/merryfreespace/p/3438128.html
+" http://www.cnblogs.com/xia520pi/archive/2014/04/11/3659386.html
+Bundle 'gmarik/vundle'
+
+
+"################### 多语言语法检查 ######################
+Bundle 'scrooloose/syntastic'
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_highlighting = 0
+"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+let g:syntastic_html_checkers=['tidy', 'jshint']
+highlight SyntasticErrorSign guifg=white guibg=black
+
+"autocmd FileType python set omnifunc=pythoncomplete#Complete  
+"autocmd FileType javascrīpt set omnifunc=javascrīptcomplete#CompleteJS  
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags  
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS  
+"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags  
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP  
+"autocmd FileType c set omnifunc=ccomplete#Complete 
+
+
+"################### txt.vim ######################
+" 高亮显示普通txt文件（需要txt.vim脚本） 
+"au BufRead,BufNewFile * setfiletype txt 
+
+
+"################### snipMate ######################
+"Bundle 'snipMate'
+Bundle 'msanders/snipmate.vim'
+let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
+"注：上述路径是自己的安装目录，根据自己情况进行修改。
+"zs注: snipMate插件一般放在 ~/.vim/目录下;snippets补全可以自定义
+"研究,如何定义自己的 snippets代码片段
+
+
+"################### powerline 旧版状态栏增强插件 ######################
+"Bundle 'Lokaltog/vim-powerline'
+"set guifont=PowerlineSymbols\ for\ Powerline
+"set nocompatible
+"set t_Co=256
+"let g:Powerline_symbols = 'fancy'
+
+
+"################### vim-airline 新版状态栏增强插件 ######################
+Bundle 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+":help airline
+
+
+"################### minibufexpl.vim 多文件编辑 ######################
+Bundle 'fholgado/minibufexpl.vim'
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+"解决FileExplorer窗口变小问题
+let g:miniBufExplForceSyntaxEnable = 1
+let g:miniBufExplorerMoreThanOne=2
+let g:miniBufExplCycleArround=1
+"Alt + -> 打开下一个文件,zs set
+"map <M-right> <ESC>:bn<RETURN>
+map <A-right> <ESC>:bn<RETURN>
+"Alt + <- 打开上一个文件,zs set
+"map <M-left> <ESC>:bp<RETURN>
+map <A-left> <ESC>:bp<RETURN>
+
+
+"################### trinity.vim集成了 NERD_tree.vim SrcExpl.vim taglist.vim三个插件 ######################
+""Bundle 'trinity.vim'
+"Bundle 'Trinity'
+"Bundle 'SrcExpl'
+"
+"" Open and close all the three plugins on the same time
+"nmap <F8>   :TrinityToggleAll
+"" Open and close the srcexpl.vim separately 
+"nmap <F9>   :TrinityToggleSourceExplorer
+"" Open and close the taglist.vim separately 
+"nmap <F10>  :TrinityToggleTagList
+"" Open and close the NERD_tree.vim separately 
+"nmap <F11>  :TrinityToggleNERDTree
+
+
+"################### NERT_Tree 目录树插件 ######################
+Bundle 'scrooloose/nerdtree'
+"map <F1> :NERDTreeToggle
+""map <C-F1> :NERDTreeFind
+let NERDTreeChDirMode=2  "选中root即设置为当前目录
+""let NERDTreeQuitOnOpen=1 "打开文件时关闭树
+let NERDTreeShowBookmarks=1 "显示书签
+""let NERDTreeMinimalUI=1 "不显示帮助面板
+let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
+""map <F3> :NERDTreeToggle
+"ne快捷键
+nmap ne :NERDTreeToggle
+
+
+"################### taglist.vim 源码追踪,要配合 ctags,依赖与tags文件  ######################
+Bundle 'taglist.vim'
+"let Tlist_Ctags_Cmd="/usr/bin/ctags"       "linux 下 ctags执行文件目录
+"Taglist s
+"map <silent> <leader>tl :TlistToogle<cr>
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Auto_Open = 1
+let Tlist_Auto_Update = 1
+let Tlist_Close_On_Select = 0
+let Tlist_Compact_Format = 0
+let Tlist_Display_Prototype = 0
+let Tlist_Display_Tag_Scope = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Exit_OnlyWindow = 0
+let Tlist_File_Fold_Auto_Close = 0
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Hightlight_Tag_On_BufEnter = 1
+let Tlist_Inc_Winwidth = 0
+let Tlist_Use_Right_Window = 1
+"map <F4> :TlistToggle<CR>     "F4快捷键,zs set
+map tl :TlistToggle<CR>       "tl快捷键,
+
+let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
+"map <silent> <F9> :TlistToggle<cr>
+"Taglist e
+
+"Ctags 生成的tags文件路径
+set tags=/var/www/html/b5msite/cart/tags
+" 增强检索功能
+"set tags=./tags,./../tags,./**/tags
+"use
+"Taglist 的一系列命令 :Tlist 等
+"Ctrl + ] 跳转到源
+"Ctrl + t 跳转到调用处
+
+
+"################### Tag majutsushi/tagbar ######################
+"必装,标签导航,纬度和taglist不同, taglist的替代者
+"tagbar插件,优于taglist.vim插件
+" [sd] <F9> 打开
+"Bundle 'Tag majutsushi/tagbar'
+
+
+"################### solarized 主题 ######################
+Bundle 'altercation/vim-colors-solarized'
+set background=dark
+colorscheme solarized
+set t_Co=16
+" 增强显示配置
+"let g:solarized_termtrans=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+
+
+"################### molokai 主题 ######################
+"Bundle 'molokai'
+"尚未使用
+
+
+"################### neocomplcache 自动补全插件 ######################
+"此插件会导致 vim报错,暂时没有解决,使用 vim autocomplpop插件代替
+"Bundle 'neocomplcache'
+"let g:neocomplcache_enable_at_startup = 1
+
+
+"################### autocomplpop 自动补全插件 ######################
+"autocomplpop自动补全插件,优于 neocomplcache自动补全插件
+Bundle 'esukram/autocomplpop.vim'
+
+
+"################### Omnicppcomplete 添加代码补全功能,需要 Ctags工具生成tags文件 ######################
+"类比与 taglist、tagbar 等插件
+"OmniCppComplete一般和 autocomplpop一起出现
+Bundle 'OmniCppComplete'
+set nocp
+inoremap ( ()<ESC>i
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { {}<ESC>i
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap [ []<ESC>i
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap < <><ESC>i
+inoremap > <c-r>=ClosePair('>')<CR>
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+"set tags=/var/www/html/b5msite/cart/tags
+"以后出现对象的　”.” 或　”-?时它自动寻找成员函数。
+
+"onmicppcompete功能：
+"命名空间(namespace),类(class),结构(struct)和联合(union)补全
+"函数属性成员和返回值类型补全
+"this"指针成员补全
+"C/C++类型转换(cast)对象补全
+"类型定义(typedef)和匿名类型(anonymous types)补全
+"
+"启动Vim后使用以下命令为Vim添加omnicppcomplete帮助信息
+":helptags ~/.vimrc/doc
+"
+"使用ctags生成标签库: ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .		|简单命令: :!ctags -R .		|c++语言需要添加单独的参数
+"键盘映射快捷键配置: map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+"
+"在配置好Vim，并生成了ctags标签库前提条件下，Vim中在输入 “xxx." 或者 "xxx->" 时会弹出如下补全提示
+" 符号类型
+" 符号的类型，可能的值为
+" c : 类(class)
+" d : 宏(macro definition)
+" e : 枚举值(enumeator)
+" f : 函数(function)
+" g : 枚举类型名称
+" m : 类/结构/联合成员(member)
+" n : 命名空间(namespace)
+" p : 函数原型(function prototype)
+" s : 结构体名称(structure name)
+" t : 类型定义(typedef)
+" u : 联合名(union name)
+" v : 变量定义(variable defination)
+" 访问控制
+" 类成员访问控制，取值：
+" + : 公共(public)
+" # : 保护(protected)
+" - : 私有(private)
+"
+"OmniCpp_GlobalScopeSearch : 全局查找控制。0:禁止；1:允许(缺省)
+"OmniCpp_NamespaceSearch : 命名空间查找控制。
+"0 : 禁止查找命名空间
+"1 : 查找当前文件缓冲区内的命名空间(缺省)
+"2 : 查找当前文件缓冲区和包含文件中的命名空间
+"OmniCpp_DisplayMode : 类成员显示控制(是否显示全部公有(public)私有(private)保护(protected)成员)。
+"0 : 自动
+"1 : 显示所有成员
+"OmniCpp_ShowScopeInAbbr : 选项用来控制匹配项所在域的显示位置。缺省情况下，omni显示的补全提示菜单中总是将匹配项所在域信息显示在缩略信息最后一列。
+"0 : 信息缩略中不显示匹配项所在域(缺省)
+"1 : 显示匹配项所在域，并移除缩略信息中最后一列
+"OmniCpp_ShowPrototypeInAbbr : 是否是补全提示缩略信息中显示函数原型。
+"0 : 不显示(缺省)
+"1 : 显示原型
+"OmniCpp_ShowAccess : 是否显示访问控制信息('+', '-', '#')。0/1, 缺省为1(显示)
+"OmniCpp_DefaultNamespaces : 默认命名空间列表，项目间使用','隔开。
+"如：let OmniCpp_DefaultNamespaces = ["std', "MyNamespace"]
+"OmniCpp_MayCompleteDot : 在'.'号后是否自动运行omnicppcomplete给出提示信息。0/1, 缺省为1
+"OmniCpp_MayCompleteArray : 在"->"后是否自动运行omnicppcomplete给出提示信息。0/1, 缺省为1
+"OmniCpp_MayCompleteScope : 在域标识符"::"后是否自动运行omnicppcomplete给出提示信息。0/1, 缺省为0
+"OmniCpp_SelectFirstItem : 是否自动选择第一个匹配项。仅当"completeopt"不为"longest"时有效。
+"0 : 不选择第一项(缺省)
+"1 : 选择第一项并插入到光标位置
+"2 : 选择第一项但不插入光标位置
+"OmniCpp_LocalSearchDecl : 使用Vim标准查找函数/本地(local)查找函数。Vim内部用来在函数中查找变量定义的函数需要函数括号位于文本的第一列，而本地查找函数并不需要。
+
+
+"################### delimitMate 引号配对补全 ######################
+"附:同类插件 kana/vim-smartinput
+Bundle 'Raimondi/delimitMate'
+
+
+"################### vim-multiple-cursors 多光标选中编辑 ######################
+"多光标批量操作
+"[sd]
+"ctrl + m 开始选择
+"ctrl + p 向上取消
+"ctrl + x 跳过
+"esc   退出
+"不知道如何使用
+"
+"Bundle 'vim-multiple-cursors'
+""let g:multi_cursor_use_default_mapping=0
+"" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+"" Map start key separately from next key
+""let g:multi_cursor_start_key='<F6>'
+
+
+"k-vim uninstall
+
+"################### kien/ctrlp.vim 搜索 ######################
+"文件搜索,ack/Command-T需要依赖于外部包,不喜欢有太多依赖的,除非十分强大
+"http://kien.github.io/ctrlp.vim/
+"[sd] ,p  打开ctrlp搜索
+"[sd] ,f  相当于mru功能，show recently opened files
+"ctrl + j/k 进行上下移动
+"ctrl + x/v 分屏打开该文件
+"ctrl + t   在新tab中打开该文件
+"Bundle 'kien/ctrlp.vim'
+
+
+"################### docunext/closetag.vim html/xml标签配对补全 ######################
+"Bundle 'docunext/closetag.vim'
+
+
+"################### tpope/vim-surround +tpope/vim-repeat 快速编辑 ######################
+"必装，很给力的功能，快速给词加环绕符号,例如引号
+"repeat进行增强,'.'可以重复命令
+"[d]
+"cs"' [inside]
+""Hello world!" -> 'Hello world!'
+"ds"
+"Hello world!" -> Hello world!
+"ysiw"
+"Hello -> "Hello"
+"Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-repeat'
+
+
+"################### bronson/vim-trailing-whitespace 去行尾空格 ######################
+"将代码行最后无效的空格标红
+"Bundle 'bronson/vim-trailing-whitespace'
+
+
+"################### godlygeek/tabular 赋值语句代码对齐 ######################
+"将代码,或者json等,进行对齐,具体见 tabular-vim
+"Bundle 'godlygeek/tabular'
+
+
+"################### Lokaltog/vim-easymotion 位置跳转 ######################
+"必装，效率提升杀手锏，跳转到光标后任意位置
+"配置(我的leader键配置 let g:mapleader = ',')
+",, + w  跳转
+",, + fe  查找'e',快速跳转定位到某个字符位置
+"Bundle 'Lokaltog/vim-easymotion'
+
+
+"################### sjl/gundo.vim 文件时光机 ######################
+"编辑文件时光机
+"[sd] ,h  查看文件编辑历史
+"Bundle 'sjl/gundo.vim'
+
+
+"################### kien/rainbow_parentheses.vim 括号上色高亮 ######################
+"Bundle 'kien/rainbow_parentheses.vim'
+
+"k-vim uninstall
+
+
+"################### Calendar 日历插件 ######################
+"github地址: https://github.com/itchyny/calendar.vim
+Bundle 'itchyny/calendar.vim'
+let g:calendar_diary = "~/diary" " 设置日记的存储路径
+let g:calendar_monday = 1 "以星期一为开始
+let g:calendar_focus_today = 1 " 光标在当天的日期上
+let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
+"use
+":Calendar
+":Calendar 2000 1 1
+":Calendar -view=year
+":Calendar -view=year -split=vertical -width=27
+":Calendar -view=year -split=horizontal -position=below -height=12
+":Calendar -first_day=monday
+":Calendar -view=clock
+
+
+"################### TODO关键字列表 ######################
+"Bundle 'im-scripts/TaskList.vim '
+
+
+
+"不同语言 ide配置
+"
+"################### php ide config ######################
+"php缩进
+let PHP_autoformatcomment=1
+
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+set ofu=syntaxcomplete#Complete
+
+"php语法检查
+setlocal makeprg=\/usr/bin/php\ -l\ -n\ -d\ html_errors=off\ %
+setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+"autocmd BufWritePost *.php,*.phps :make
+"map :w:noh:make
+
+"Disable phpsyntax based indenting for .php files
+au BufRead,BufNewFile *.php             set indentexpr= | set smartindent
+au BufRead,BufNewFile *.phps            set filetype=php
+
+"################### php.vim php语法高亮插件,新版本vim已经集成 ######################
+Bundle 'jqlblue/php-vim'
+
+"################### php assistant | php语法增强插件 ######################
+"Ctrl + k,查看函数如何使用
+Bundle 'assistant'
+
+
+"################### Python ide config ######################
+
+
+"################### Golang ide config ######################
+
+
+"################### Ruby config ######################
+
+
+"################### Markdown config ######################
+"Bundle 'plasticboy/vim-markdown'
+
+
+"################### HTML/JS/JQUERY/CSS config ######################
+
