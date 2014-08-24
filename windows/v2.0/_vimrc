@@ -282,7 +282,7 @@ call vundle#rc()
 " :BundleSearch		 查找插件
 "
 " zs备注:
-"git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+"git clone https://github.com/gmarik/Vundle.vim.git ./plugin/bundle/vundle
 " Vundle分为三类：
 " 在Github vim-scripts 用户下的repos,只需要写出repos名称
 " 在Github其他用户下的repos, 需要写出"用户名/repos名"
