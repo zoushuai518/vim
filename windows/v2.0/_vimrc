@@ -162,6 +162,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'taglist.vim'
 Bundle 'TxtBrowser'
 Bundle 'ZoomWin'
+"Bundle 'altercation/vim-colors-solarized'		"Bundle 安装插件,也可以 cd ~/.vim/bundle ,git clone git://github.com/altercation/vim-colors-solarized.git 之后在添加配置
 
 " -----------------------------------------------------------------------------
 "  < 编码配置 >
@@ -253,8 +254,8 @@ set cursorline                                        "突出显示当前行
 set cursorcolumn									  " 突出显示当前列  
 
 " set guifont=YaHei_Consolas_Hybrid:h10                 "设置字体:字号（字体名称空格用下划线代替）
-"set wrap                                            "设置自动换行
-set nowrap                                            "设置不自动换行
+set wrap                                            "设置自动换行
+"set nowrap                                            "设置不自动换行
 set shortmess=atI                                     "去掉欢迎界面
 
 " zzz
@@ -274,6 +275,9 @@ if g:isGUI
 else
     colorscheme Tomorrow-Night-Eighties               "终端配色方案
 endif
+" solarized
+"set background=dark
+"colorscheme solarized
 
 " zz
 " 显示/隐藏菜单栏、工具栏、滚动条，可用 Ctrl + F11 切换
