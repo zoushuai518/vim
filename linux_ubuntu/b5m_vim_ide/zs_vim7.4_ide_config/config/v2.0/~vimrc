@@ -185,7 +185,7 @@ highlight SyntasticErrorSign guifg=white guibg=black
 Bundle 'msanders/snipmate.vim'
 let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
 " snipMate       Tab智能补全
-let g:snips_author='Ruchee'
+"let g:snips_author='Ruchee'
 "注：上述路径是自己的安装目录，根据自己情况进行修改。
 "zs注: snipMate插件一般放在 ~/.vim/目录下;snippets补全可以自定义
 "研究,如何定义自己的 snippets代码片段
@@ -412,10 +412,12 @@ Bundle 'The-NERD-Commenter'
 let g:vimrc_author='weiyan'
 let g:vimrc_email='weiyan@b5m.com'
 let g:vimrc_homepage='http://www.b5m.com'
-" Ctrl + E            一步加载语法模板和作者、时间信息
-map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+"Ctrl + a
+nmap <C-a> :AuthorInfoDetect<CR>
+"" Ctrl + E            一步加载语法模板和作者、时间信息
+"map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+"imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+"vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 
 
 "################### tabular 赋值语句代码对齐 ######################
