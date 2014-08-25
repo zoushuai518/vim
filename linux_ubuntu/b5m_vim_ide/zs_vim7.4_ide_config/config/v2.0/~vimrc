@@ -30,6 +30,7 @@ call vundle#rc()
 au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 100 . 'v.\+', -1)
 
 "################### 快速编辑 自定义快捷键,键盘映射区块 ###################
+syntax on	"全局配置文件, vimrc中开启会vim语法高亮会导致失败,不知道为何; -> 解决方案: 1.把配置加入到 ~/.vim/vimrc文件中;2.不设置导读的 vim配置文件,只用一个即全局vimrc配置文件
 ":syntax enable
 "map yo :syntax enable<CR>
 nmap yo :syntax enable<CR>
