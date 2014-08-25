@@ -224,7 +224,7 @@ set autoread
 "
 "显示当前的行号列号：
 "设置标尺
-set ruler
+"set ruler
 ""在状态栏显示正在输入的命令
 set showcmd
 " 左下角显示当前vim模式
@@ -346,6 +346,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 "==========================================
 " 设置新文件的编码为 UTF-8
 set encoding=utf-8
+"设置当前文件编码
+set fileencoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set helplang=cn
