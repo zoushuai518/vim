@@ -21,6 +21,93 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
+"==========================================
+" zs自己自定义高级配置
+"==========================================
+
+"################### 高级配置区块 ###################
+" 启用每行超过80列的字符提示（字体变蓝并加下划线），不启用就注释掉
+au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 100 . 'v.\+', -1)
+
+"################### 快速编辑 自定义快捷键,键盘映射区块 ###################
+":syntax enable
+"map yo :syntax enable<CR>
+nmap yo :syntax enable<CR>
+
+" 用代码折叠 空格键来开关折叠
+" zO |z + Shift + o
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+" 常规模式下输入 cS 清除行尾空格
+nmap cS :%s/\s\+$//g<CR>:noh<CR>
+
+" 常规模式下输入 cM 清除行尾 ^M 符号
+nmap cM :%s/\r$//g<CR>:noh<CR>
+
+"去掉搜索高亮
+nmap nh :noh<CR>
+
+" 显示tab和空格   zs测试可用
+" http://zshou.is-programmer.com/posts/39381
+set list
+" 设置tab和空格样式
+set lcs=tab:\|\ ,nbsp:%,trail:-
+" 设定行首tab为灰色
+highlight LeaderTab guifg=#666666
+" 匹配行首tab
+match LeaderTab /^\t/
+" 设定行尾tab为灰色 没效果
+"highlight EndTab guifg=#666666
+" 匹配行尾tab 没效果
+"match EndTab /^\t/
+"上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
+":set list | :set nolist
+
+" 高亮指定的列
+" set cc=80
+" set colorcolumn=80
+"map ch :set cc=150<RETURN>
+map ch :set cc=100<CR>
+"按下,ch就可以将当前光标下的列高亮
+"map nch :set cc=0<RETURN>
+map nch :set cc=0<CR>
+"按下,nch取消列高亮
+
+" 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
+set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+" 插入模式下用绝对行号, 普通模式下用相对
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
+"vim自动补全括号、引号
+"inoremap ( ()<ESC>i
+"inoremap ), (),<ESC>hi
+"inoremap ); ();<ESC>hi
+"
+"inoremap [ []<ESC>i
+"inoremap ], [],<ESC>hi
+"inoremap ]; [];<ESC>hi
+"
+"inoremap { {}<ESC>i
+"inoremap < <><ESC>i
+"inoremap " ""<ESC>i
+"inoremap ", "",<ESC>hi
+"inoremap "; "";<ESC>hi
+"inoremap ' ''<ESC>i
+"inoremap ', '',<ESC>hi
+"inoremap '; '';<ESC>hi
+
+
 "################### 插件管理 ###################
 
 "使用Vundle来管理插件
@@ -96,6 +183,8 @@ highlight SyntasticErrorSign guifg=white guibg=black
 "Bundle 'snipMate'
 Bundle 'msanders/snipmate.vim'
 let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
+" snipMate       Tab智能补全
+let g:snips_author='Ruchee'
 "注：上述路径是自己的安装目录，根据自己情况进行修改。
 "zs注: snipMate插件一般放在 ~/.vim/目录下;snippets补全可以自定义
 "研究,如何定义自己的 snippets代码片段
@@ -161,7 +250,7 @@ let NERDTreeShowBookmarks=1 "显示书签
 let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
 ""map <F3> :NERDTreeToggle
 "ne快捷键
-nmap ne :NERDTreeToggle
+nmap ne :NERDTreeToggle<CR>
 
 
 "################### taglist.vim 源码追踪,要配合 ctags,依赖与tags文件  ######################
@@ -316,6 +405,34 @@ Bundle 'OmniCppComplete'
 "OmniCpp_LocalSearchDecl : 使用Vim标准查找函数/本地(local)查找函数。Vim内部用来在函数中查找变量定义的函数需要函数括号位于文本的第一列，而本地查找函数并不需要。
 
 
+"################### " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合 ######################
+Bundle 'AuthorInfo'
+Bundle 'The-NERD-Commenter'
+let g:vimrc_author='weiyan'
+let g:vimrc_email='weiyan@b5m.com'
+let g:vimrc_homepage='http://www.b5m.com'
+" Ctrl + E            一步加载语法模板和作者、时间信息
+map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+
+
+"################### tabular 赋值语句代码对齐 ######################
+"将代码,或者json等,进行对齐,具体见 tabular-vim
+"https://github.com/godlygeek/tabular
+Bundle 'Tabular'
+map t= :Tabularize /=<CR>
+"zs use
+"V 选择要对齐的行
+"按 : 进入命令模式; 此时命令行会显示 :'<,'>
+"输出对齐命令: Tabularize /=
+"此时 命令行 如下
+":'<,'>Tabularize /=
+"直接回车即可 按照 = 对齐
+"
+"map <F6> :Tabularize /=<CR>		"F6快捷键,zs set
+
+
 "################### delimitMate 引号配对补全 ######################
 "附:同类插件 kana/vim-smartinput
 Bundle 'Raimondi/delimitMate'
@@ -375,11 +492,6 @@ Bundle 'Raimondi/delimitMate'
 "################### bronson/vim-trailing-whitespace 去行尾空格 ######################
 "将代码行最后无效的空格标红
 "Bundle 'bronson/vim-trailing-whitespace'
-
-
-"################### godlygeek/tabular 赋值语句代码对齐 ######################
-"将代码,或者json等,进行对齐,具体见 tabular-vim
-"Bundle 'godlygeek/tabular'
 
 
 "################### Lokaltog/vim-easymotion 位置跳转 ######################

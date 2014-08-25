@@ -63,7 +63,15 @@ endif
 "
 "use: gg=:1,$ Enter 文件代码格式化
 
-" 以下VIM配置,参考 pan.baidu.com 中的 zs_ubuntu压缩包中的;vim_ide文件夹
+
+" 此 vim配置还是有问题,需要继续研究vim的配置,和各种插件的使用;以便提高编程效率
+
+" 配置尚未解决的问题：
+"1. 有时键盘影视快捷键 无法自动处罚回车,vim7.3此种键盘映射是OK的,不知道为何.. 应该是配置文件中,某处配置导致的  -> 测试下来的结果,全局配置文件vimrc中会出现此问题;~/.vim/vimrc中可以正常使用。所以建议自定义的配置都放到 ~/.vim/vimrc文件中。或者不要加载单独的 ~/.vim/vimrc配置文件,而用一个vimrc配置文件
+"2. 相对行号,同时当前行 行号高亮
+
+" 很好的配置
+
 
 "常用变量
 "$VIMRUNTIME
@@ -117,9 +125,6 @@ let g:mapleader = ','
 syntax enable
 "开启文件类型侦测
 syntax on
-":syntax enable
-"map yo :syntax enable<CR>
-nmap yo :syntax enable<CR>
 
 ":set filetype
 "如果 set filetype 为空,则vim语法着色失败
@@ -232,7 +237,7 @@ set showmode
 " 命令行（在状态行下）的高度，默认为1，这里是2 
 set cmdheight=2 
 " 使回格键（backspace）正常处理indent, eol, start等 
-"set backspace=2 
+set backspace=2		"设置退格键可用
 
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=7
@@ -276,9 +281,6 @@ set smartcase     " ignore case if search pattern is all lowercase, case-sensiti
 "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 "set ignorecase smartcase
 "用nh去掉查找后的高亮 zs注 :noh是vim的命令;可以参考这个配置来配置其它vim命令的快捷键
-"nmap nh :noh<CR>	"无法自动处罚回车,vim7.3此种键盘映射是OK的,不知道为何
-"手动回车,只是减少了命令输入的复杂程度
-nmap nh :noh
 set ofu=syntaxcomplete#Complete
 
 " 代码折叠
@@ -291,7 +293,7 @@ set foldenable
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
 set foldmethod=indent
-set foldlevel=99
+"set foldlevel=99
 
 " 缩进配置
 
@@ -323,22 +325,6 @@ set ttyfast
 " 00x增减数字时使用十进制
 "set nrformats=
 
-
-" 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
-" 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
 
 
 "==========================================
@@ -636,74 +622,6 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
-
-
-"==========================================
-" zs Settings  zoushuai设置
-"==========================================
-
-"设置 tab 空格 等特殊字符 zs dev s
-"
-"配置:
-"set list
-"set listchars=tab:▸\ ,eol:-
-
-" 显示 空格|TAB
-" 命令行输入:
-" :set list listchars=tab:>-,trail:-
-"
-"设置 tab 空格 等特殊字符 zs dev e
-
-"
-" 显示tab和空格   zs测试可用
-" http://zshou.is-programmer.com/posts/39381
-set list
-" 设置tab和空格样式
-set lcs=tab:\|\ ,nbsp:%,trail:-
-" 设定行首tab为灰色
-highlight LeaderTab guifg=#666666
-" 匹配行首tab
-match LeaderTab /^\t/
-
-" 设定行尾tab为灰色 没效果
-"highlight EndTab guifg=#666666
-" 匹配行尾tab 没效果
-"match EndTab /^\t/
-
-"上面的设置将Tab显示为|(竖线)，将行尾的空格显示为-(减号)
-"
-":set list | :set nolist
-" 显示tab和空格   zs测试可用
-
-
-" 高亮指定的列
-" set cc=80
-" set colorcolumn=80
-"map ch :set cc=150<RETURN>
-map ch :set cc=150
-"按下,ch就可以将当前光标下的列高亮
-"map nch :set cc=0<RETURN>
-map nch :set cc=0
-"按下,nch取消列高亮
-
-
-"vim自动补全括号、引号
-"inoremap ( ()<ESC>i
-"inoremap ), (),<ESC>hi
-"inoremap ); ();<ESC>hi
-"
-"inoremap [ []<ESC>i
-"inoremap ], [],<ESC>hi
-"inoremap ]; [];<ESC>hi
-"
-"inoremap { {}<ESC>i
-"inoremap < <><ESC>i
-"inoremap " ""<ESC>i
-"inoremap ", "",<ESC>hi
-"inoremap "; "";<ESC>hi
-"inoremap ' ''<ESC>i
-"inoremap ', '',<ESC>hi
-"inoremap '; '';<ESC>hi
 
 
 
