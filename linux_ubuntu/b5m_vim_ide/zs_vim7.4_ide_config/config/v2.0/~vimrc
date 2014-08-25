@@ -293,6 +293,7 @@ let g:SrcExpl_isUpdateTags = 0
 " // Set "<F12>" key for updating the tags file artificially 
 " 创建 tags文件; linux命令行 ctags -R *
 " 更新 tags文件
+" 需要开启 SrcExpl方可执行更新
 let g:SrcExpl_updateTagsKey = "<F12>" 
 
 " // Set "<F3>" key for displaying the previous definition in the jump list 
@@ -470,9 +471,11 @@ Bundle 'OmniCppComplete'
 
 "################### " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
 "目前AuthorInfo是支持c,cpp,java,php,python,bash,makefile等等多种语言，基本上只要NERD Commenter支持的类型，AuthorInfo都默认支持
+"https://github.com/ihacklog/AuthorInfo		"亲测可用,http://www.vimer.cn
+" AuthorInfo 文件头注释没有会创建,如果有会更新
+"更多 AuthorInfo配置,有待研究
 Bundle 'The-NERD-Commenter'
 
-"https://github.com/ihacklog/AuthorInfo		"亲测可用,http://www.vimer.cn
 Bundle 'ihacklog/AuthorInfo'
 "let g:authorinfo_author='weiyan'
 "let g:authorinfo_email='weiyan@b5m.com'
@@ -632,6 +635,37 @@ Bundle 'jqlblue/php-vim'
 "################### php assistant | php语法增强插件 ######################
 "Ctrl + k,查看函数如何使用
 Bundle 'assistant'
+
+"################### php phpmanual | php手册 ######################
+"Bundle 'phpmanual'
+"select content, and then press SHIFT-k to view the Explanation of the content
+"select content, and then press CTRL-ALT-k to see the online manual of the content
+"实际使用价值不如 assistant插件
+Bundle 'alvan/vim-phpmanual'
+
+"################### php PHPSyntaxCheck | php语法检查插件 ######################
+"This is a mirror of http://www.vim.org/scripts/script.php?script_id=4984
+"PHP语法检查插件
+"在PHP文件保存时会自动进行语法检查，有错误会提示，没有错误不提示。
+"*语法检查使用系统的php -l -n命令；
+"*对非PHP文件不起作用；
+"详见：
+"http://blog.quanhz.com/archives/393
+"
+" zs其实就是一个函数,函数原型如下
+autocmd BufWritePost *.php call PHPSyntaxCheck()
+if !exists('g:PHP_SYNTAX_CHECK_BIN')
+    let g:PHP_SYNTAX_CHECK_BIN = 'php'
+endif
+
+function! PHPSyntaxCheck()
+    let result = system(g:PHP_SYNTAX_CHECK_BIN.' -l -n '.expand('%'))
+    if (stridx(result, 'No syntax errors detected') == -1)
+        echohl WarningMsg | echo result | echohl None
+    endif
+endfunction
+"zs通过 Bundle加载失败,不知道为何,所以把函数原型贴过来,可以正常使用
+"Bundle 'PHPSyntaxCheck'
 
 
 "################### Python ide config ######################
