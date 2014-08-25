@@ -240,19 +240,19 @@ Bundle 'esukram/autocomplpop.vim'
 "类比与 taglist、tagbar 等插件
 "OmniCppComplete一般和 autocomplpop一起出现
 Bundle 'OmniCppComplete'
-set nocp
-inoremap ( ()<ESC>i
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap { {}<ESC>i
-inoremap } <c-r>=ClosePair('}')<CR>
-inoremap [ []<ESC>i
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap < <><ESC>i
-inoremap > <c-r>=ClosePair('>')<CR>
-inoremap " ""<ESC>i
-inoremap ' ''<ESC>i
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
-set tags=/var/www/html/b5msite/cart/tags
+"set nocp
+"inoremap ( ()<ESC>i
+"inoremap ) <c-r>=ClosePair(')')<CR>
+"inoremap { {}<ESC>i
+"inoremap } <c-r>=ClosePair('}')<CR>
+"inoremap [ []<ESC>i
+"inoremap ] <c-r>=ClosePair(']')<CR>
+"inoremap < <><ESC>i
+"inoremap > <c-r>=ClosePair('>')<CR>
+"inoremap " ""<ESC>i
+"inoremap ' ''<ESC>i
+"map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
+"set tags=/var/www/html/b5msite/cart/tags
 "以后出现对象的　”.” 或　”- 时它自动寻找成员函数。
 
 "onmicppcompete功能：
