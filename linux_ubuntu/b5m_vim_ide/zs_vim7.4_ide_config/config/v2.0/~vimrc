@@ -109,6 +109,13 @@ inoremap ' ''<ESC>i
 inoremap ', '',<ESC>hi
 inoremap '; '';<ESC>hi
 
+"自定义键盘映射
+map s :w<CR>
+map sq :wq<CR>
+map sa :wqa<CR>
+map qq :q!<CR>
+map qa :qa!<CR>
+
 
 "==========================================
 " 插件管理
@@ -246,6 +253,7 @@ map <A-left> <ESC>:bp<RETURN>
 
 
 "###################  SrcExpl 独立与 Trinity ######################
+"https://github.com/wesleyche/SrcExpl
 Bundle 'SrcExpl'
 nmap ts :SrcExplToggle<CR>
 " // Set the height of Source Explorer window 
