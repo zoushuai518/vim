@@ -231,21 +231,69 @@ map <A-left> <ESC>:bp<RETURN>
 
 
 "################### trinity.vim集成了 NERD_tree.vim SrcExpl.vim taglist.vim三个插件 ######################
-""Bundle 'trinity.vim'
 "Bundle 'Trinity'
 "Bundle 'SrcExpl'
-"
+"Bundle 'taglist.vim'
+
 "" Open and close all the three plugins on the same time
 "nmap <F8>   :TrinityToggleAll
 "" Open and close the srcexpl.vim separately 
-"nmap <F9>   :TrinityToggleSourceExplorer
 "" Open and close the taglist.vim separately 
 "nmap <F10>  :TrinityToggleTagList
 "" Open and close the NERD_tree.vim separately 
 "nmap <F11>  :TrinityToggleNERDTree
+"nmap tts :TrinityToggleSourceExplorer<CR>
 
 
-"################### NERT_Tree 目录树插件 ######################
+"###################  SrcExpl 独立与 Trinity ######################
+Bundle 'SrcExpl'
+nmap ts :SrcExplToggle<CR>
+" // Set the height of Source Explorer window 
+let g:SrcExpl_winHeight = 8 
+
+" // Set 100 ms for refreshing the Source Explorer 
+let g:SrcExpl_refreshTime = 100 
+
+" // Set "Enter" key to jump into the exact definition context 
+let g:SrcExpl_jumpKey = "<ENTER>" 
+
+" // Set "Space" key for back from the definition context 
+let g:SrcExpl_gobackKey = "<SPACE>" 
+
+" // In order to avoid conflicts, the Source Explorer should know what plugins
+" // except itself are using buffers. And you need add their buffer names into
+" // below listaccording to the command ":buffers!"
+"let g:SrcExpl_pluginList = [ 
+"        \"__Tag_List__" 
+"        \"_NERD_tree_" 
+"    \] 
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+" // create/update the tags file 
+"let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+"map <C-F12> :!ctags --sort=foldcase -R .
+
+" // Set "<F12>" key for updating the tags file artificially 
+" 创建 tags文件; linux命令行 ctags -R *
+" 更新 tags文件
+let g:SrcExpl_updateTagsKey = "<F12>" 
+
+" // Set "<F3>" key for displaying the previous definition in the jump list 
+"let g:SrcExpl_prevDefKey = "<F3>" 
+
+" // Set "<F4>" key for displaying the next definition in the jump list 
+"let g:SrcExpl_nextDefKey = "<F4>"
+
+
+"################### NERT_Tree 目录树插件 独立与 Trinity ######################
 Bundle 'scrooloose/nerdtree'
 "map <F1> :NERDTreeToggle
 ""map <C-F1> :NERDTreeFind
@@ -259,7 +307,7 @@ let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
 nmap ne :NERDTreeToggle<CR>
 
 
-"################### taglist.vim 源码追踪,要配合 ctags,依赖与tags文件  ######################
+"################### taglist.vim 源码追踪,要配合 ctags,依赖与tags文件 独立与 Trinity ######################
 Bundle 'taglist.vim'
 "let Tlist_Ctags_Cmd="/usr/bin/ctags"       "linux 下 ctags执行文件目录
 "Taglist s
