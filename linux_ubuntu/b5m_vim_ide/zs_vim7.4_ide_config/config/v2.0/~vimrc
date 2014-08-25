@@ -7,6 +7,7 @@
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
 "更多插件参考:https://github.com/wklken/k-vim
+"参考, http://www.vimer.cn
 
 
 "################### 包依赖 #####################
@@ -91,22 +92,22 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 "vim自动补全括号、引号
-"inoremap ( ()<ESC>i
-"inoremap ), (),<ESC>hi
-"inoremap ); ();<ESC>hi
-"
-"inoremap [ []<ESC>i
-"inoremap ], [],<ESC>hi
-"inoremap ]; [];<ESC>hi
-"
-"inoremap { {}<ESC>i
-"inoremap < <><ESC>i
-"inoremap " ""<ESC>i
-"inoremap ", "",<ESC>hi
-"inoremap "; "";<ESC>hi
-"inoremap ' ''<ESC>i
-"inoremap ', '',<ESC>hi
-"inoremap '; '';<ESC>hi
+inoremap ( ()<ESC>i
+inoremap ), (),<ESC>hi
+inoremap ); ();<ESC>hi
+
+inoremap [ []<ESC>i
+inoremap ], [],<ESC>hi
+inoremap ]; [];<ESC>hi
+
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
+inoremap " ""<ESC>i
+inoremap ", "",<ESC>hi
+inoremap "; "";<ESC>hi
+inoremap ' ''<ESC>i
+inoremap ', '',<ESC>hi
+inoremap '; '';<ESC>hi
 
 
 "################### 插件管理 ###################
@@ -406,9 +407,15 @@ Bundle 'OmniCppComplete'
 "OmniCpp_LocalSearchDecl : 使用Vim标准查找函数/本地(local)查找函数。Vim内部用来在函数中查找变量定义的函数需要函数括号位于文本的第一列，而本地查找函数并不需要。
 
 
-"################### " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合 ######################
-Bundle 'AuthorInfo'
+"################### " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
+"目前AuthorInfo是支持c,cpp,java,php,python,bash,makefile等等多种语言，基本上只要NERD Commenter支持的类型，AuthorInfo都默认支持
 Bundle 'The-NERD-Commenter'
+
+"https://github.com/ihacklog/AuthorInfo		"亲测可用,http://www.vimer.cn
+Bundle 'ihacklog/AuthorInfo'
+"let g:authorinfo_author='weiyan'
+"let g:authorinfo_email='weiyan@b5m.com'
+"let g:authorinfo_company='http://www.b5m.com'
 let g:vimrc_author='weiyan'
 let g:vimrc_email='weiyan@b5m.com'
 let g:vimrc_homepage='http://www.b5m.com'

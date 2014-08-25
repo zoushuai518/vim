@@ -72,6 +72,8 @@ endif
 
 " 很好的配置
 
+"参考,http://www.vimer.cn
+
 
 "常用变量
 "$VIMRUNTIME
