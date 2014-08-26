@@ -686,6 +686,8 @@ endfunction
 
 
 "################### HTML/JS/JQUERY/CSS config ######################
+"还需要持续配置, 2014-08-26
+
 "使用vim 编辑 javascrīpt
 Bundle 'pangloss/vim-javascript'
 " 打开javascript折叠
