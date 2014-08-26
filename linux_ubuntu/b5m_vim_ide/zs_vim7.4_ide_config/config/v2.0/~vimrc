@@ -606,7 +606,11 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 
 
 "################### TODO关键字列表 ######################
-"Bundle 'im-scripts/TaskList.vim '
+"Bundle 'TaskList.vim'
+
+
+"################### vim字典 ######################
+"vim 配置字典, php javascript, 未配置
 
 
 
@@ -682,5 +686,47 @@ endfunction
 
 
 "################### HTML/JS/JQUERY/CSS config ######################
+"使用vim 编辑 javascrīpt
+Bundle 'pangloss/vim-javascript'
+" 打开javascript折叠
+let b:javascript_fold=1
+" 打开javascript对dom、html和css的支持
+let javascript_enable_domhtmlcss=1
 
+"js/html/css 格式化
+Bundle 'maksimr/vim-jsbeautify'
+"map <c-f> :call JsBeautify()<cr>
+" Ctrl + f 快捷键冲突 修改为Ctrl + p快捷键
+map <c-p> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-p> :call JsBeautify()<cr>
+ " for html
+autocmd FileType html noremap <buffer> <c-p> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-p> :call CSSBeautify()<cr>
 
+"jQuery 语法发亮
+"Bundle 'nono/jquery.vim'
+
+"emmet html快速编辑
+"Bundle 'mattn/emmet-vim'
+"let g:user_emmet_install_global = 0
+"autocmd FileType html,css EmmetInstall
+
+"json高亮
+"Bundle 'elzr/vim-json'
+
+"vim-css-color css颜色展示
+"Bundle 'skammer/vim-css-color'
+"Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
+
+"javascript语法检查插件,未配置
+"https://github.com/vim-scripts/lint.vim
+"Bundle 'javaScriptLint.vim'
+"kchmck/vim-coffee-script coffeescript,未配置
+"Bundle 'kchmck/vim-coffeescript'
+"groenewege/vim-less less,未配置
+"Bundle 'groenewege/vim-less'
+"mbriggs/mark.vim,变量标记和检查,未配置
+"Bundle 'mbriggs/mark.vim'
+"
