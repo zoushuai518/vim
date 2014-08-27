@@ -81,12 +81,21 @@ endif
 "常用变量
 "$VIMRUNTIME
 "$VIM : vim的安装的根目录.	[ad: ubuntu /usr/share/vim]
-"
-":version
 ":echo $VIM
 ":echo $HOME
 ":echo $VIMRUNTIME
 ":scriptname
+
+"特殊命令
+"1.:version " 查看版本编译信息
+"2.:let " 查看变量列表
+"3.:history " 查看历史命令列表
+"4.:language: " 查看当前所用语种信息，例如中文或英文
+"5.:messages: " 命令行输入返回信息查询
+"6.:register(s): " 查看当前所用register列表
+"7.:marks: " 查看当前所用mark列表
+"8.:buffers: " 查看当前所用buffer列表
+"9.:script: " 查看Vim加载的依次加载的脚本路径及其名称
 
 "1）Vim存在多个配置文件vimrc，比如/etc/vimrc，此文件影响整个系统的Vim。还有~/.vimrc，此文件只影响本用户的Vim。而且~/.vimrc文件中的配置会覆盖/etc/vimrc中的配置。这里我们只修改~/.vimrc文件。
 "2）Vim的插件（plugin）安装在Vim的runtimepath目录下，你可以在Vim命令行下运行"set rtp“命令查看。这里我们选择安装在~/.vim目录，没有就创建一个。
@@ -97,14 +106,14 @@ endif
 
 
 "zs config
-"last modify 2014-08-21
+"last modify 2014-08-27
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-08-21
+" Last_modify: 2014-08-27
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置

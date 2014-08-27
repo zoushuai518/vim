@@ -469,7 +469,7 @@ Bundle 'OmniCppComplete'
 "OmniCpp_LocalSearchDecl : 使用Vim标准查找函数/本地(local)查找函数。Vim内部用来在函数中查找变量定义的函数需要函数括号位于文本的第一列，而本地查找函数并不需要。
 
 
-"################### " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
+"################### " :AuthorInfoDetect  自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
 "目前AuthorInfo是支持c,cpp,java,php,python,bash,makefile等等多种语言，基本上只要NERD Commenter支持的类型，AuthorInfo都默认支持
 "https://github.com/ihacklog/AuthorInfo		"亲测可用,http://www.vimer.cn
 " AuthorInfo 文件头注释没有会创建,如果有会更新
@@ -489,6 +489,21 @@ nmap <C-a> :AuthorInfoDetect<CR>
 "map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 "imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 "vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+
+
+"################### doxygen 快速添加注释 ######################
+"http://www.doxygen.org/
+Bundle 'DoxygenToolkit.vim'
+"定制输出脚本，在脚本文件中，在.vimrc中设置g: DoxygenToolkit_*变量：
+let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
+let g:DoxygenToolkit_authorName="weiyan" 
+let g:DoxygenToolkit_licenseTag="My own license"
+"let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
+"使用命令以 Dox... 开头
 
 
 "################### tabular 赋值语句代码对齐 ######################
@@ -590,7 +605,9 @@ Bundle 'Raimondi/delimitMate'
 
 "################### Calendar 日历插件 ######################
 "github地址: https://github.com/itchyny/calendar.vim
+"itchyny/calendar.vim & richardlee8681/calendar.vim 是两种不同的日历格式插件
 Bundle 'itchyny/calendar.vim'
+"Bundle 'richardlee8681/calendar-vim'
 let g:calendar_diary = "~/diary" " 设置日记的存储路径
 let g:calendar_monday = 1 "以星期一为开始
 let g:calendar_focus_today = 1 " 光标在当天的日期上
@@ -611,6 +628,17 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 
 "################### vim字典 ######################
 "vim 配置字典, php javascript, 未配置
+
+
+"################### other config ######################
+"日常自定义配置,炫酷的配置
+
+"主题透明
+"Bundle 'rkitover/256_darkdot_vim'
+"colors 256_darkdot
+"普通文本编辑插件
+"会提示错误, 应该是缺少 Vim misc
+"Bundle 'notes.vim'
 
 
 
@@ -725,6 +753,7 @@ autocmd FileType css noremap <buffer> <c-p> :call CSSBeautify()<cr>
 "javascript语法检查插件,未配置
 "https://github.com/vim-scripts/lint.vim
 "Bundle 'javaScriptLint.vim'
+"Bundle 'JavaScript-Libraries-Syntax'
 "kchmck/vim-coffee-script coffeescript,未配置
 "Bundle 'kchmck/vim-coffeescript'
 "groenewege/vim-less less,未配置
