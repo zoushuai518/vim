@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-08-27
+"last modify 2014-08-29
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -163,11 +163,12 @@ map qa :qa!<CR>
 " http://jianshu.io/p/mHUR4e
 " http://www.cnblogs.com/merryfreespace/p/3438128.html
 " http://www.cnblogs.com/xia520pi/archive/2014/04/11/3659386.html
-"必须
+"必须,的配置
 Bundle 'gmarik/vundle'
 
 
 "################### 多语言语法检查 ######################
+"syntastic 一个通用的语法检查插件
 Bundle 'scrooloose/syntastic'
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
@@ -193,6 +194,10 @@ highlight SyntasticErrorSign guifg=white guibg=black
 "au BufRead,BufNewFile * setfiletype txt 
 
 
+"################### mark.vim ######################
+"给不同的单词高亮，表明不同的变量时很有用。（特别说明一下，vim.org上有两个Mark.vim，请使用链接中指向的那个，另外一个是有bug的）
+
+
 "################### snipMate ######################
 "Bundle 'snipMate'
 Bundle 'msanders/snipmate.vim'
@@ -202,6 +207,12 @@ let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
 "注：上述路径是自己的安装目录，根据自己情况进行修改。
 "zs注: snipMate插件一般放在 ~/.vim/目录下;snippets补全可以自定义
 "研究,如何定义自己的 snippets代码片段
+
+
+"################### UltiSnips ######################
+"Bundle 'sirver/ultisnips'
+"提供超强的快速生成代码段的功能(超越snipmate)
+"未配置
 
 
 "################### powerline 旧版状态栏增强插件 ######################
@@ -474,8 +485,11 @@ Bundle 'OmniCppComplete'
 "https://github.com/ihacklog/AuthorInfo		"亲测可用,http://www.vimer.cn
 " AuthorInfo 文件头注释没有会创建,如果有会更新
 "更多 AuthorInfo配置,有待研究
+
+"提供快速注释/反注释代码块的功能
 Bundle 'The-NERD-Commenter'
 
+"authorinfo 自动生成/更新文件的作者信息
 Bundle 'ihacklog/AuthorInfo'
 "let g:authorinfo_author='weiyan'
 "let g:authorinfo_email='weiyan@b5m.com'
@@ -626,10 +640,6 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 "Bundle 'TaskList.vim'
 
 
-"################### vim字典 ######################
-"vim 配置字典, php javascript, 未配置
-
-
 "################### other config ######################
 "日常自定义配置,炫酷的配置
 
@@ -642,8 +652,10 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 
 
 
-"不同语言 ide配置
-"
+"==========================================
+" 不同语言 ide配置
+"==========================================
+
 "################### php ide config ######################
 "php缩进
 let PHP_autoformatcomment=1
@@ -699,6 +711,45 @@ endfunction
 "zs通过 Bundle加载失败,不知道为何,所以把函数原型贴过来,可以正常使用
 "Bundle 'PHPSyntaxCheck'
 
+"################### PHP-dictionary| php字典 实现函数补全 ######################
+Bundle 'PHP-dictionary'
+au FileType php call AddPHPFuncList()
+function AddPHPFuncList()
+	"配置 字典文件路径
+	set dictionary-=$HOME/.vim/bundle/PHP-dictionary/PHP.dict dictionary+=$HOME/.vim/bundle/PHP-dictionary/PHP.dict
+	"快捷键映射,<C-X><C-K>; 此处Ctrl + k快捷键可能会和 assistant插件的 Ctrl + k快捷键冲突
+    set complete-=k complete+=k
+endfunction
+"只有当文件类型是php的时候（无论你是打开一个.php文件，或者new xx.php，或者setf php），我才会加载PHP.dict的词典
+"
+"补充,以下 vim自动补全方式仅供参考
+"Vim支持的自动完成种类实际上是很多
+"
+"1.关键字补全，按键是:
+"FORWARD:   <C-X><C-N>
+"BACKWARD:  <C-X><C-P>
+"2.整行补全，按键是:
+"<C-X><C-L>
+"3.文件名补全，按键是:
+"<C-X><C-F>
+"4.字典补全，按键是（杯具啊，为了这个<C-K>，我把原来的C-K映射都给删掉了）:
+"<C-X><C-K>
+"5.全能补全，(可能要配合 omnicppcomplete插件) 按键是：
+"<C-X><C-O>
+"
+"vim中的补全
+"整行补全 CTRL-X CTRL-L
+"根据当前文件里关键字补全 CTRL-X CTRL-N
+"根据字典补全 CTRL-X CTRL-K
+"根据同义词字典补全 　_CTRL-X CTRL-T_
+"根据头文件内关键字补全 CTRL-X CTRL-I
+"根据标签补全 CTRL-X CTRL-]
+"补全文件名 CTRL-X CTRL-F
+"补全宏定义 CTRL-X CTRL-D
+"补全vim命令 CTRL-X CTRL-V
+"用户自定义补全方式 CTRL-X CTRL-U
+"拼写建议 CTRL-X CTRL-S
+
 
 "################### Python ide config ######################
 
@@ -720,10 +771,11 @@ endfunction
 Bundle 'pangloss/vim-javascript'
 " 打开javascript折叠
 let b:javascript_fold=1
-" 打开javascript对dom、html和css的支持
+" 启动对 javascript对dom、html和css的高亮支持
 let javascript_enable_domhtmlcss=1
 
-"js/html/css 格式化
+"js/html/css 代码格式化
+"jsbeautify js代码格式化
 Bundle 'maksimr/vim-jsbeautify'
 "map <c-f> :call JsBeautify()<cr>
 " Ctrl + f 快捷键冲突 修改为Ctrl + p快捷键
@@ -734,6 +786,8 @@ autocmd FileType javascript noremap <buffer>  <c-p> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-p> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-p> :call CSSBeautify()<cr>
+
+"javascript 字典补全,未配置
 
 "jQuery 语法发亮
 "Bundle 'nono/jquery.vim'

@@ -106,7 +106,7 @@ endif
 
 
 "zs config
-"last modify 2014-08-27
+"last modify 2014-08-29
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
@@ -291,7 +291,7 @@ set incsearch
 " 搜索时忽略大小写
 set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
-set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
+"set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 "set ignorecase smartcase
 "用nh去掉查找后的高亮 zs注 :noh是vim的命令;可以参考这个配置来配置其它vim命令的快捷键
