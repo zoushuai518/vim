@@ -207,6 +207,11 @@ highlight SyntasticErrorSign guifg=white guibg=black
 "给不同的单词高亮，表明不同的变量时很有用。（特别说明一下，vim.org上有两个Mark.vim，请使用链接中指向的那个，另外一个是有bug的）
 
 
+"################### VOoM(原VOOF) ######################
+"VOoM(原VOOF)：vim实现带折叠双栏树状文本管理
+"http://xbeta.info/vim-voof.htm
+
+
 "################### snipMate ######################
 "Bundle 'snipMate'
 Bundle 'msanders/snipmate.vim'
