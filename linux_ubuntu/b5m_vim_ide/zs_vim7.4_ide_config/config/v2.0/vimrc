@@ -106,14 +106,14 @@ endif
 
 
 "zs config
-"last modify 2014-08-29
+"last modify 2014-09-10
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-08-27
+" Last_modify: 2014-09-10
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -123,14 +123,15 @@ endif
 "       -> HotKey Settings  自定义快捷键
 "       -> FileType Settings  针对文件类型的设置
 "       -> Theme Settings  主题设置
-"
-"       -> 插件配置和具体设置在~/.vim/vimrc.zs中
+"       -> 插件配置和具体设置在~/.vim/vimrc中
+"参考:https://github.com/wklken/k-vim
 "==========================================
 
-"基础配置 s
 
-"参考:https://github.com/wklken/k-vim
-
+"==========================================
+" 基础配置 
+"==========================================
+"
 " 修改leader键,不知道啥意思
 let mapleader = ','
 let g:mapleader = ','
@@ -237,6 +238,7 @@ set autoread
 "set backspace=eol,start,indent
 "set whichwrap+=<,>,h,l
 
+
 "==========================================
 " Display Settings 展示/排版等界面格式设置
 "==========================================
@@ -275,7 +277,7 @@ set formatoptions=tcrqn
 set number
 " 取消换行。
 "set nowrap
-"自动折行
+"自动换行
 set wrap
 
 " 括号配对情况,跳转并高亮一下匹配的括号
@@ -344,6 +346,7 @@ set ttyfast
 "==========================================
 " FileEncode Settings 文件编码,格式
 "==========================================
+"
 " 设置新文件的编码为 UTF-8
 set encoding=utf-8
 "设置当前文件编码
@@ -369,8 +372,10 @@ set formatoptions+=B
 "==========================================
 " others 其它设置
 "==========================================
-autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
-autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
+"
+"autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
+"autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
+"autocmd! bufwritepost $HOME/.vim/vimrc source %	"zs 配置
 
 " 自动补全配置
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
