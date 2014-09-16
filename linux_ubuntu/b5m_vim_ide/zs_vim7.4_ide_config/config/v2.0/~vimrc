@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-09-10
+"last modify 2014-09-16
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -397,6 +397,8 @@ set t_Co=16
 "let g:solarized_termtrans=1
 "let g:solarized_contrast="normal"
 "let g:solarized_visibility="normal"
+"zs备注:还需要执行 solarized主题的脚本文件方可
+"solarized.sh && vim/linux_ubuntu/b5m_vim_ide/solarized.sh
 
 
 "################### molokai 主题 ######################

@@ -106,14 +106,14 @@ endif
 
 
 "zs config
-"last modify 2014-09-10
+"last modify 2014-09-16
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-09-10
+" Last_modify: 2014-09-16
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
