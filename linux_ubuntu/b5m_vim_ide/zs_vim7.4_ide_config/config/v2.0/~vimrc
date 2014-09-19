@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-09-16
+"last modify 2014-09-19
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -769,6 +769,7 @@ endfunction
 
 
 "################### Python ide config ######################
+"近期,要求Python开发,需要配置 ide ...
 
 
 "################### Golang ide config ######################
@@ -782,7 +783,7 @@ endfunction
 
 
 "################### HTML/JS/JQUERY/CSS config ######################
-"还需要持续配置, 2014-08-26
+"还需要持续配置, 2014-09-19
 
 "使用vim 编辑 javascrīpt
 Bundle 'pangloss/vim-javascript'
@@ -806,20 +807,13 @@ autocmd FileType css noremap <buffer> <c-p> :call CSSBeautify()<cr>
 
 "javascript 字典补全,未配置
 
-"jQuery 语法发亮
+"jQuery 语法发亮| 自动补全
 "Bundle 'nono/jquery.vim'
 
 "emmet html快速编辑
 "Bundle 'mattn/emmet-vim'
 "let g:user_emmet_install_global = 0
 "autocmd FileType html,css EmmetInstall
-
-"json高亮
-"Bundle 'elzr/vim-json'
-
-"vim-css-color css颜色展示
-"Bundle 'skammer/vim-css-color'
-"Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 
 "javascript语法检查插件,未配置
 "https://github.com/vim-scripts/lint.vim
@@ -832,3 +826,64 @@ autocmd FileType css noremap <buffer> <c-p> :call CSSBeautify()<cr>
 "mbriggs/mark.vim,变量标记和检查,未配置
 "Bundle 'mbriggs/mark.vim'
 "
+
+"jshint2.vim
+"https://github.com/vim-scripts/jshint2.vim
+Bundle 'jshint2.vim'
+"set runtimepath+=~/.vim/bundle/jshint2.vim/
+"
+"configuration
+"
+"linux 用 whereis jshint ,查看jshint可执行文件路径
+"Set global JSHint command path (mostly for Windows):
+"jshint可执行文件目录
+let jshint2_command = '/usr/local/bin/jslint'
+"Lint JavaScript files after reading it:
+let jshint2_read = 1
+
+"Lint JavaScript files after saving it:
+let jshint2_save = 1
+
+"Do not automatically close orphaned error lists:
+let jshint2_close = 0
+
+"Skip lint confirmation for non JavaScript files:
+let jshint2_confirm = 0
+
+"Do not use colored messages:
+let jshint2_color = 0
+
+"Hide error codes in error list (if you don't use error ignoring or error codes confuses you):
+let jshint2_error = 0
+
+"Set default height of error list:
+let jshint2_height = 20
+
+"Quick lint mapping:
+" jshint validation
+nnoremap <silent><F2> :JSHint<CR>
+inoremap <silent><F2> <C-O>:JSHint<CR>
+vnoremap <silent><F2> :JSHint<CR>
+"
+" show next jshint error
+nnoremap <silent><F3> :lnext<CR>
+inoremap <silent><F3> <C-O>:lnext<CR>
+vnoremap <silent><F3> :lnext<CR>
+"
+" show previous jshint error
+nnoremap <silent><F4> :lprevious<CR>
+inoremap <silent><F4> <C-O>:lprevious<CR>
+vnoremap <silent><F4> :lprevious<CR>
+"
+"zs注：
+"需要安装 nodejs & jshint
+"1.nodejs编译安装，省略
+"2.npm install jshint | pm install jshint -g  #http://jshint.com/install/
+"3.还有问题，后续有时间在研究...
+
+"json高亮
+Bundle 'elzr/vim-json'
+
+"vim-css-color css颜色展示
+"Bundle 'skammer/vim-css-color'
+"Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
