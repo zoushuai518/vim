@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-09-19
+"last modify 2014-09-24
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -103,22 +103,26 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 "vim自动补全括号、引号
-inoremap ( ()<ESC>i
-inoremap ), (),<ESC>hi
-inoremap ); ();<ESC>hi
+function! InsertCompletion()
+	inoremap ( ()<ESC>i
+	inoremap ), (),<ESC>hi
+	inoremap ); ();<ESC>hi
 
-inoremap [ []<ESC>i
-inoremap ], [],<ESC>hi
-inoremap ]; [];<ESC>hi
+	inoremap [ []<ESC>i
+	inoremap ], [],<ESC>hi
+	inoremap ]; [];<ESC>hi
 
-inoremap { {}<ESC>i
-inoremap < <><ESC>i
-inoremap " ""<ESC>i
-inoremap ", "",<ESC>hi
-inoremap "; "";<ESC>hi
-inoremap ' ''<ESC>i
-inoremap ', '',<ESC>hi
-inoremap '; '';<ESC>hi
+	inoremap { {}<ESC>i
+	inoremap < <><ESC>i
+	inoremap " ""<ESC>i
+	inoremap ", "",<ESC>hi
+	inoremap "; "";<ESC>hi
+	inoremap ' ''<ESC>i
+	inoremap ', '',<ESC>hi
+	inoremap '; '';<ESC>hi
+endfunc
+nnoremap <C-i> :call InsertCompletion()<cr>
+"zs备注：写成方法，对方法做键盘映射；可以使用此键盘映射来调用此方法,已用来确定方法内的功能是否生效
 
 "自定义键盘映射
 map s :w<CR>
