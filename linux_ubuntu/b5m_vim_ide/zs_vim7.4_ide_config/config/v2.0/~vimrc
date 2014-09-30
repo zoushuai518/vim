@@ -833,8 +833,9 @@ autocmd FileType html noremap <buffer> <c-p> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-p> :call CSSBeautify()<cr>
 
-" jQuery 语法发高亮| 自动补全
+" jQuery 语法发高亮| 自动补全,还有待研究...
 Bundle 'nono/jquery.vim'
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 "
 Bundle 'lucapette/vim-jquery-doc'
 Bundle 'jrue/Vimeo-jQuery-API'
