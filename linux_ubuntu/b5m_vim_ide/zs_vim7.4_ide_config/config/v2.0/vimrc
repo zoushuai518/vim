@@ -63,7 +63,7 @@ endif
 "
 "use: gg=:1,$ Enter 文件代码格式化
 
-" 此配置在 ubuntu 13.04 vim7.4平台测试通过
+" 此配置在 ubuntu 13.04,14.04 vim7.4平台测试通过
 
 "参考,http://www.vimer.cn
 
@@ -105,15 +105,18 @@ endif
 "6）本文关于组合快捷键的描述，形如a-b形式的快捷键表示同时按下a键和b键，而形如"a-b c"形式的快捷键，则表示先同时按下a键和b键，然后放开ab键，再按下c键。
 
 
+"Debian system-wide default configuration Vim
+"set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
+
 "zs config
-"last modify 2014-09-30
+"last modify 2014-10-02
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-09-30
+" Last_modify: 2014-10-02
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
