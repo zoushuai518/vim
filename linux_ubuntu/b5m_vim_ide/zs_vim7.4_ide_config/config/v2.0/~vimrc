@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-10-02
+"last modify 2014-10-08
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -138,6 +138,8 @@ map qa :qa!<CR>
 "################### 插件管理 ###################
 
 "使用Vundle来管理插件
+"zs注释：Vundle插件管理器安装的插件，有时候，插件功能会失效，Vundle有BUG
+"
 " vim plugin bundle control, command model
 " :BundleInstall     install 安装配置的插件
 " :BundleInstall!    update  更新
@@ -858,9 +860,21 @@ Bundle 'walm/jshint.vim.git'
 ":help syntastic
 
 "emmet html快速编辑
-"Bundle 'mattn/emmet-vim'
-"let g:user_emmet_install_global = 0
-"autocmd FileType html,css EmmetInstall
+Bundle 'mattn/emmet-vim'
+"zs注释：
+"参考./bundle/emmet-vim/README.mkd文件，也顺便学习一下markdown的语法
+"http://www.ruanyifeng.com/blog/2013/06/emmet_and_haml.html
+"usage:[快捷键，都是在不同模式下使用]
+"Emmet使用按键"<Ctrl+y>/"，让一个代码块变成HTML注释
+"用"<Ctrl+y>,"将其转成HTML代码
+"
+"Bundle插件安装方式，不起作用，不知道为何；因此用下面的方式
+"此方式有效
+"git clone https://github.com/mattn/emmet-vim.git
+"cd emmet-vim
+"cp plugin/emmet.vim ~/.vim/plugin/
+"cp autoload/emmet.vim ~/.vim/autoload/
+"cp -a autoload/emmet ~/.vim/autoload/
 
 "kchmck/vim-coffee-script coffeescript,未配置
 "Bundle 'kchmck/vim-coffeescript'

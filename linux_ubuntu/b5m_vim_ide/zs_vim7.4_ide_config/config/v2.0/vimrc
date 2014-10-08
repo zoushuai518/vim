@@ -109,14 +109,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2014-10-02
+"last modify 2014-10-08
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-10-02
+" Last_modify: 2014-10-08
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
