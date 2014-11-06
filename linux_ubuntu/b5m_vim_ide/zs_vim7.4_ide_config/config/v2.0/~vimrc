@@ -517,9 +517,9 @@ Bundle 'ihacklog/AuthorInfo'
 "let g:authorinfo_author='weiyan'
 "let g:authorinfo_email='weiyan@b5m.com'
 "let g:authorinfo_company='http://www.b5m.com'
-let g:vimrc_author='weiyan'
-let g:vimrc_email='weiyan@b5m.com'
-let g:vimrc_homepage='http://www.b5m.com'
+let g:vimrc_author='shuai.zou'
+let g:vimrc_email='shuai.zou@weimob.com'
+let g:vimrc_homepage='http://www.weimob.com'
 "Ctrl + a
 nmap <C-a> :AuthorInfoDetect<CR>
 "" Ctrl + E            一步加载语法模板和作者、时间信息
