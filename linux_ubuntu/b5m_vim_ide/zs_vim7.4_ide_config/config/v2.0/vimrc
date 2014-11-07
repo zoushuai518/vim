@@ -109,14 +109,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2014-10-08
+"last modify 2014-11-07
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-10-08
+" Last_modify: 2014-11-07
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -321,20 +321,15 @@ set autoindent    " 打开自动缩进
 " never add copyindent, case error   " copy the previous indentation on autoindenting
 
 " tab相关变更
-set tabstop=4     " 设置Tab键的宽度        [等同的空格个数]
+set tabstop=4     " 设置Tab键的宽度为4个字符     [等同的空格个数]
+set expandtab     " 开启,将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
+%ret! 4			  " 每个tab用4个space替代
 set shiftwidth=4  " 每一次缩进对应的空格数
 set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
-"set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
-set noexpandtab        "不用space替代tab的输入
-"set tabstop=4			"设定tab宽度为4个字符
-"set softtabstop=4
-"set shiftwidth=4		"设定自动缩进为4个字符
-""set noexpandtab        "不用space替代tab的输入
-""set expandtab			"用space替代tab的输入 [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-""%ret! 4				"每个tab用4个space替代
-"set autoindent
+"set noexpandtab  "开启,不用space替代tab的输入
+
 
 " A buffer becomes hidden when it is abandoned
 set hidden
