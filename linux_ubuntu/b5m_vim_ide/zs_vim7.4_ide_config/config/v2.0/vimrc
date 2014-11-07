@@ -330,6 +330,19 @@ set smarttab      " insert tabs on the start of a line according to shiftwidth, 
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 "set noexpandtab  "开启,不用space替代tab的输入
 
+"ext
+"对于已保存的文件，可以使用下面的方法进行空格和TAB的替换： 
+"
+"TAB替换为空格： 
+":set ts=4
+":set expandtab
+":%retab!
+"
+"空格替换为TAB：
+":set ts=4
+":set noexpandtab
+":%retab!
+
 
 " A buffer becomes hidden when it is abandoned
 set hidden
