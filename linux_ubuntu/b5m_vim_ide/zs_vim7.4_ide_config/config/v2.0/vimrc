@@ -109,14 +109,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2014-11-07
+"last modify 2014-11-20
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-11-07
+" Last_modify: 2014-11-20
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -333,15 +333,17 @@ set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting
 "ext
 "对于已保存的文件，可以使用下面的方法进行空格和TAB的替换： 
 "
-"TAB替换为空格： 
+"替换,要配合 vimrc配置文件中,有没有使用space代替Tab
+"
+"TAB替换为空格：
 ":set ts=4
 ":set expandtab
-":%retab!
+":%retab!   "打开需要转换的文件,执行此命令即可
 "
 "空格替换为TAB：
 ":set ts=4
 ":set noexpandtab
-":%retab!
+":%retab!   "打开需要转换的文件,执行此命令即可
 
 
 " A buffer becomes hidden when it is abandoned
