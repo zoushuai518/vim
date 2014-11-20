@@ -336,13 +336,13 @@ set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting
 "替换,要配合 vimrc配置文件中,有没有使用space代替Tab
 "
 "TAB替换为空格：
-":set ts=4
-":set expandtab
+"set ts=4
+"set expandtab
 ":%retab!   "打开需要转换的文件,执行此命令即可
 "
 "空格替换为TAB：
-":set ts=4
-":set noexpandtab
+"set ts=4
+"set noexpandtab
 ":%retab!   "打开需要转换的文件,执行此命令即可
 
 
