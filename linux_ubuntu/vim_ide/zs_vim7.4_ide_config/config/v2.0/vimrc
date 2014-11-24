@@ -19,11 +19,11 @@ runtime! debian.vim
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 "if has("syntax")
-"	syntax on
+"   syntax on
 "endif
 if &t_Co > 1
-	syntax on
-"	syntax enable
+    syntax on
+"   syntax enable
 endif
 
 " If using a dark background within the editing area and syntax highlighting
@@ -44,18 +44,18 @@ endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
-"set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-"set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
+"set showcmd        " Show (partial) command in status line.
+"set showmatch      " Show matching brackets.
+"set ignorecase     " Do case insensitive matching
+"set smartcase      " Do smart case matching
+"set incsearch      " Incremental search
+"set autowrite      " Automatically save before commands like :next and :make
 "set hidden             " Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
+"set mouse=a        " Enable mouse usage (all modes)
 
 " Source a global configuration file if available
 "if filereadable("/etc/vim/vimrc.local")
-"	source /etc/vim/vimrc.local
+"   source /etc/vim/vimrc.local
 "endif
 
 
@@ -80,7 +80,7 @@ endif
 
 "常用变量
 "$VIMRUNTIME
-"$VIM : vim的安装的根目录.	[ad: ubuntu /usr/share/vim]
+"$VIM : vim的安装的根目录.  [ad: ubuntu /usr/share/vim]
 ":echo $VIM
 ":echo $HOME
 ":echo $VIMRUNTIME
@@ -96,6 +96,7 @@ endif
 "7.:marks: " 查看当前所用mark列表
 "8.:buffers: " 查看当前所用buffer列表
 "9.:script: " 查看Vim加载的依次加载的脚本路径及其名称
+"10.:help 命令 " 查看Vim相关命令的帮助(包括插件命令)
 
 "1）Vim存在多个配置文件vimrc，比如/etc/vimrc，此文件影响整个系统的Vim。还有~/.vimrc，此文件只影响本用户的Vim。而且~/.vimrc文件中的配置会覆盖/etc/vimrc中的配置。这里我们只修改~/.vimrc文件。
 "2）Vim的插件（plugin）安装在Vim的runtimepath目录下，你可以在Vim命令行下运行"set rtp“命令查看。这里我们选择安装在~/.vim目录，没有就创建一个。
@@ -109,14 +110,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2014-11-20
+"last modify 2014-11-24
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-11-20
+" Last_modify: 2014-11-24
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -200,7 +201,7 @@ set noswapfile
 "endif
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
-set cursorcolumn		" 突出显示当前列
+set cursorcolumn        " 突出显示当前列
 set cursorline          " 突出显示当前行
 
 
@@ -256,7 +257,7 @@ set showmode
 " 命令行（在状态行下）的高度，默认为1，这里是2 
 set cmdheight=2 
 " 使回格键（backspace）正常处理indent, eol, start等 
-set backspace=2		"设置退格键可用
+set backspace=2     "设置退格键可用
 
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=7
@@ -323,7 +324,7 @@ set autoindent    " 打开自动缩进
 " tab相关变更
 set tabstop=4     " 设置Tab键的宽度为4个字符     [等同的空格个数]
 set expandtab     " 开启,将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-%ret! 4			  " 每个tab用4个space替代
+%ret! 4           " 每个tab用4个space替代
 set shiftwidth=4  " 每一次缩进对应的空格数
 set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
@@ -388,7 +389,7 @@ set formatoptions+=B
 "
 "autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
 "autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
-"autocmd! bufwritepost $HOME/.vim/vimrc source %	"zs 配置
+"autocmd! bufwritepost $HOME/.vim/vimrc source %    "zs 配置
 
 " 自动补全配置
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
