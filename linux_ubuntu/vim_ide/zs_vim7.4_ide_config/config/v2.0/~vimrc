@@ -825,6 +825,9 @@ map sf :SQLUFormatter<CR>
 "
 "注: 一般不用安装vimBall
 
+"################### dbext.vim vim直接访问数据库,支持多种数据库 |对于我暂时无用,而且上手难道偏大 ######################
+"Bundle 'dbext.vim'
+
 
 "################### nodejs ide config ######################
 "nodejs-snippets
