@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-10-08
+"last modify 2014-11-24
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -532,15 +532,22 @@ nmap <C-a> :AuthorInfoDetect<CR>
 "http://www.doxygen.org/
 Bundle 'DoxygenToolkit.vim'
 "定制输出脚本，在脚本文件中，在.vimrc中设置g: DoxygenToolkit_*变量：
+let g:DoxygenToolkit_commentType="PHP"
 let g:DoxygenToolkit_briefTag_pre="@Synopsis "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns "
 let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
 let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
-let g:DoxygenToolkit_authorName="weiyan" 
+let g:DoxygenToolkit_authorName="shuai.zou"
 let g:DoxygenToolkit_licenseTag="My own license"
 "let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
-"使用命令以 Dox... 开头
+"
+"使用：
+":DoxLic    添加许可
+":Dox       添加函数/类注释
+":DoxAuthor 添加作者信息
+"
+"zs: doxygen 注释插件配置,还要需研究
 
 
 "################### tabular 赋值语句代码对齐 ######################
