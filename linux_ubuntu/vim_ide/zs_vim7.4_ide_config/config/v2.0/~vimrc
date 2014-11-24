@@ -33,7 +33,7 @@ call vundle#rc()
 au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 100 . 'v.\+', -1)
 
 "################### 快速编辑 自定义快捷键,键盘映射区块 ###################
-syntax on	"全局配置文件, vimrc中开启会vim语法高亮会导致失败,不知道为何; -> 解决方案: 1.把配置加入到 ~/.vim/vimrc文件中;2.不设置单独的 vim配置文件,只用一个即全局vimrc配置文件
+syntax on   "全局配置文件, vimrc中开启会vim语法高亮会导致失败,不知道为何; -> 解决方案: 1.把配置加入到 ~/.vim/vimrc文件中;2.不设置单独的 vim配置文件,只用一个即全局vimrc配置文件
 ":syntax enable
 "map yo :syntax enable<CR>
 nmap yo :syntax enable<CR>
@@ -104,22 +104,22 @@ nnoremap <C-n> :call NumberToggle()<cr>
 
 "vim自动补全括号、引号
 function! InsertCompletion()
-	inoremap ( ()<ESC>i
-	inoremap ), (),<ESC>hi
-	inoremap ); ();<ESC>hi
+    inoremap ( ()<ESC>i
+    inoremap ), (),<ESC>hi
+    inoremap ); ();<ESC>hi
 
-	inoremap [ []<ESC>i
-	inoremap ], [],<ESC>hi
-	inoremap ]; [];<ESC>hi
+    inoremap [ []<ESC>i
+    inoremap ], [],<ESC>hi
+    inoremap ]; [];<ESC>hi
 
-	inoremap { {}<ESC>i
-	inoremap < <><ESC>i
-	inoremap " ""<ESC>i
-	inoremap ", "",<ESC>hi
-	inoremap "; "";<ESC>hi
-	inoremap ' ''<ESC>i
-	inoremap ', '',<ESC>hi
-	inoremap '; '';<ESC>hi
+    inoremap { {}<ESC>i
+    inoremap < <><ESC>i
+    inoremap " ""<ESC>i
+    inoremap ", "",<ESC>hi
+    inoremap "; "";<ESC>hi
+    inoremap ' ''<ESC>i
+    inoremap ', '',<ESC>hi
+    inoremap '; '';<ESC>hi
 endfunc
 nnoremap <C-i> :call InsertCompletion()<cr>
 "zs备注：写成方法，对方法做键盘映射；可以使用此键盘映射来调用此方法,已用来确定方法内的功能是否生效
@@ -144,10 +144,10 @@ map qa :qa!<CR>
 " :BundleInstall     install 安装配置的插件
 " :BundleInstall!    update  更新
 " :BundleClean       remove plugin not in list 删除本地无用插件
-" :BundleUpdate		 更新插件
-" :BundleClean		 清除不再使用的插件
-" :BundleList		 列出所有插件
-" :BundleSearch		 查找插件
+" :BundleUpdate      更新插件
+" :BundleClean       清除不再使用的插件
+" :BundleList        列出所有插件
+" :BundleSearch      查找插件
 "
 " zs备注:
 "git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
@@ -459,7 +459,7 @@ Bundle 'OmniCppComplete'
 "启动Vim后使用以下命令为Vim添加omnicppcomplete帮助信息
 ":helptags ~/.vimrc/doc
 "
-"使用ctags生成标签库: ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .		|简单命令: :!ctags -R .		|c++语言需要添加单独的参数
+"使用ctags生成标签库: ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .        |简单命令: :!ctags -R .     |c++语言需要添加单独的参数
 "键盘映射快捷键配置: map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .
 "
 "在配置好Vim，并生成了ctags标签库前提条件下，Vim中在输入 “xxx." 或者 "xxx->" 时会弹出如下补全提示
@@ -512,7 +512,7 @@ Bundle 'OmniCppComplete'
 
 "################### " :AuthorInfoDetect  自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
 "目前AuthorInfo是支持c,cpp,java,php,python,bash,makefile等等多种语言，基本上只要NERD Commenter支持的类型，AuthorInfo都默认支持
-"https://github.com/ihacklog/AuthorInfo		"亲测可用,http://www.vimer.cn
+"https://github.com/ihacklog/AuthorInfo     "亲测可用,http://www.vimer.cn
 " AuthorInfo 文件头注释没有会创建,如果有会更新
 "更多 AuthorInfo配置,有待研究
 
@@ -570,7 +570,7 @@ map t= :Tabularize /=<CR>
 ":'<,'>Tabularize /=
 "直接回车即可 按照 = 对齐
 "
-"map <F6> :Tabularize /=<CR>		"F6快捷键,zs set
+"map <F6> :Tabularize /=<CR>        "F6快捷键,zs set
 
 
 "################### delimitMate 引号配对补全 ######################
@@ -738,6 +738,7 @@ Bundle 'alvan/vim-phpmanual'
 " zs其实就是一个函数,函数原型如下
 autocmd BufWritePost *.php call PHPSyntaxCheck()
 if !exists('g:PHP_SYNTAX_CHECK_BIN')
+    "zs: 把php可执行文件,ln到 /usr/local/bin/文件夹下,即使php全局可执行
     let g:PHP_SYNTAX_CHECK_BIN = 'php'
 endif
 
@@ -754,12 +755,12 @@ endfunction
 Bundle 'PHP-dictionary'
 au FileType php call AddPHPFuncList()
 function AddPHPFuncList()
-	"配置 字典文件路径
-	set dictionary-=$HOME/.vim/bundle/PHP-dictionary/PHP.dict dictionary+=$HOME/.vim/bundle/PHP-dictionary/PHP.dict
-	"快捷键映射,<C-X><C-K>; 此处Ctrl + k快捷键可能会和 assistant插件的 Ctrl + k快捷键冲突
-	set complete-=k complete+=k
+    "配置 字典文件路径
+    set dictionary-=$HOME/.vim/bundle/PHP-dictionary/PHP.dict dictionary+=$HOME/.vim/bundle/PHP-dictionary/PHP.dict
+    "快捷键映射,<C-X><C-K>; 此处Ctrl + k快捷键可能会和 assistant插件的 Ctrl + k快捷键冲突
+    set complete-=k complete+=k
 endfunction
-"只有当文件类型是php的时候（无论你是打开一个.php文件，或者new xx.php，或者setf php），我才会加载PHP.dict的词典
+"只有当文件类型是php的时候（无论你是打开一个.php文件，或者new xx.php，或者setf php），才会加载PHP.dict的词典
 "
 "补充,以下 vim自动补全方式仅供参考
 "Vim支持的自动完成种类实际上是很多
@@ -789,6 +790,41 @@ endfunction
 "用户自定义补全方式 CTRL-X CTRL-U
 "拼写建议 CTRL-X CTRL-S
 
+"################### SQLUtilities(sqlutil)|此插件依赖Align插件 sql格式化 ######################
+Bundle 'Align'
+Bundle 'SQLUtilities'
+let g:sqlutil_keyword_case = '\U'    "sql关键字转换为大写
+map sf :SQLUFormatter<CR>
+
+"keywords map
+"vmap <leader>sf <Plug>SQLU_Formatter<CR>
+"nmap <leader>scl <Plug>SQLU_CreateColumnList<CR>
+"nmap <leader>scd <Plug>SQLU_GetColumnDef<CR>
+"nmap <leader>scdt <Plug>SQLU_GetColumnDataType<CR>
+"nmap <leader>scp <Plug>SQLU_CreateProcedure<CR>
+"let g:sqlutil_load_default_maps = 1
+"更多配置参考,help sqlutil
+"
+"使用sqlutilities执行格式化:
+"v 进入可视化模式，选中要格式化的语句，然后:'<,'>SQLUFormatter 或
+"命令模式下执行 :始行号,末行号SQLUFormatter 另外还有两种方法help sqlutilities有描述。
+"此插件还有许多选项供调整格式化后的语句样式可参考帮助文件。
+"
+"zs use:
+"选中要格式化的sql, sf进行格式化
+
+"ext:
+"
+"vimball是一个vim插件，可以很方便地帮你安装vba格式的vim插件。
+"
+"貌似vim自带有vimball（vim7.3以后自带）。
+"
+"直接用vim打开vba格式的文件，输入:so %即可安装，然后:q退出。
+"
+"删除插件也很方便，直接在vim里输入:RmVimball 插件名
+"
+"注: 一般不用安装vimBall
+
 
 "################### nodejs ide config ######################
 "nodejs-snippets
@@ -801,10 +837,10 @@ Bundle 'guileen/vim-node.git'
 "au FileType javascript set dictionary+=$VIM.'\vimfiles\dict\node.dict'
 au FileType js call AddJSFuncList()
 function AddJSFuncList()
-	"配置 字典文件路径
-	set dictionary-=$HOME/.vim/bundle/vim-node/node.dict dictionary+=$HOME/.vim/bundle/vim-node/node.dict
-	"快捷键映射,<C-X><C-K>
-	set complete-=k complete+=k
+    "配置 字典文件路径
+    set dictionary-=$HOME/.vim/bundle/vim-node/node.dict dictionary+=$HOME/.vim/bundle/vim-node/node.dict
+    "快捷键映射,<C-X><C-K>
+    set complete-=k complete+=k
 endfunction
 "只有当文件类型是js的时候,我才会加载node.dict的词典
 
@@ -862,7 +898,7 @@ Bundle 'jrue/Vimeo-jQuery-API'
 
 "javascript语法检查插件,jshint,zs亲测可用
 "1.install jshint
-"npm install jshint -g		"http://www.jshint.com/install/
+"npm install jshint -g      "http://www.jshint.com/install/
 "2.安装vim jshint插件,使用 Bundle插件管理器安装
 "3.usage
 ":help jshint | :JSHint
