@@ -394,6 +394,8 @@ set tags=/var/www/html/b5msite/cart/tags
 "Bundle 'Tag majutsushi/tagbar'
 
 
+"vim 主题 : http://cocopon.me/app/vim-color-gallery/
+"
 "################### solarized 主题 ######################
 Bundle 'altercation/vim-colors-solarized'
 set background=dark
@@ -408,8 +410,13 @@ set t_Co=16
 
 
 "################### molokai 主题 ######################
-"Bundle 'molokai'
-"尚未使用
+""Bundle 'molokai'
+"Bundle 'tomasr/molokai'
+""set background=dark
+""colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"设置失败,fuck
 
 
 "################### neocomplcache 自动补全插件 ######################
