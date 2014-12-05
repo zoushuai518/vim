@@ -131,6 +131,15 @@ map sa :wqa<CR>
 map qq :q!<CR>
 map qa :qa!<CR>
 
+"UTF-8去除BOM设置
+"setglobal nobomb
+"au BufReadPost setlocal nobomb  "vim打开的时候（读完buffer ）去bom
+"
+"只修改当前文件, 取出BOM
+":setlocal nobomb
+"或者
+":set nobomb
+
 
 "==========================================
 " 插件管理
