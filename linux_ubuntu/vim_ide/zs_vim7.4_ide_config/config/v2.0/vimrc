@@ -88,6 +88,7 @@ endif
 
 "特殊命令
 "1.:version " 查看版本编译信息
+"  vim --version
 "2.:let " 查看变量列表
 "3.:history " 查看历史命令列表
 "4.:language: " 查看当前所用语种信息，例如中文或英文
@@ -110,14 +111,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2014-11-24
+"last modify 2014-12-15
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-11-24
+" Last_modify: 2014-12-15
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置

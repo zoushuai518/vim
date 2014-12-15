@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-12-12
+"last modify 2014-12-15
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -194,6 +194,8 @@ Bundle 'gmarik/vundle'
 
 "################### 多语言语法检查 ######################
 "syntastic 一个通用的语法检查插件
+"https://github.com/scrooloose/syntastic
+"zs useing
 Bundle 'scrooloose/syntastic'
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
@@ -358,6 +360,46 @@ let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
 nmap ne :NERDTreeToggle<CR>
 
 
+"################### Command-T: 在 Vim 中快速导航文件 ######################
+"https://github.com/wincent/command-t
+"
+"安装 Command-T:
+"在下载 Command-T 后，你可以按如下的步骤来安装：http://www.vim.org/scripts/script.php?script_id=3025
+"vim command-t-1.11.4.vba
+":so %
+"cd ~/.vim/ruby/command-t
+"ruby extconf.rb
+"make
+"
+"Command-T 的用法:
+":CommandT
+"ctrl+j/k 上下选择文件，选中后回车打开文件
+"ctrl+t 以tab方式打开文件
+"ctrl+s/v 可以水平或垂直分割窗口打开文件
+"ctrl+c 退出该模式
+"该插件还有个常用命令，:CommandTBuffer，可以浏览缓冲区的文件，并重新打开。操作方式同上。
+"
+"注意事项:
+"Vim版本需要支持ruby扩展。我们可以在Vim中输入:ruby 1|vim --version检查，如果出现E319: Sorry, the command is not available in this version就表示不支持。
+"
+"如果出现上述情况，我们就需要自己去编译能够支持ruby的Vim，嫌麻烦的话可以直接安装vim-nox，自带Ruby支持，在Ubuntu下安装命令如下：sudo apt-get install vim-nox。
+"
+"执行ruby extconf.rb命令时如果出现找不到mkmf包的情况，说明你需要安装ruby-dev的包，在Ubuntu下安装命令如下：sudo apt-get install ruby1.8-dev。
+"[Unable to require "mkmf"; you may need to install Ruby development tools
+"(depending on your system, a "ruby-dev"/"ruby-devel" package or similar).]
+"sudo apt-get install ruby-dev
+"
+"经过以上处理,可用; zs亲测可用
+"2014-12-15
+
+
+"################### ack.vim, vim 整个工程全局查找插件 ######################
+"https://github.com/mileszs/ack.vim
+":help ack
+"暂时为使用
+"Bundle 'mileszs/ack.vim'
+
+
 "################### taglist.vim 源码追踪,要配合 ctags,依赖与tags文件 独立与 Trinity ######################
 Bundle 'taglist.vim'
 "let Tlist_Ctags_Cmd="/usr/bin/ctags"       "linux 下 ctags执行文件目录
@@ -390,7 +432,11 @@ let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
 set tags=/var/www/html/b5msite/cart/tags
 " 增强检索功能
 "set tags=./tags,./../tags,./**/tags
+"
 "use
+"
+"cd project根目录,执行 ctags -R *,生成tags文件
+"
 "Taglist 的一系列命令 :Tlist 等
 "Ctrl + ] 跳转到源
 "Ctrl + t 跳转到调用处
