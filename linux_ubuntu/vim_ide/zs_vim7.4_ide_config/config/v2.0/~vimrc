@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-12-15
+"last modify 2014-12-16
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -436,11 +436,68 @@ set tags=/var/www/html/b5msite/cart/tags
 "
 "use
 "
+"install Ctags
+"sudo apt-get install ctags
 "cd project根目录,执行 ctags -R *,生成tags文件
 "
 "Taglist 的一系列命令 :Tlist 等
 "Ctrl + ] 跳转到源
 "Ctrl + t 跳转到调用处
+
+
+"################### cscope.vim 代码追踪 ######################
+"Bundle 'cscope.vim'
+"" cscope setting
+"if has("cscope")
+"    "set csprg=/usr/bin/cscope
+"    set csprg=/usr/local/bin/cscope
+"    set csto=1
+"    set cst
+"    set nocsverb
+"    " add any database in current directory
+"    if filereadable("cscope.out")
+"        cs add cscope.out
+"    elseif $CSCOPE_DB  != ""
+"        cs add $CSCOPE_DB
+"    endif
+"    set csverb
+"endif
+"
+"nmap <C-A>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-A>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-A>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-A>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-A>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-A>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-A>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-A>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+"注解: 使用时，将光标停留在要查找的对象上，按下<C-A>g，即先按“Ctrl+@”，然后很快再按“g”，将会查找该对象的定义
+"
+"Cscope的功能通过它的子命令“find”来实现。
+"cs find c|d|e|g|f|i|s|t name
+"
+"s：查找C代码符号
+"g：查找本定义
+"d：查找本函数调用的函数
+"c：查找调用本函数的函数
+"t：查找本字符串
+"e：查找本egrep模式
+"f：查找本文件
+"i：查找包含本文件的文件
+
+"Cscope安装:
+"可以在http://cscope.sourceforge.net/下载源码包，然后解压，编译安装。
+"./configure
+"make
+"sudo make install
+"
+"use:
+"cscope的用法很简单，首先需要为你的代码生成一个cscope数据库。在你的项目根目录运行下面的命令:
+"cd project根目录, 执行cscope -Rbq, cscope -Rbk `find -name \*.php`
+"这些选项的含义见后面。这个命令会生成三个文件：cscope.out, cscope.in.out, cscope.po.out。其中cscope.out是基本的符号索引，后两个文件是使用”-q“选项生成的，可以加快cscope的索引速度
+":help cscope
+"还不知道具体如何使用,zs
 
 
 "################### Tag majutsushi/tagbar ######################
