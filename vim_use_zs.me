@@ -576,10 +576,10 @@ vim常用快捷键:
         shift + k 查看函数 man 帮助信息.
     }
 
-    cmd
+    执行外部 command: |zzz
     {
-        ! <command> 执行命令.
-        :r <file> 插入文件内容.
+        :! <command> 执行命令. :! ifconfig
+        :r <file> 插入文件内容. :r ! ifconfig
         :r!<command> 插入命令输出结果.
         :cd <path> 修改默认工作目录.
         :pwd 查看当前文件所属目录.
