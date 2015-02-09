@@ -111,14 +111,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2014-12-15
+"last modify 2015-02-09
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2014-12-15
+" Last_modify: 2015-02-09
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -296,7 +296,7 @@ set hlsearch
 " 打开增量搜索模式,随着键入即时搜索
 set incsearch
 " 搜索时忽略大小写
-set ignorecase
+"set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
 "set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
 "搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
@@ -324,10 +324,15 @@ set autoindent    " 打开自动缩进
 
 " tab相关变更
 set tabstop=4     " 设置Tab键的宽度为4个字符     [等同的空格个数]
+"set ts=4     " 设置Tab键的宽度为4个字符     [等同的空格个数]
 set expandtab     " 开启,将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
+"set et  " 开启,将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 %ret! 4           " 每个tab用4个space替代
 set shiftwidth=4  " 每一次缩进对应的空格数
+"set sw=4  " 每一次缩进对应的空格数
 set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
+"set sts=4 " 按退格键时可以一次删掉 4 个空格
+"
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 "set noexpandtab  "开启,不用space替代tab的输入
