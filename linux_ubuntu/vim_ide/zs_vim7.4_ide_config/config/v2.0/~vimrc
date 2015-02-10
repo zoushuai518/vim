@@ -948,6 +948,7 @@ map sf :SQLUFormatter<CR>
 
 "################### vim DBGP client, debugger######################
 "DBGPavim s
+"zs 亲测可用, 2015-02-10
 Bundle 'brookhong/DBGPavim'
 " 快捷键配置查看 *.py(dbgpavim.py)文件
 let g:dbgPavimPort = 9001
