@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2014-12-16
+"last modify 2015-02-10
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -946,10 +946,100 @@ map sf :SQLUFormatter<CR>
 "################### dbext.vim vim直接访问数据库,支持多种数据库 |对于我暂时无用,而且上手难道偏大 ######################
 "Bundle 'dbext.vim'
 
+"################### vim DBGP client, debugger######################
+"DBGPavim s
+Bundle 'brookhong/DBGPavim'
+" 快捷键配置查看 *.py(dbgpavim.py)文件
+let g:dbgPavimPort = 9001
+let g:dbgPavimMaxDepth = 5
+let g:dbgPavimLang = 'cn'
+" 快捷键配置查看 *.vim(dbgpavim.vim)文件
+let g:dbgPavimKeyHelp = 'he'
+"DBGPavim e
+
+"zs use
+"1. :Bp        "设置断点
+"2. 在浏览器中打开要调试的php页面,在URL后加上?XDEBUG_SESSION_START=1参数
+
+"设置dbgp客户端要监听的端口号       |注意：要与xdebug.ini中端口配置一致
+"let g:debuggerPort = 9001
+"为了能看到php数组的值，还需要设置下.vimrc
+"let g:debuggerMaxDepth = 5
+
+"dbgp 快捷键
+"vim DBGP快捷键和 ubuntu系统快捷键冲突,解决:
+"自定义配置 示例来自  debugger.vim文件
+"map <F1> :python debugger_resize()<cr>
+"map <F2> :python debugger_command('step_into')<cr>
+"map <F3> :python debugger_command('step_over')<cr>
+"map <F4> :python debugger_command('step_out')<cr>
+"
+"map <Leader>dr :python debugger_resize()<cr>
+"map <Leader>di :python debugger_command('step_into')<cr>
+"map <Leader>do :python debugger_command('step_over')<cr>
+"map <Leader>dt :python debugger_command('step_out')<cr>
+"
+"nnoremap ,e :python debugger_watch_input("eval")<cr>A
+"
+"map <F5> :python debugger_run()<cr>
+"map <F6> :python debugger_quit()<cr>
+"
+"map <F7> :python debugger_command('step_into')<cr>
+"map <F8> :python debugger_command('step_over')<cr>
+"map <F9> :python debugger_command('step_out')<cr>
+"
+"map <F11> :python debugger_context()<cr>
+"map <F12> :python debugger_property()<cr>
+"map <F11> :python debugger_watch_input("context_get")<cr>A<cr>
+"map <F12> :python debugger_watch_input("property_get", '<cword>')<cr>A<cr>
+"
+"hi DbgCurrent term=reverse ctermfg=White ctermbg=Red gui=reverse
+"hi DbgBreakPt term=reverse ctermfg=White ctermbg=Green gui=reverse
+"
+"command! -nargs=? Bp python debugger_mark('<args>')
+"command! -nargs=0 Up python debugger_up()
+"command! -nargs=0 Dn python debugger_down()
+"sign define current text=->  texthl=DbgCurrent linehl=DbgCurrent
+"sign define breakpt text=B>  texthl=DbgBreakPt linehl=DbgBreakPt
+"....
+
+"RADME DBGP
+"因为窗口不大，那4个小窗口只有watch_window对我有用，所以可以直接修改debugger.py，把对应窗口的代码都注视掉，只留下watch_window，这样watch_window就独占右侧了
+"
+"minibufexplorer 插件,在执行 DBGP调试的时候,会使窗口混乱;尚未找到解决方法
+"vim 设置折叠,在进行 DBGP调试的时候,也不是很友好,可以设置 vim打开文件默认不开启折叠
+
+"vim DBGP config s
+"There are some variables that you can configure in Vim:
+"
+"g:debuggerPort [9000]
+"The port that the plugin will use to receive the connections from the
+"debugger
+"g:debuggerProxyHost [localhost]
+"Host where the proxy is
+"g:debuggerProxyPort
+"Port used to connect to the proxy, leave it unset if not using proxy
+"g:debuggerProxyKey
+"Key used in the connection with the proxy
+"g:debuggerMaxChildren [32]
+"TODO
+"g:debuggerMaxData [32]
+"TODO
+"g:debuggerMaxChildren [1024]
+"TODO
+"g:debuggerMaxDepth [1]
+"Maximum depth level when dumping variables
+"g:debuggerMiniBufExpl [0]
+"TODO
+"g:debuggerFileMapping [[]]
+"Array with pairs of regular expressions to match and replacement strings,
+"e,g: [['/var/www/[^/]+/(.*)', '/home/' . $USER . '/project/\\1']]
+"vim DBGP config e
+
 
 "################### nodejs ide config ######################
 "nodejs-snippets
-"复制snippets文件夹到snipmate\snippets。见line 220
+"复制snippets文件夹到snipmate\snippets
 Bundle 'jamescarr/snipmate-nodejs.git'
 
 "Vim Dictionary for Node.js
