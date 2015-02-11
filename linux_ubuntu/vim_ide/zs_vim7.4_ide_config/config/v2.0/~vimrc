@@ -1064,6 +1064,7 @@ Bundle 'myhere/vim-nodejs-complete.git'
 
 "################### Python ide config ######################
 "近期,要求Python开发,需要配置 ide ...
+"http://blog.chinaunix.net/uid-25719044-id-3026457.html
 
 
 "################### Golang ide config ######################
