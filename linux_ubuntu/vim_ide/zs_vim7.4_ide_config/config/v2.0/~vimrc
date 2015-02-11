@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2015-02-10
+"last modify 2015-02-11
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
@@ -87,7 +87,7 @@ map ch :set cc=100<CR>
 map nch :set cc=0<CR>
 "按下,nch取消列高亮
 
-" 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
+" 相对行号  行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
 set relativenumber number
 au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
