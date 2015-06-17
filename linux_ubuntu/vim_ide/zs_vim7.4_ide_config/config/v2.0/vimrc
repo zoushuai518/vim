@@ -83,8 +83,10 @@ endif
 "$VIM : vim的安装的根目录.  [ad: ubuntu /usr/share/vim]
 ":echo $VIM
 ":echo $HOME
-":echo $VIMRUNTIME
+":echo $VIMRUNTIME  "查看vim运行目录
 ":scriptname
+":colorscheme "查看当前主题
+":colorscheme 主题名称 "切换主题
 
 "特殊命令
 "1.:version " 查看版本编译信息
@@ -111,7 +113,7 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2015-02-09
+"last modify 2015-06-16
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
@@ -646,7 +648,9 @@ endif
 "set t_Co=16
 
 "colorscheme molokai
-"colorscheme desert
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr

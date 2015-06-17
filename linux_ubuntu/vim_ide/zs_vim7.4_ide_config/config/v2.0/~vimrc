@@ -2,11 +2,11 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2015-02-11
+"last modify 2015-06-17
 "zs备注：
 "插件管理还有很多问题需要研究;
 "插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
-"更多插件参考:https://github.com/wklken/k-vim
+"更多插件参考:https://github.com/wklken/k-vim; http://www.wklken.me/
 "参考, http://www.vimer.cn
 " 此配置在 ubuntu 13.04,14.04 vim7.4平台测试通过
 " 可以复制 ~/.vim/bundle/下的插件,移植到其它机器使用
@@ -201,7 +201,8 @@ Bundle 'scrooloose/syntastic'
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
 let g:syntastic_check_on_open=1
-let g:syntastic_enable_highlighting = 0
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting = 1
 "let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
 let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_javascript_checkers = ['jsl', 'jshint']
@@ -217,18 +218,65 @@ highlight SyntasticErrorSign guifg=white guibg=black
 "autocmd FileType c set omnifunc=ccomplete#Complete 
 
 
-"################### txt.vim ######################
-" 高亮显示普通txt文件（需要txt.vim脚本） 
-"au BufRead,BufNewFile * setfiletype txt 
+"################### NERT_Tree 目录树插件 独立与 Trinity ######################
+Bundle 'scrooloose/nerdtree'
+"map <F1> :NERDTreeToggle
+""map <C-F1> :NERDTreeFind
+let NERDTreeChDirMode=2  "选中root即设置为当前目录
+""let NERDTreeQuitOnOpen=1 "打开文件时关闭树
+let NERDTreeShowBookmarks=1 "显示书签
+""let NERDTreeMinimalUI=1 "不显示帮助面板
+let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
+""map <F3> :NERDTreeToggle
+"ne快捷键
+nmap ne :NERDTreeToggle<CR>
 
 
-"################### mark.vim ######################
-"给不同的单词高亮，表明不同的变量时很有用。（特别说明一下，vim.org上有两个Mark.vim，请使用链接中指向的那个，另外一个是有bug的）
+"################### kien/ctrlp.vim 文件搜索 ######################
+"文件搜索同类插件Command-T需要依赖于(python)外部包,不喜欢有太多依赖的,除非十分强大
+"github: 原始kien/ctrlp,使用的是国人改进版本 ctrlpvim/ctrlp.vim
+Bundle 'ctrlpvim/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
+"快捷键
+"let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<F12>'
+let g:ctrlp_cmd = 'CtrlP'
+" map <c-f> :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
+"ctrl-f模糊搜索最近打开的文件(MRU)
+"ctrl-p模糊搜索当前目录及其子目录下的所有文件
+"
+"搜索框出来后, 输入关键字, 然后
+"ctrl + j/k 进行上下选择
+"ctrl + x 在当前窗口水平分屏打开文件
+"ctrl + v 同上, 垂直分屏
+"ctrl + t 在tab中打开
+
+"ctrlp的插件ctrlp-funky
+"作用: 模糊搜索当前文件中所有函数
+Bundle 'tacahiroy/ctrlp-funky'
+nnoremap cf :CtrlPFunky<Cr>  "进入当前文件的函数列表搜索
+nnoremap cu :execute 'CtrlPFunky ' . expand('<cword>')<Cr>  "搜索当前光标下单词对应的函数
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
 
 
-"################### VOoM(原VOOF) ######################
-"VOoM(原VOOF)：vim实现带折叠双栏树状文本管理
-"http://xbeta.info/vim-voof.htm
+"################### gundo 文件时光机, 可以查看文件关闭之前的修改历史 ######################
+"同类插件 undotree; https://github.com/mbbill/undotree
+"network url: http://www.wklken.me/posts/2015/06/13/vim-plugin-gundo.html
+Bundle 'sjl/gundo.vim'
+"快捷键,查看文件编辑历史
+map gt :GundoToggle<CR>
 
 
 "################### snipMate ######################
@@ -242,21 +290,8 @@ let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
 "研究,如何定义自己的 snippets代码片段,已添加部分
 
 
-"################### UltiSnips ######################
-"Bundle 'sirver/ultisnips'
-"提供超强的快速生成代码段的功能(超越snipmate)
-"未配置
-
-
-"################### powerline 旧版状态栏增强插件 ######################
-"Bundle 'Lokaltog/vim-powerline'
-"set guifont=PowerlineSymbols\ for\ Powerline
-"set nocompatible
-"set t_Co=256
-"let g:Powerline_symbols = 'fancy'
-
-
 "################### vim-airline 新版状态栏增强插件 ######################
+"同类插件: Powerline
 Bundle 'bling/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -280,6 +315,147 @@ map <A-right> <ESC>:bn<RETURN>
 "Alt + <- 打开上一个文件,zs set
 "map <M-left> <ESC>:bp<RETURN>
 map <A-left> <ESC>:bp<RETURN>
+
+
+"################### vim-multiple-cursors 类似sublimetext的多光标选中 ######################
+Bundle 'terryma/vim-multiple-cursors'
+let g:multi_cursor_use_default_mapping=0
+"Default mapping
+let g:multi_cursor_next_key='<C-m>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+"use | 默认快捷键
+"ctrl+m 选中一个
+"ctrl+p 放弃一个, 回到上一个
+"ctrl+x 跳过当前选中, 选中下一个
+"esc    退出
+"选中后, 可以进行增删替换a/c/x等
+
+
+"################### vim-easy-align 快速进行对齐/格式化 ######################
+"同类插件 Tabular
+Bundle 'junegunn/vim-easy-align'
+vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+"
+"use
+":'<,'>EasyAlign=
+
+
+"################### tabular 赋值语句代码对齐 ######################
+"将代码,或者json等,进行对齐,具体见 tabular-vim
+"https://github.com/godlygeek/tabular
+" Bundle 'Tabular'
+" map t= :Tabularize /=<CR>
+"
+"zs use
+"V 选择要对齐的行
+"按 : 进入命令模式; 此时命令行会显示 :'<,'>
+"输出对齐命令: Tabularize /=
+"此时 命令行 如下
+":'<,'>Tabularize /=
+"直接回车即可 按照 = 对齐
+"
+"map <F6> :Tabularize /=<CR>        "F6快捷键,zs set
+
+
+"################### rainbow_parentheses.vim 括号高亮(括号(小括号/中括号/大括号)) ######################
+Bundle 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+"不加入这行, 防止黑色括号出现, 很难识别
+" \ ['black',       'SeaGreen3'],
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+"有问题,括号不高亮
+
+
+"vim 主题 : http://cocopon.me/app/vim-color-gallery/
+"
+"################### solarized 主题 ######################
+Bundle 'altercation/vim-colors-solarized'
+set background=dark
+colorscheme solarized
+set t_Co=16
+"增强显示配置
+"let g:solarized_termtrans=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+"zs备注:还需要执行 solarized主题的脚本文件方可
+"solarized.sh && vim/linux_ubuntu/b5m_vim_ide/solarized.sh
+
+
+"################### Calendar 日历插件 ######################
+"github地址: https://github.com/itchyny/calendar.vim
+"itchyny/calendar.vim & richardlee8681/calendar.vim 是两种不同的日历格式插件
+Bundle 'itchyny/calendar.vim'
+"Bundle 'richardlee8681/calendar-vim'
+let g:calendar_diary = "~/diary" " 设置日记的存储路径
+let g:calendar_monday = 1 "以星期一为开始
+let g:calendar_focus_today = 1 " 光标在当天的日期上
+let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
+"use
+":Calendar
+":Calendar 2000 1 1
+":Calendar -view=year
+":Calendar -view=year -split=vertical -width=27
+":Calendar -view=year -split=horizontal -position=below -height=12
+":Calendar -first_day=monday
+":Calendar -view=clock
+
+
+"################### txt.vim ######################
+" 高亮显示普通txt文件（需要txt.vim脚本） 
+"au BufRead,BufNewFile * setfiletype txt 
+
+
+"################### mark.vim ######################
+"给不同的单词高亮，表明不同的变量时很有用。（特别说明一下，vim.org上有两个Mark.vim，请使用链接中指向的那个，另外一个是有bug的）
+
+
+"################### VOoM(原VOOF) ######################
+"VOoM(原VOOF)：vim实现带折叠双栏树状文本管理
+"http://xbeta.info/vim-voof.htm
+
+
+"################### UltiSnips ######################
+"Bundle 'sirver/ultisnips'
+"提供超强的快速生成代码段的功能(超越snipmate)
+"未配置
+
+
+"################### powerline 旧版状态栏增强插件 ######################
+"Bundle 'Lokaltog/vim-powerline'
+"set guifont=PowerlineSymbols\ for\ Powerline
+"set nocompatible
+"set t_Co=256
+"let g:Powerline_symbols = 'fancy'
 
 
 "################### trinity.vim集成了 NERD_tree.vim SrcExpl.vim taglist.vim三个插件 ######################
@@ -347,60 +523,6 @@ let g:SrcExpl_updateTagsKey = "<F12>"
 "let g:SrcExpl_nextDefKey = "<F4>"
 
 
-"################### NERT_Tree 目录树插件 独立与 Trinity ######################
-Bundle 'scrooloose/nerdtree'
-"map <F1> :NERDTreeToggle
-""map <C-F1> :NERDTreeFind
-let NERDTreeChDirMode=2  "选中root即设置为当前目录
-""let NERDTreeQuitOnOpen=1 "打开文件时关闭树
-let NERDTreeShowBookmarks=1 "显示书签
-""let NERDTreeMinimalUI=1 "不显示帮助面板
-let NERDTreeDirArrows=1 "目录箭头 1显示箭头  0传统+-|号
-""map <F3> :NERDTreeToggle
-"ne快捷键
-nmap ne :NERDTreeToggle<CR>
-
-
-"################### Command-T: 在 Vim 中快速导航文件 ######################
-"https://github.com/wincent/command-t
-"
-"安装 Command-T:
-"在下载 Command-T 后，你可以按如下的步骤来安装：http://www.vim.org/scripts/script.php?script_id=3025
-"vim command-t-1.11.4.vba
-":so %
-"cd ~/.vim/ruby/command-t
-"ruby extconf.rb
-"make
-"
-"Command-T 的用法:
-":CommandT
-"ctrl+j/k 上下选择文件，选中后回车打开文件
-"ctrl+t 以tab方式打开文件
-"ctrl+s/v 可以水平或垂直分割窗口打开文件
-"ctrl+c 退出该模式
-"该插件还有个常用命令，:CommandTBuffer，可以浏览缓冲区的文件，并重新打开。操作方式同上。
-"
-"注意事项:
-"Vim版本需要支持ruby扩展。我们可以在Vim中输入:ruby 1|vim --version检查，如果出现E319: Sorry, the command is not available in this version就表示不支持。
-"
-"如果出现上述情况，我们就需要自己去编译能够支持ruby的Vim，嫌麻烦的话可以直接安装vim-nox，自带Ruby支持，在Ubuntu下安装命令如下：sudo apt-get install vim-nox。
-"
-"执行ruby extconf.rb命令时如果出现找不到mkmf包的情况，说明你需要安装ruby-dev的包，在Ubuntu下安装命令如下：sudo apt-get install ruby1.8-dev。
-"[Unable to require "mkmf"; you may need to install Ruby development tools
-"(depending on your system, a "ruby-dev"/"ruby-devel" package or similar).]
-"sudo apt-get install ruby-dev
-"
-"经过以上处理,可用; zs亲测可用
-"2014-12-15
-
-
-"################### ack.vim, vim 整个工程全局查找插件 ######################
-"https://github.com/mileszs/ack.vim
-":help ack
-"暂时为使用
-"Bundle 'mileszs/ack.vim'
-
-
 "################### taglist.vim 源码追踪,要配合 ctags,依赖与tags文件 独立与 Trinity ######################
 Bundle 'taglist.vim'
 "let Tlist_Ctags_Cmd="/usr/bin/ctags"       "linux 下 ctags执行文件目录
@@ -443,6 +565,46 @@ set tags=/var/www/html/b5msite/cart/tags
 "Taglist 的一系列命令 :Tlist 等
 "Ctrl + ] 跳转到源
 "Ctrl + t 跳转到调用处
+
+
+"################### Command-T: 在Vim中快速导航文件 ######################
+"https://github.com/wincent/command-t
+"
+"安装 Command-T:
+"在下载 Command-T 后，你可以按如下的步骤来安装：http://www.vim.org/scripts/script.php?script_id=3025
+"vim command-t-1.11.4.vba
+":so %
+"cd ~/.vim/ruby/command-t
+"ruby extconf.rb
+"make
+"
+"Command-T 的用法:
+":CommandT
+"ctrl+j/k 上下选择文件，选中后回车打开文件
+"ctrl+t 以tab方式打开文件
+"ctrl+s/v 可以水平或垂直分割窗口打开文件
+"ctrl+c 退出该模式
+"该插件还有个常用命令，:CommandTBuffer，可以浏览缓冲区的文件，并重新打开。操作方式同上。
+"
+"注意事项:
+"Vim版本需要支持ruby扩展。我们可以在Vim中输入:ruby 1|vim --version检查，如果出现E319: Sorry, the command is not available in this version就表示不支持。
+"
+"如果出现上述情况，我们就需要自己去编译能够支持ruby的Vim，嫌麻烦的话可以直接安装vim-nox，自带Ruby支持，在Ubuntu下安装命令如下：sudo apt-get install vim-nox。
+"
+"执行ruby extconf.rb命令时如果出现找不到mkmf包的情况，说明你需要安装ruby-dev的包，在Ubuntu下安装命令如下：sudo apt-get install ruby1.8-dev。
+"[Unable to require "mkmf"; you may need to install Ruby development tools
+"(depending on your system, a "ruby-dev"/"ruby-devel" package or similar).]
+"sudo apt-get install ruby-dev
+"
+"经过以上处理,可用; zs亲测可用
+"2014-12-15
+
+
+"################### ack.vim, vim 整个工程全局查找插件 ######################
+"https://github.com/mileszs/ack.vim
+":help ack
+"暂时为使用
+"Bundle 'mileszs/ack.vim'
 
 
 "################### cscope.vim 代码追踪 ######################
@@ -507,29 +669,12 @@ set tags=/var/www/html/b5msite/cart/tags
 "Bundle 'Tag majutsushi/tagbar'
 
 
-"vim 主题 : http://cocopon.me/app/vim-color-gallery/
-"
-"################### solarized 主题 ######################
-Bundle 'altercation/vim-colors-solarized'
-set background=dark
-colorscheme solarized
-set t_Co=16
-" 增强显示配置
-"let g:solarized_termtrans=1
-"let g:solarized_contrast="normal"
-"let g:solarized_visibility="normal"
-"zs备注:还需要执行 solarized主题的脚本文件方可
-"solarized.sh && vim/linux_ubuntu/b5m_vim_ide/solarized.sh
-
-
 "################### molokai 主题 ######################
-""Bundle 'molokai'
 "Bundle 'tomasr/molokai'
-""set background=dark
-""colorscheme molokai
+"colorscheme molokai
+""monokai原始背景色
 "let g:molokai_original = 1
 "let g:rehash256 = 1
-"设置失败,fuck
 
 
 "################### neocomplcache 自动补全插件 ######################
@@ -541,6 +686,40 @@ set t_Co=16
 "################### autocomplpop 自动补全插件 ######################
 "autocomplpop自动补全插件,优于 neocomplcache自动补全插件
 Bundle 'esukram/autocomplpop.vim'
+
+
+"################### Vim自动补全神器：YouCompleteMe ######################
+"
+"整合实现了多种插件
+"clang_complete
+"AutoComplPop
+"Supertab
+"neocomplcache
+"Syntastic(类似功能,仅仅针对c/c++/obj-c代码)
+"支持类似tags|taglist的跳转
+"
+"支持语言
+"c
+"c++
+"obj-c
+"c#
+"python
+"对于其他的语言，会调用vim设置的omnifunc来匹配，因此同样支持php,ruby等语言。
+"
+"
+" 手动编译安装步骤:
+" 1. git clone --recursive https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe "获取最新的仓库
+" 2. git submodule update --init --recursive  "确认仓库的完整性
+" 3. cd ~/.vim/bundle/YouCompleteMe
+"   ./install.sh --clang-completer
+"
+" Bundle安装:
+" 1. Bundle 'Valloric/YouCompleteMe'
+" 2. :BundleInstall
+" 3. cd ~/.vim/bundle/YouCompleteMe
+"   ./install.sh --clang-completer
+"
+" 需要编译比较复杂,待续...; 2015-06-17
 
 
 "################### Omnicppcomplete 添加代码补全功能,需要 Ctags工具生成tags文件 ######################
@@ -675,22 +854,6 @@ let g:DoxygenToolkit_licenseTag="My own license"
 "zs: doxygen 注释插件配置,还要需研究
 
 
-"################### tabular 赋值语句代码对齐 ######################
-"将代码,或者json等,进行对齐,具体见 tabular-vim
-"https://github.com/godlygeek/tabular
-Bundle 'Tabular'
-map t= :Tabularize /=<CR>
-"zs use
-"V 选择要对齐的行
-"按 : 进入命令模式; 此时命令行会显示 :'<,'>
-"输出对齐命令: Tabularize /=
-"此时 命令行 如下
-":'<,'>Tabularize /=
-"直接回车即可 按照 = 对齐
-"
-"map <F6> :Tabularize /=<CR>        "F6快捷键,zs set
-
-
 "################### delimitMate 引号配对补全 ######################
 "附:同类插件 kana/vim-smartinput
 Bundle 'Raimondi/delimitMate'
@@ -716,18 +879,7 @@ Bundle 'Raimondi/delimitMate'
 ""let g:multi_cursor_start_key='<F6>'
 
 
-"k-vim uninstall
-
-"################### kien/ctrlp.vim 搜索 ######################
-"文件搜索,ack/Command-T需要依赖于外部包,不喜欢有太多依赖的,除非十分强大
-"http://kien.github.io/ctrlp.vim/
-"[sd] ,p  打开ctrlp搜索
-"[sd] ,f  相当于mru功能，show recently opened files
-"ctrl + j/k 进行上下移动
-"ctrl + x/v 分屏打开该文件
-"ctrl + t   在新tab中打开该文件
-"Bundle 'kien/ctrlp.vim'
-
+"k-vim uninstall s
 
 "################### docunext/closetag.vim html/xml标签配对补全 ######################
 "Bundle 'docunext/closetag.vim'
@@ -759,36 +911,7 @@ Bundle 'Raimondi/delimitMate'
 ",, + fe  查找'e',快速跳转定位到某个字符位置
 "Bundle 'Lokaltog/vim-easymotion'
 
-
-"################### sjl/gundo.vim 文件时光机 ######################
-"编辑文件时光机
-"[sd] ,h  查看文件编辑历史
-"Bundle 'sjl/gundo.vim'
-
-
-"################### kien/rainbow_parentheses.vim 括号上色高亮 ######################
-"Bundle 'kien/rainbow_parentheses.vim'
-
-"k-vim uninstall
-
-
-"################### Calendar 日历插件 ######################
-"github地址: https://github.com/itchyny/calendar.vim
-"itchyny/calendar.vim & richardlee8681/calendar.vim 是两种不同的日历格式插件
-Bundle 'itchyny/calendar.vim'
-"Bundle 'richardlee8681/calendar-vim'
-let g:calendar_diary = "~/diary" " 设置日记的存储路径
-let g:calendar_monday = 1 "以星期一为开始
-let g:calendar_focus_today = 1 " 光标在当天的日期上
-let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
-"use
-":Calendar
-":Calendar 2000 1 1
-":Calendar -view=year
-":Calendar -view=year -split=vertical -width=27
-":Calendar -view=year -split=horizontal -position=below -height=12
-":Calendar -first_day=monday
-":Calendar -view=clock
+"k-vim uninstall e
 
 
 "################### TODO关键字列表 ######################
@@ -1092,7 +1215,8 @@ let javascript_enable_domhtmlcss=1
 Bundle 'maksimr/vim-jsbeautify'
 "map <c-f> :call JsBeautify()<cr>
 " Ctrl + f 快捷键冲突 修改为Ctrl + p快捷键
-map <c-p> :call JsBeautify()<cr>
+"map <c-p> :call JsBeautify()<cr>
+map <c-j> :call JsBeautify()<cr>
 " or
 autocmd FileType javascript noremap <buffer>  <c-p> :call JsBeautify()<cr>
 " for html
