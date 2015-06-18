@@ -75,22 +75,20 @@ endif
 "1. 有时键盘影视快捷键 无法自动触发回车,vim7.3此种键盘映射是OK的,不知道为何.. 应该是配置文件中,某处配置导致的  -> 测试下来的结果,全局配置文件vimrc中会出现此问题;~/.vim/vimrc中可以正常使用。目前的解决方案: 1.建议自定义的配置都放到 ~/.vim/vimrc文件中。2.不要加载单独的 ~/.vim/vimrc配置文件,而用一个vimrc配置文件
 "2. 相对行号,同时当前行 行号高亮
 
-" 很好的配置
-
 
 "常用变量
-"$VIMRUNTIME
-"$VIM : vim的安装的根目录.  [ad: ubuntu /usr/share/vim]
+"$VIMRUNTIME    "查看vim运行目录
+"$VIM           "vim的安装的根目录.  [ad: ubuntu /usr/share/vim]
+"$MYVIMRC       "是你的vimrc路径
+"$HOME          "当前用户家目录
+"$VIMFILES
+"
+"use
 ":echo $VIM
-":echo $HOME
-":echo $VIMRUNTIME  "查看vim运行目录
-":scriptname
-":colorscheme "查看当前主题
-":colorscheme 主题名称 "切换主题
 
-"特殊命令
+
+"[特殊]命令
 "1.:version " 查看版本编译信息
-"  vim --version
 "2.:let " 查看变量列表
 "3.:history " 查看历史命令列表
 "4.:language: " 查看当前所用语种信息，例如中文或英文
@@ -100,6 +98,11 @@ endif
 "8.:buffers: " 查看当前所用buffer列表
 "9.:script: " 查看Vim加载的依次加载的脚本路径及其名称
 "10.:help 命令 " 查看Vim相关命令的帮助(包括插件命令)
+"11.:colorscheme "查看当前主题
+"12.:colorscheme 主题名称 "切换主题
+"13.:so|source
+"14.:scriptname
+
 
 "1）Vim存在多个配置文件vimrc，比如/etc/vimrc，此文件影响整个系统的Vim。还有~/.vimrc，此文件只影响本用户的Vim。而且~/.vimrc文件中的配置会覆盖/etc/vimrc中的配置。这里我们只修改~/.vimrc文件。
 "2）Vim的插件（plugin）安装在Vim的runtimepath目录下，你可以在Vim命令行下运行"set rtp“命令查看。这里我们选择安装在~/.vim目录，没有就创建一个。
@@ -113,14 +116,14 @@ endif
 "set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 
 "zs config
-"last modify 2015-06-16
+"last modify 2015-06-18
 "==========================================
 " Author:  zoushuai
 " Version: 7.4
 " Email: zoushuai518@gmail.com
 " BlogPost: http://zoushuai518.github.io
 " ReadMe: README.md
-" Last_modify: 2015-02-09
+" Last_modify: 2015-06-18
 " Sections:
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -423,6 +426,13 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+"zs if has test; 2015-06-18
+"if has("win32")
+"    let $VIMFILES = $VIM.'/vimfiles'
+"else
+"    let $VIMFILES = $HOME.'/.vim'
+"endif
 
 
 "==========================================

@@ -2,15 +2,24 @@
 " bundle 插件管理和配置项
 "==========================================
 "------------------------------------------- begin of configs --------------------------------------------
-"last modify 2015-06-17
-"zs备注：
-"插件管理还有很多问题需要研究;
-"插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
-"更多插件参考:https://github.com/wklken/k-vim; http://www.wklken.me/
-"参考, http://www.vimer.cn
+"last modify 2015-06-18
+"
 " 此配置在 ubuntu 13.04,14.04 vim7.4平台测试通过
 " 可以复制 ~/.vim/bundle/下的插件,移植到其它机器使用
 " vimrc路径 ~/.vim/vimrc
+"
+"zs备注：
+" 插件管理还有很多问题需要研究;
+" 插件管理,区别与传统的vim插件安装方式,但也可以 cp覆盖操作;插件只不过是,对vim集中管理安装,更新,加载而已
+" 更多插件参考:https://github.com/wklken/k-vim; http://www.wklken.me/
+" 参考, http://www.vimer.cn
+"
+" VIM不重启使vimrc文件生效
+" 如果想要vimrc保存后自动重新加载而不需要重启VIM，前提是所有在vimrc中的自定义函数都要定义成function!这种形式
+" :so %
+" :so $MYVIMRC
+" :source $HOME/vimrc
+" :autocmd! bufwritepost $HOME/vimrc source %
 
 
 "################### 包依赖 #####################
@@ -81,13 +90,14 @@ match LeaderTab /^\t/
 " set cc=80
 " set colorcolumn=80
 "map ch :set cc=150<RETURN>
-map ch :set cc=100<CR>
+map ch :set cc=80<CR>
 "按下,ch就可以将当前光标下的列高亮
 "map nch :set cc=0<RETURN>
 map nch :set cc=0<CR>
 "按下,nch取消列高亮
 
 " 相对行号  行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
+" zs-import
 set relativenumber number
 au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
@@ -233,12 +243,13 @@ nmap ne :NERDTreeToggle<CR>
 
 
 "################### kien/ctrlp.vim 文件搜索 ######################
-"文件搜索同类插件Command-T需要依赖于(python)外部包,不喜欢有太多依赖的,除非十分强大
+"同类插件: Command-T需要依赖于(python)外部包,不喜欢有太多依赖的,除非十分强大
 "github: 原始kien/ctrlp,使用的是国人改进版本 ctrlpvim/ctrlp.vim
 Bundle 'ctrlpvim/ctrlp.vim'
 "Bundle 'kien/ctrlp.vim'
 "快捷键
 "let g:ctrlp_map = '<c-p>'
+" 快捷键冲突
 let g:ctrlp_map = '<F12>'
 let g:ctrlp_cmd = 'CtrlP'
 " map <c-f> :CtrlPMRU<CR>
@@ -280,6 +291,7 @@ map gt :GundoToggle<CR>
 
 
 "################### snipMate ######################
+" 同类插件: UltiSnips
 "Bundle 'snipMate'
 Bundle 'msanders/snipmate.vim'
 let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
@@ -290,6 +302,12 @@ let g:snippets_dir = "~/.vim/bundle/snipmate.vim/snippets"
 "研究,如何定义自己的 snippets代码片段,已添加部分
 
 
+"################### UltiSnips ######################
+"Bundle 'sirver/ultisnips'
+"提供超强的快速生成代码段的功能(超越snipmate)
+"未配置
+
+
 "################### vim-airline 新版状态栏增强插件 ######################
 "同类插件: Powerline
 Bundle 'bling/vim-airline'
@@ -297,6 +315,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 ":help airline
+
+
+"################### powerline 旧版状态栏增强插件 ######################
+"Bundle 'Lokaltog/vim-powerline'
+"set guifont=PowerlineSymbols\ for\ Powerline
+"set nocompatible
+"set t_Co=256
+"let g:Powerline_symbols = 'fancy'
 
 
 "################### minibufexpl.vim 多文件编辑 ######################
@@ -364,7 +390,7 @@ let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String']
 "map <F6> :Tabularize /=<CR>        "F6快捷键,zs set
 
 
-"################### rainbow_parentheses.vim 括号高亮(括号(小括号/中括号/大括号)) ######################
+"################### rainbow_parentheses.vim 括号高亮(小括号/中括号/大括号) ######################
 Bundle 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -393,7 +419,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-"有问题,括号不高亮
 
 
 "vim 主题 : http://cocopon.me/app/vim-color-gallery/
@@ -403,6 +428,8 @@ Bundle 'altercation/vim-colors-solarized'
 set background=dark
 colorscheme solarized
 set t_Co=16
+"let g:solarized_termcolors=256
+"
 "增强显示配置
 "let g:solarized_termtrans=1
 "let g:solarized_contrast="normal"
@@ -411,23 +438,117 @@ set t_Co=16
 "solarized.sh && vim/linux_ubuntu/b5m_vim_ide/solarized.sh
 
 
+"################### molokai 主题 ######################
+" Bundle 'tomasr/molokai'
+" set t_Co=256
+" set background=dark
+" colorscheme molokai
+" "monokai原始背景色
+" let g:molokai_original = 1
+" let g:rehash256 = 1
+
+
 "################### Calendar 日历插件 ######################
 "github地址: https://github.com/itchyny/calendar.vim
 "itchyny/calendar.vim & richardlee8681/calendar.vim 是两种不同的日历格式插件
+"
+" 新版本日历插件
 Bundle 'itchyny/calendar.vim'
-"Bundle 'richardlee8681/calendar-vim'
-let g:calendar_diary = "~/diary" " 设置日记的存储路径
-let g:calendar_monday = 1 "以星期一为开始
-let g:calendar_focus_today = 1 " 光标在当天的日期上
-let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
-"use
-":Calendar
+map ca :Calendar -view<CR>
+"
+" 老版本日历插件, 弃用
+" Bundle 'richardlee8681/calendar-vim'
+" let g:calendar_diary = "~/diary" " 设置日记的存储路径
+" let g:calendar_monday = 1 "以星期一为开始
+" let g:calendar_focus_today = 1 " 光标在当天的日期上
+" let g:calendar_mark = 'left-fix' "可以让*和数字可靠近
+" let g:calendar_mruler = '一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月'     " 中文，可自行修改
+" let g:calendar_wruler = '日 一 二 三 四 五 六'
+" let g:calendar_navi_label = '往前,今日,往后'
+"
+" use
+"
+" itchyny/calendar.vim
+" Press E key to view the event list, and T key to view the task list. Also, press ? key to view a quick help.
+":Calendar -view
 ":Calendar 2000 1 1
 ":Calendar -view=year
-":Calendar -view=year -split=vertical -width=27
+":Calendar -view=year|day|month|week -split=vertical -width=27 -position=right
 ":Calendar -view=year -split=horizontal -position=below -height=12
 ":Calendar -first_day=monday
 ":Calendar -view=clock
+"
+" richardlee8681/calendar-vim
+":Calendar
+":CalendarH
+":CalendarT
+"
+":help Calendar
+
+
+"################### autocomplpop 自动补全插件 ######################
+"同类插件: neocomplcache
+"autocomplpop自动补全插件,优于 neocomplcache自动补全插件
+Bundle 'esukram/autocomplpop.vim'
+
+
+"################### neocomplcache 自动补全插件 ######################
+"此插件会导致 vim报错,暂时没有解决,使用 vim autocomplpop插件代替
+"Bundle 'neocomplcache'
+"let g:neocomplcache_enable_at_startup = 1
+
+
+"################### Vim自动补全神器：YouCompleteMe ######################
+"
+"整合实现了多种插件
+"clang_complete
+"AutoComplPop
+"Supertab
+"neocomplcache
+"Syntastic(类似功能,仅仅针对c/c++/obj-c代码)
+"支持类似tags|taglist的跳转
+"
+"支持语言
+"c
+"c++
+"obj-c
+"c#
+"python
+"对于其他的语言，会调用vim设置的omnifunc来匹配，因此同样支持php,ruby等语言。
+"
+"
+" 手动编译安装步骤:
+" 1. git clone --recursive https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe "获取最新的仓库
+" 2. git submodule update --init --recursive  "确认仓库的完整性
+" 3. cd ~/.vim/bundle/YouCompleteMe
+"   ./install.sh --clang-completer
+"
+" Bundle安装:
+" 1. Bundle 'Valloric/YouCompleteMe'
+" 2. :BundleInstall
+" 3. cd ~/.vim/bundle/YouCompleteMe
+"   ./install.sh --clang-completer
+"
+" 需要编译比较复杂,待续...; 2015-06-17
+
+
+"################### vimwiki ######################
+" http://wiki.ktmud.com/tips/vim/vimwiki-guide.html
+"
+" install type 1
+" 利用vim vimball安装
+" http://www.vim.org/scripts/script.php?script_id=2226
+" install type 2
+" Bundle
+"
+Bundle 'vimwiki'
+"use
+"具体使用见手册
+":h Vimwiki
+"
+" http://www.18dao.org/Wiki语法大全
+"
+"待续..., 2015-06-18
 
 
 "################### txt.vim ######################
@@ -444,18 +565,56 @@ let g:calendar_mark = 'left-fit' "可以让*和数字可靠近
 "http://xbeta.info/vim-voof.htm
 
 
-"################### UltiSnips ######################
-"Bundle 'sirver/ultisnips'
-"提供超强的快速生成代码段的功能(超越snipmate)
-"未配置
+"################### " :AuthorInfoDetect  自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
+"目前AuthorInfo是支持c,cpp,java,php,python,bash,makefile等等多种语言，基本上只要NERD Commenter支持的类型，AuthorInfo都默认支持
+"https://github.com/ihacklog/AuthorInfo     "亲测可用,http://www.vimer.cn
+" AuthorInfo 文件头注释没有会创建,如果有会更新
+"更多 AuthorInfo配置,有待研究
+
+"提供快速注释/反注释代码块的功能
+Bundle 'The-NERD-Commenter'
+
+"authorinfo 自动生成/更新文件的作者信息
+Bundle 'ihacklog/AuthorInfo'
+"let g:authorinfo_author='weiyan'
+"let g:authorinfo_email='weiyan@b5m.com'
+"let g:authorinfo_company='http://www.b5m.com'
+let g:vimrc_author='shuai.zou'
+let g:vimrc_email='shuai.zou@weimob.com'
+let g:vimrc_homepage='http://www.weimob.com'
+"Ctrl + a
+nmap <C-a> :AuthorInfoDetect<CR>
+"" Ctrl + E            一步加载语法模板和作者、时间信息
+"map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+"imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+"vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
 
 
-"################### powerline 旧版状态栏增强插件 ######################
-"Bundle 'Lokaltog/vim-powerline'
-"set guifont=PowerlineSymbols\ for\ Powerline
-"set nocompatible
-"set t_Co=256
-"let g:Powerline_symbols = 'fancy'
+"################### The-NERD-Commenter 快速添加注释 ######################
+"有问题
+"Bundle 'The-NERD-Commenter'
+
+
+"################### doxygen 快速添加注释 ######################
+"http://www.doxygen.org/
+Bundle 'DoxygenToolkit.vim'
+"定制输出脚本，在脚本文件中，在.vimrc中设置g: DoxygenToolkit_*变量：
+let g:DoxygenToolkit_commentType="PHP"
+let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
+let g:DoxygenToolkit_authorName="shuai.zou"
+let g:DoxygenToolkit_licenseTag="My own license"
+"let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
+"
+"使用：
+":DoxLic    添加许可
+":Dox       添加函数/类注释
+":DoxAuthor 添加作者信息
+"
+"zs: doxygen 注释插件配置,还要需研究
 
 
 "################### trinity.vim集成了 NERD_tree.vim SrcExpl.vim taglist.vim三个插件 ######################
@@ -669,59 +828,6 @@ set tags=/var/www/html/b5msite/cart/tags
 "Bundle 'Tag majutsushi/tagbar'
 
 
-"################### molokai 主题 ######################
-"Bundle 'tomasr/molokai'
-"colorscheme molokai
-""monokai原始背景色
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-
-
-"################### neocomplcache 自动补全插件 ######################
-"此插件会导致 vim报错,暂时没有解决,使用 vim autocomplpop插件代替
-"Bundle 'neocomplcache'
-"let g:neocomplcache_enable_at_startup = 1
-
-
-"################### autocomplpop 自动补全插件 ######################
-"autocomplpop自动补全插件,优于 neocomplcache自动补全插件
-Bundle 'esukram/autocomplpop.vim'
-
-
-"################### Vim自动补全神器：YouCompleteMe ######################
-"
-"整合实现了多种插件
-"clang_complete
-"AutoComplPop
-"Supertab
-"neocomplcache
-"Syntastic(类似功能,仅仅针对c/c++/obj-c代码)
-"支持类似tags|taglist的跳转
-"
-"支持语言
-"c
-"c++
-"obj-c
-"c#
-"python
-"对于其他的语言，会调用vim设置的omnifunc来匹配，因此同样支持php,ruby等语言。
-"
-"
-" 手动编译安装步骤:
-" 1. git clone --recursive https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe "获取最新的仓库
-" 2. git submodule update --init --recursive  "确认仓库的完整性
-" 3. cd ~/.vim/bundle/YouCompleteMe
-"   ./install.sh --clang-completer
-"
-" Bundle安装:
-" 1. Bundle 'Valloric/YouCompleteMe'
-" 2. :BundleInstall
-" 3. cd ~/.vim/bundle/YouCompleteMe
-"   ./install.sh --clang-completer
-"
-" 需要编译比较复杂,待续...; 2015-06-17
-
-
 "################### Omnicppcomplete 添加代码补全功能,需要 Ctags工具生成tags文件 ######################
 "类比与 taglist、tagbar 等插件
 "OmniCppComplete一般和 autocomplpop一起出现
@@ -802,81 +908,9 @@ Bundle 'OmniCppComplete'
 "OmniCpp_LocalSearchDecl : 使用Vim标准查找函数/本地(local)查找函数。Vim内部用来在函数中查找变量定义的函数需要函数括号位于文本的第一列，而本地查找函数并不需要。
 
 
-"################### " :AuthorInfoDetect  自动添加作者、时间等信息，本质是NERD_commenter && authorinfo 的结合 ######################
-"目前AuthorInfo是支持c,cpp,java,php,python,bash,makefile等等多种语言，基本上只要NERD Commenter支持的类型，AuthorInfo都默认支持
-"https://github.com/ihacklog/AuthorInfo     "亲测可用,http://www.vimer.cn
-" AuthorInfo 文件头注释没有会创建,如果有会更新
-"更多 AuthorInfo配置,有待研究
-
-"提供快速注释/反注释代码块的功能
-Bundle 'The-NERD-Commenter'
-
-"authorinfo 自动生成/更新文件的作者信息
-Bundle 'ihacklog/AuthorInfo'
-"let g:authorinfo_author='weiyan'
-"let g:authorinfo_email='weiyan@b5m.com'
-"let g:authorinfo_company='http://www.b5m.com'
-let g:vimrc_author='shuai.zou'
-let g:vimrc_email='shuai.zou@weimob.com'
-let g:vimrc_homepage='http://www.weimob.com'
-"Ctrl + a
-nmap <C-a> :AuthorInfoDetect<CR>
-"" Ctrl + E            一步加载语法模板和作者、时间信息
-"map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-"imap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-"vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-
-
-"################### The-NERD-Commenter 快速添加注释 ######################
-"有问题
-"Bundle 'The-NERD-Commenter'
-
-
-"################### doxygen 快速添加注释 ######################
-"http://www.doxygen.org/
-Bundle 'DoxygenToolkit.vim'
-"定制输出脚本，在脚本文件中，在.vimrc中设置g: DoxygenToolkit_*变量：
-let g:DoxygenToolkit_commentType="PHP"
-let g:DoxygenToolkit_briefTag_pre="@Synopsis "
-let g:DoxygenToolkit_paramTag_pre="@param "
-let g:DoxygenToolkit_returnTag="@returns "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
-let g:DoxygenToolkit_authorName="shuai.zou"
-let g:DoxygenToolkit_licenseTag="My own license"
-"let g:DoxygenToolkit_licenseTag="My own license"   <-- !!! Does not end with "\<enter>"
-"
-"使用：
-":DoxLic    添加许可
-":Dox       添加函数/类注释
-":DoxAuthor 添加作者信息
-"
-"zs: doxygen 注释插件配置,还要需研究
-
-
 "################### delimitMate 引号配对补全 ######################
 "附:同类插件 kana/vim-smartinput
 Bundle 'Raimondi/delimitMate'
-
-
-"################### vim-multiple-cursors 多光标选中编辑 ######################
-"多光标批量操作
-"[sd]
-"ctrl + m 开始选择
-"ctrl + p 向上取消
-"ctrl + x 跳过
-"esc   退出
-"不知道如何使用
-"
-"Bundle 'vim-multiple-cursors'
-""let g:multi_cursor_use_default_mapping=0
-"" Default mapping
-"let g:multi_cursor_next_key='<C-n>'
-"let g:multi_cursor_prev_key='<C-p>'
-"let g:multi_cursor_skip_key='<C-x>'
-"let g:multi_cursor_quit_key='<Esc>'
-"" Map start key separately from next key
-""let g:multi_cursor_start_key='<F6>'
 
 
 "k-vim uninstall s
@@ -995,7 +1029,8 @@ endfunction
 "################### PHP-dictionary| php字典 实现函数补全 ######################
 Bundle 'PHP-dictionary'
 au FileType php call AddPHPFuncList()
-function AddPHPFuncList()
+"function AddPHPFuncList()
+function! AddPHPFuncList()
     "配置 字典文件路径
     set dictionary-=$HOME/.vim/bundle/PHP-dictionary/PHP.dict dictionary+=$HOME/.vim/bundle/PHP-dictionary/PHP.dict
     "快捷键映射,<C-X><C-K>; 此处Ctrl + k快捷键可能会和 assistant插件的 Ctrl + k快捷键冲突
@@ -1032,6 +1067,9 @@ endfunction
 "拼写建议 CTRL-X CTRL-S
 
 "################### SQLUtilities(sqlutil)|此插件依赖Align插件 sql格式化 ######################
+"此插件可以对mysql sql语句进行格式化, zs-import
+"
+"对齐插件; zs-import
 Bundle 'Align'
 Bundle 'SQLUtilities'
 let g:sqlutil_keyword_case = '\U'    "sql关键字转换为大写
@@ -1055,16 +1093,11 @@ map sf :SQLUFormatter<CR>
 "选中要格式化的sql, sf进行格式化
 
 "ext:
-"
 "vimball是一个vim插件，可以很方便地帮你安装vba格式的vim插件。
-"
 "貌似vim自带有vimball（vim7.3以后自带）。
-"
 "直接用vim打开vba格式的文件，输入:so %即可安装，然后:q退出。
-"
 "删除插件也很方便，直接在vim里输入:RmVimball 插件名
 "
-"注: 一般不用安装vimBall
 
 "################### dbext.vim vim直接访问数据库,支持多种数据库 |对于我暂时无用,而且上手难道偏大 ######################
 "Bundle 'dbext.vim'
@@ -1171,7 +1204,8 @@ Bundle 'guileen/vim-node.git'
 "添加字典文件
 "au FileType javascript set dictionary+=$VIM.'\vimfiles\dict\node.dict'
 au FileType js call AddJSFuncList()
-function AddJSFuncList()
+"function AddJSFuncList()
+function! AddJSFuncList()
     "配置 字典文件路径
     set dictionary-=$HOME/.vim/bundle/vim-node/node.dict dictionary+=$HOME/.vim/bundle/vim-node/node.dict
     "快捷键映射,<C-X><C-K>
